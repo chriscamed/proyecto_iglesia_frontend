@@ -1,0 +1,17 @@
+.navbar{
+  min-height: 5.25rem !important;
+}
+
+nav.navbar-violet{
+  background-color: #6D214F;
+}
+
+a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.is-active {
+    background-color: transparent !important;
+    color: #FFFFF4 !important;
+}
+
+.navbar-item, .navbar-link {
+    color: #FFFFF4 !important;
+    font-weight: 500;
+}

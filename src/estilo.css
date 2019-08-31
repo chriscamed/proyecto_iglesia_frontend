@@ -1,0 +1,14 @@
+select,input[type="date"],input[type="radio"],input[type="number"],input[type="time"]{
+
+border:rgb(134, 56, 103) 2px solid;
+color: #64234A ;
+text-transform: uppercase;
+}
+input[type="email"],input[type="password"]{
+    border:rgb(134, 56, 103) 2px solid;
+    color: #64234A ;
+}
+
+.Estilo{
+    background-color: red;
+}

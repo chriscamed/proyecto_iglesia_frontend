@@ -1,0 +1,17 @@
+.select {
+  width: 100% !important;
+  padding-bottom: 6% !important;
+  border-radius: 4px !important;
+  select{
+    width: 100% !important;
+  }
+  select:focus{
+    border-color: transparent !important;
+  }
+  select:hover{
+    border-color: transparent !important;
+  }
+  select:active{
+    box-shadow: none !important;
+  }
+}

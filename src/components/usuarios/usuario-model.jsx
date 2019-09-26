@@ -8,19 +8,22 @@ import Modal from 'react-bulma-components/lib/components/modal';
 import Button from 'react-bulma-components/lib/components/button';
 import Content from 'react-bulma-components/lib/components/content';
 import Level from 'react-bulma-components/lib/components/level';
-
+import { FaEdit } from "react-icons/fa";
 //Our higher order component
 import withAuth from '../withAuth';
 
-class OpenModal extends Component {
+class OpenModaledit extends Component {
   constructor(props){
     super(props);
-    
+
     this.state={
-      USUARIO:'',
-      PASSWORD:'',
-      ROL: null,
+      PASSWORD: '',
       show: false,
+      usuario:{
+          USUARIO: '',
+          PASS: '',
+          ROL: '',
+      },
       roles:[
         {
           id:0,
@@ -34,6 +37,7 @@ class OpenModal extends Component {
           id:2,
           nombre:"Registrador de personas"
         }]
+
     }
   }
   Auth = new AuthHelperMethods();
@@ -43,14 +47,32 @@ class OpenModal extends Component {
     this.props.history.replace('/login');
   }
    open = () => this.setState({ show: true });
-  close = () => this.setState({ show: false }); 
-  
-  handleAgregar = event => {
+  close = () => this.setState({ show: false});
+
+  componentDidMount(){
+      this.getEvento()
+  }
+
+  getEvento= () => {
+     const config = {
+        headers: {
+        'content-type': 'application/json',
+        'Authorization': localStorage.getItem('id_token')
+        }
+        };
+    fetch('http://localhost:5000/user/individual/'+this.props.id,config)
+    .then(response => response.json())
+    .then(datos => this.setState({usuario:datos}))
+    .catch(err => console.log(err))
+  }
+
+  handleEditar = event => {
     event.preventDefault();
     const obj = {
-        USUARIO: this.state.USUARIO,
+        id: this.props.id,
+        USUARIO: this.state.usuario.USUARIO,
         PASS: this.state.PASSWORD,
-        ROL: this.state.ROL        
+        ROL: this.state.usuario.ROL
         };
     const config = {
         headers: {
@@ -58,64 +80,72 @@ class OpenModal extends Component {
         'Authorization': localStorage.getItem('id_token')
         }
         };
-    axios.post('http://localhost:5000/user/create', obj,config)
+    axios.post('http://localhost:5000/user/update', obj,config)
         .then(response=>console.log(response.data,obj))
         .then(this.props.metodo)
-        .then(alert("Se ha agregado el usuario"))
+        .then(alert("se ha editado el usuario"))
         .then(this.close)
         .catch(err => console.log(err))
-
-        this.setState({USUARIO: '', PASSWORD: '', ROL:''})
   }
 
-  render() {    
+  render() {
+
+
+      const {usuario}= this.state;
     return (
-      <div>
-          <Button onClick={this.open} renderAs="a" className="button is-normal">Crear usuario</Button>
-        <Modal show={this.state.show} onClose={this.close} closeOnEsc={true} closeOnBlur={true} > 
+        <div>
+
+          <Button onClick={this.open} renderAs="a"><FaEdit/></Button>
+        <Modal show={this.state.show} onClose={this.close} closeOnEsc={true} closeOnBlur={true} >
           <Modal.Card >
     <Modal.Card.Head onClose={this.close} style={{background:`#64234A`}}>
-          <Modal.Card.Title className="has-text-white">{this.props.titulo}</Modal.Card.Title>          
+          <Modal.Card.Title className="has-text-white">{this.props.titulo}</Modal.Card.Title>
     </Modal.Card.Head>
         <Modal.Card.Body>
           <Media>
             <Media.Item>
               <Content>
                 <div className="columns">
-                <div className="column">
+                                        <div className="column">
+
                 <label className="label">USUARIO: </label>
-                <input className="input" type="text" required value={this.state.USUARIO} onChange={e => this.setState({USUARIO:e.target.value.toUpperCase()})} />
+                <input className="input" type="text" required value={usuario.USUARIO} onChange={e => this.setState({usuario: {...usuario,USUARIO:e.target.value.toUpperCase()}})} />
+
+
+
+
+
+                                        </div>
+              </div>
+              <div className="columns">
+                <div className="column">
+                <label className="label">PASSWORD: </label>
+                <input className="input" type="password" required value={this.state.PASSWORD} onChange={e => this.setState({PASSWORD: e.target.value})} />
               </div>
               </div>
               <div className="columns">
               <div className="column">
-              <label className="label">PASSWORD: </label>
+              <label className="label">ROL: </label>
                 <div className="control">
-                <input className="input" type="password" required value={this.state.PASSWORD} onChange={e => this.setState({PASSWORD:e.target.value})} />
-            </div>
-            </div>
-              </div>
-              <div className="columns">
-              <div className="column">
-                <label className="label">ROL: </label>   
-                <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`}}>            
-                    <select value={this.state.ROL} onChange={e => this.setState({ROL:e.target.value})} required>
+                <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`}}>
+                    <select value={this.state.usuario.ROL}  onChange={e => this.setState({usuario: {...usuario,ROL:e.target.value.toUpperCase()}})} required>
                     <option value="">---Seleccione---</option>
                     {this.state.roles.map(option => (
                     <option key={option.id} value={option.id}>
                     {option.nombre}
                 </option>
                 ))}
-            </select> 
-            </div>                 
+            </select>
+            </div>
+            </div>
+            </div>
               </div>
-              </div>              
               </Content>
               <Level breakpoint="mobile">
                 <Level.Side align="left">
                 <div className="columns">
                 <div className="column">
-                  <Button onClick={this.handleAgregar} >AGREGAR</Button>
+                  <Button onClick={this.handleEditar} >Editar</Button>
                   </div>
                   </div>
                 </Level.Side>
@@ -124,13 +154,13 @@ class OpenModal extends Component {
           </Media>
         </Modal.Card.Body>
         <Modal.Card.Foot style={{ alignItems: 'center', justifyContent: 'center' }}>
-          
+
         </Modal.Card.Foot>
       </Modal.Card>
-        </Modal>        
+        </Modal>
       </div>
     );
   }
 }
 
-export default OpenModal;
+export default OpenModaledit;

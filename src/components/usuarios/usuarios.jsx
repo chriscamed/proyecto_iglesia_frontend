@@ -96,7 +96,7 @@ class Usuarios extends Component {
     fetch('http://localhost:5000/user/alluser',config)
     .then(response => response.json())
     .then(todos => {
-        
+
         const currPage = paginate(todos, 1, 5);
 
         this.setState({
@@ -138,12 +138,12 @@ class Usuarios extends Component {
     )
     }
     }
-  
+
   render() {
     const { page, size, currPage } = this.state;
     return (
       <div>
-        {this.props.confirm.roll===1 && 
+        {this.props.confirm.roll===1 &&
       <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
   <div className="navbar-brand">
     <a className="navbar-item" href="/">
@@ -158,34 +158,24 @@ class Usuarios extends Component {
   </div>
 
   <div id="navbarBasicExample" className="navbar-menu">
-    <div className="navbar-start">
-      <Link to="/" className="navbar-item has-text-grey-light">INICIO</Link>
 
-      <Link to="/register" className="navbar-item has-text-grey-light">REGISTRAR PERSONAS</Link>
-      <Link to="/assistancelist" className="navbar-item has-text-grey-light">REGISTRAR ASISTENCIA</Link>
-      <Link to="/createevent" className="navbar-item has-text-grey-light">EVENTOS</Link>
-      <Link to="/createlog" className="navbar-item has-text-grey-light">LOGISTICAS</Link>
-      <Link to="/personas" className="navbar-item has-text-grey-light">PERSONAS</Link>
-      <Link to="/usuarios" className="navbar-item has-text-grey-light">USUARIOS</Link> 
-      <Link to="/reports" className="navbar-item has-text-grey-light">REPORTES</Link>    
-  </div>
   <div className="navbar-end">
         <div className="navbar-item">
           <strong className="has-text-grey-light">{name+"     "}</strong>
         </div>
-      <div className="navbar-item">            
-          <div className="buttons">   
+      <div className="navbar-item">
+          <div className="buttons">
       <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
             Cerrar sesión
           </button>
         </div>
       </div>
     </div>
-      
+
   </div>
 </nav>
       }
-      {this.props.confirm.roll===0 && 
+      {this.props.confirm.roll===0 &&
       <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
   <div className="navbar-brand">
     <a className="navbar-item" href="/">
@@ -200,20 +190,15 @@ class Usuarios extends Component {
   </div>
 
   <div id="navbarBasicExample" className="navbar-menu ">
-    <div className="navbar-start">
-    <div className="navbar-item">
-      <Link to="/" className="navbar-item has-text-grey-light">INICIO</Link>
-      <Link to="/assistancelist" className="navbar-item has-text-grey-light">REGISTRAR ASISTENCIA</Link> 
-      </div>   
-  </div>
+
   <div className="navbar-end">
-  <div className="navbar-item"> 
-      <div className="buttons" >              
-            <strong className="has-text-grey-light">{name}</strong>      
+  <div className="navbar-item">
+      <div className="buttons" >
+            <strong className="has-text-grey-light">{name}</strong>
         </div>
       </div>
-      <div className="navbar-item"> 
-      <div className="buttons">                    
+      <div className="navbar-item">
+      <div className="buttons">
       <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
             Cerrar sesión
           </button>
@@ -223,7 +208,7 @@ class Usuarios extends Component {
   </div>
 </nav>
       }
-      {this.props.confirm.roll===2 && 
+      {this.props.confirm.roll===2 &&
       <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
   <div className="navbar-brand">
     <a className="navbar-item" href="/">
@@ -238,19 +223,13 @@ class Usuarios extends Component {
   </div>
 
   <div id="navbarBasicExample" className="navbar-menu">
-    <div className="navbar-start">
-      <Link to="/" className="navbar-item has-text-grey-light">INICIO</Link>
-      <Link to="/register" className="navbar-item has-text-grey-light">REGISTRAR PERSONA</Link>
-      <Link to="/assistancelist" className="navbar-item has-text-grey-light">REGISTRAR ASISTENCIA</Link>
-      <Link to="/createevent" className="navbar-item has-text-grey-light">EVENTOS</Link>    
-         
-  </div>
+
   <div className="navbar-end">
         <div className="navbar-item">
           <strong className="has-text-grey-light">{name+"     "}</strong>
         </div>
-      <div className="navbar-item">            
-          <div className="buttons">   
+      <div className="navbar-item">
+          <div className="buttons">
       <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
             Cerrar sesión
           </button>
@@ -259,34 +238,41 @@ class Usuarios extends Component {
     </div>
   </div>
 </nav>
-      }
-        <h3 className="title has-text-centered">USUARIOS</h3>
-        
-        <hr/>
+            }
 
-        
+        <h3 className="title has-text-centered"> GESTION DE USUARIOS</h3>
+
+
+
+
+            <table border="0">
+                <tr>
+                    <th>
+                    </th>
+                    <th>
         <div className="columns">
           <div className="column">
-            <OpenModal  titulo="AGREGAR USUARIO" metodo={this.getOcupaciones} subtitulo="Usuario" ></OpenModal>
-          </div>
-        </div>
+            <OpenModal  titulo="CREAR USUARIO" metodo={this.getOcupaciones} subtitulo="Usuario" ></OpenModal>
+                            </div>
+                        </div>
+                    </th>
+
+
+                    </tr>
+            </table>
+
+
+
+
         <div className="columns">
           <div className="column">
-            <div>pagina: {page}</div>        
-        <div>
-          <label htmlfor="size">N° filas</label>
-          <select name="size" id="size" onChange={this.handleChange}>
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="25">25</option>
-          </select>
-        </div>
         <table className="table is-bordered is-fullwidth">
               <thead>
                 <tr>
                   <th>Usuario</th>
                   <th>Rol</th>
-                  <th></th>
+                                <th> Estado</th>
+                                <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -294,18 +280,27 @@ class Usuarios extends Component {
                 currPage.data.map(usuarios => (
                   <tr key={usuarios.id}>
                     <td>{usuarios.USUARIO}</td>
-                    {this.mapRol(usuarios.ROL)}                  
-                    <td style={{textAlign: 'center'}}><OpenModaledit metodo={this.getOcupaciones} id={usuarios.id} titulo="EDITAR USUARIO" subtitulo="Usuario"/></td>
+                                    {this.mapRol(usuarios.ROL)}
+                                    <td>ACTIVO</td>
+                                    <td>
+
+
+                                        <img style={{ width: '30px', height: '30px', margin: '5px' }} src="public/imagenes/edit.png" />
+                                                <OpenModaledit metodo={this.getOcupaciones}
+                                                id={usuarios.id} titulo="EDITAR USUARIO" subtitulo="Usuario"/>
+
+                                    </td>
                   </tr>
-        
-        ))
-      }  
-            
+
+                            )
+                            )
+      }
+
               </tbody>
             </table>
-       
-          
-       
+
+
+
         <button className="button is-outlined" onClick={this.previousPage}>Previous Page</button>
         <button className="button is-outlined" onClick={this.nextPage}>Next Page</button>
 

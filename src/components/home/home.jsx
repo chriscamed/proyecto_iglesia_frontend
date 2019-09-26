@@ -41,50 +41,59 @@ class Home extends Component{
     //let name = this.props.confirm.username;
     console.log(this.props.confirm.roll)
     return(
-    <div>      
-      {this.props.confirm.roll===1 && 
-      <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
-  <div className="navbar-brand">
-    <a className="navbar-item" href="/">
-      <img src="public/imagenes/logo.jpg" />
-    </a>
-
-    <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div id="navbarBasicExample" className="navbar-menu">
-    <div className="navbar-start">
-      <Link to="/" className="navbar-item has-text-grey-light">INICIO</Link>
-
-      <Link to="/register" className="navbar-item has-text-grey-light">REGISTRAR PERSONAS</Link>
-      <Link to="/assistancelist" className="navbar-item has-text-grey-light">REGISTRAR ASISTENCIA</Link>
-      <Link to="/createevent" className="navbar-item has-text-grey-light">EVENTOS</Link>
-      <Link to="/createlog" className="navbar-item has-text-grey-light">LOGISTICAS</Link>
-      <Link to="/personas" className="navbar-item has-text-grey-light">PERSONAS</Link>
-      <Link to="/usuarios" className="navbar-item has-text-grey-light">USUARIOS</Link>   
-      <Link to="/reports" className="navbar-item has-text-grey-light">REPORTES</Link>  
-  </div>
-  <div className="navbar-end">
-        <div className="navbar-item">
-          <strong className="has-text-grey-light">{name+"     "}</strong>
+	     <div>
+        {this.props.confirm.roll === 1 &&
+        <div>
+          <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
+            <div className="navbar-brand">
+              <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+		            <span aria-hidden="true"></span>
+		            <span aria-hidden="true"></span>
+		            <span aria-hidden="true"></span>
+		          </a>
+            </div>
+            <div id="navbarBasicExample" className="navbar-menu">
+              <div className="navbar-end">
+                <div className="navbar-item">
+                  <strong className="has-text-grey-light">{name+"     "}</strong>
+                </div>
+                <div className="navbar-item">
+                  <div className="buttons">
+                    <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
+                      Cerrar sesión
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
         </div>
-      <div className="navbar-item">            
-          <div className="buttons">   
-      <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
-            Cerrar sesión
-          </button>
-        </div>
-      </div>
-    </div>
-      
-  </div>
-</nav>
+
+
+
+
+
+
+
       }
-      {this.props.confirm.roll===0 && 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            {this.props.confirm.roll === 0 &&
+
       <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
   <div className="navbar-brand">
     <a className="navbar-item" href="/">
@@ -100,19 +109,18 @@ class Home extends Component{
 
   <div id="navbarBasicExample" className="navbar-menu ">
     <div className="navbar-start">
-    <div className="navbar-item">
-      <Link to="/" className="navbar-item has-text-grey-light">INICIO</Link>
-      <Link to="/assistancelist" className="navbar-item has-text-grey-light">REGISTRAR ASISTENCIA</Link> 
-      </div>   
+
+
+
   </div>
   <div className="navbar-end">
-  <div className="navbar-item"> 
-      <div className="buttons" >              
-            <strong className="has-text-grey-light">{name}</strong>      
+  <div className="navbar-item">
+      <div className="buttons" >
+            <strong className="has-text-grey-light">{name}</strong>
         </div>
       </div>
-      <div className="navbar-item"> 
-      <div className="buttons">                    
+      <div className="navbar-item">
+      <div className="buttons">
       <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
             Cerrar sesión
           </button>
@@ -121,8 +129,19 @@ class Home extends Component{
     </div>
   </div>
 </nav>
-      }
-      {this.props.confirm.roll===2 && 
+            }
+
+
+
+
+
+
+
+
+
+
+
+      {this.props.confirm.roll===2 &&
       <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
   <div className="navbar-brand">
     <a className="navbar-item" href="/">
@@ -138,18 +157,17 @@ class Home extends Component{
 
   <div id="navbarBasicExample" className="navbar-menu">
     <div className="navbar-start">
-      <Link to="/" className="navbar-item has-text-grey-light">INICIO</Link>
-      <Link to="/register" className="navbar-item has-text-grey-light">REGISTRAR PERSONA</Link>
-      <Link to="/assistancelist" className="navbar-item has-text-grey-light">REGISTRAR ASISTENCIA</Link>
-      <Link to="/createevent" className="navbar-item has-text-grey-light">EVENTOS</Link>    
-         
+
+
+
+
   </div>
   <div className="navbar-end">
         <div className="navbar-item">
           <strong className="has-text-grey-light">{name+"     "}</strong>
         </div>
-      <div className="navbar-item">            
-          <div className="buttons">   
+      <div className="navbar-item">
+          <div className="buttons">
       <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
             Cerrar sesión
           </button>
@@ -159,10 +177,132 @@ class Home extends Component{
   </div>
 </nav>
       }
-      
+
 <br/><br/><br/><br/><br/>
-      <div class="content has-text-centered"><h1>BIENVENIDO AL SOFTWARE SAMI</h1></div>
-    </div>
+
+
+            <div class="content has-text-centered"><h1>SAMI Sistema De Administracion Ministerial      <img style={{ width: '120px', height: '120' }} src="public/imagenes/logo.jpg" />      </h1> </div>
+
+                {
+                this.props.confirm.roll === 1 &&
+                <div>
+
+                    <div class="content has-text-centered">
+
+                    <table border="0">
+                        <tr>
+
+                            <th>
+                                <div class="content has-text-centered">
+                                    <Link to="/usuarios">
+                                        <img style={{ width: '150px', height: '150px', margin: '10px' }} src="public/imagenes/boy.png" />
+
+
+                                        <h5>USUARIOS</h5>
+
+                                    </Link>
+                                </div>
+                            </th>
+
+
+                            <th>
+                                <div class="content has-text-centered">
+                                    <Link to="/personas">
+                                        <img style={{ width: '150px', height: '150px', margin: '10px' }} src="public/imagenes/team.png" />
+                                        <h5>PERSONAS</h5>
+                                    </Link>
+                                </div>
+
+                            </th>
+
+
+                            <th>
+                                <div class="content has-text-centered">
+                                    <Link to="/">
+                                        <img style={{ width: '150px', height: '150px', margin: '10px' }} src="public/imagenes/ministerios.png" />
+                                        <h5>MINISTERIOS</h5>
+                                    </Link>
+                                </div>
+                            </th>
+
+
+                            <th>
+                                <div class="content has-text-centered">
+                                    <Link to="/createevent">
+                                        <img style={{ width: '150px', height: '150px', margin: '10px' }} src="public/imagenes/calendar.png" />
+                                        <h5>EVENTOS</h5>
+                                    </Link>
+                                </div>
+
+                            </th>
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                <div class="content has-text-centered">
+                                    <Link to="/assistancelist">
+                                        <img style={{ width: '150px', height: '150px', margin: '10px' }} src="public/imagenes/clipboard.png" />
+                                        <h5>ASISTENCIA</h5>
+
+                                    </Link>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="content has-text-centered">
+                                    <Link to="/reports">
+                                        <img style={{ width: '150px', height: '150px', margin: '10px' }} src="public/imagenes/rol.png" />
+                                        <h5>INFORMES</h5>
+                                    </Link>
+                                </div>
+                            </td>
+
+
+                            <td>
+                                <div class="content has-text-centered">
+                                    <Link to="/">
+                                        <img style={{ width: '150px', height: '150px', margin: '10px' }} src="public/imagenes/coin.png" />
+                                        <h5>DONACIONES</h5>
+                                    </Link>
+                                </div>
+                            </td>
+
+                        </tr>
+                    </table>
+                    </div>
+                </div>}
+            <div class="content has-text-centered">
+
+
+                {
+                    this.props.confirm.roll === 0 &&
+
+                <Link to="/assistancelist">
+                    <img style={{ width: '150px', height: '150px', margin: '10px' }} src="public/imagenes/clipboard.png" />
+                    <div class="content has-text-centered"> <h5>ASISTENCIA</h5> </div>
+                </Link>
+
+                }
+            </div>
+
+
+
+
+            <div class="content has-text-centered">
+                {this.props.confirm.roll === 2 &&
+                    <Link to="/personas">
+                        <img style={{ width: '150px', height: '150px', margin: '5x' }} src="public/imagenes/team.png" />
+                    <div class="content has-text-centered"> <h5>PERSONAS</h5> </div>
+                </Link>
+
+
+                }
+
+            </div>
+        </div>
+
+
   );
   }
 }

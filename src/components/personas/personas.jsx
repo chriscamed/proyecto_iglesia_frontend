@@ -102,8 +102,8 @@ class Personas extends Component {
     .then(response => response.json())
     .then(this.getOcupaciones)
     .then(alert("Se ha eliminado exitosamente"))
-    .then(this.close)     
-    .catch(err => console.log(err))  
+    .then(this.close)
+    .catch(err => console.log(err))
 
   }
   getOcupaciones= () => {
@@ -116,7 +116,7 @@ class Personas extends Component {
     fetch('http://localhost:5000/personas',config)
     .then(response => response.json())
     .then(todos => {
-        
+
         const currPage = paginate(todos, 1, 5);
 
         this.setState({
@@ -142,12 +142,12 @@ class Personas extends Component {
       currPage: newCurrPage
     });
   }
-  
+
   render() {
     const { page, size, currPage } = this.state;
     return (
       <div>
-        {this.props.confirm.roll===1 && 
+        {this.props.confirm.roll===1 &&
       <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
   <div className="navbar-brand">
     <a className="navbar-item" href="/">
@@ -163,33 +163,27 @@ class Personas extends Component {
 
   <div id="navbarBasicExample" className="navbar-menu">
     <div className="navbar-start">
-      <Link to="/" className="navbar-item has-text-grey-light">INICIO</Link>
+                        <Link to="/" className="navbar-item has-text-grey-light">INICIO</Link>
 
-      <Link to="/register" className="navbar-item has-text-grey-light">REGISTRAR PERSONAS</Link>
-      <Link to="/assistancelist" className="navbar-item has-text-grey-light">REGISTRAR ASISTENCIA</Link>
-      <Link to="/createevent" className="navbar-item has-text-grey-light">EVENTOS</Link>
-      <Link to="/createlog" className="navbar-item has-text-grey-light">LOGISTICAS</Link>
-      <Link to="/personas" className="navbar-item has-text-grey-light">PERSONAS</Link>
-      <Link to="/usuarios" className="navbar-item has-text-grey-light">USUARIOS</Link>    
-      <Link to="/reports" className="navbar-item has-text-grey-light">REPORTES</Link> 
+
   </div>
   <div className="navbar-end">
         <div className="navbar-item">
           <strong className="has-text-grey-light">{name+"     "}</strong>
         </div>
-      <div className="navbar-item">            
-          <div className="buttons">   
+      <div className="navbar-item">
+          <div className="buttons">
       <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
             Cerrar sesión
           </button>
         </div>
       </div>
     </div>
-      
+
   </div>
 </nav>
       }
-      {this.props.confirm.roll===0 && 
+      {this.props.confirm.roll===0 &&
       <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
   <div className="navbar-brand">
     <a className="navbar-item" href="/">
@@ -207,17 +201,17 @@ class Personas extends Component {
     <div className="navbar-start">
     <div className="navbar-item">
       <Link to="/" className="navbar-item has-text-grey-light">INICIO</Link>
-      <Link to="/assistancelist" className="navbar-item has-text-grey-light">REGISTRAR ASISTENCIA</Link> 
-      </div>   
+      <Link to="/assistancelist" className="navbar-item has-text-grey-light">REGISTRAR ASISTENCIA</Link>
+      </div>
   </div>
   <div className="navbar-end">
-  <div className="navbar-item"> 
-      <div className="buttons" >              
-            <strong className="has-text-grey-light">{name}</strong>      
+  <div className="navbar-item">
+      <div className="buttons" >
+            <strong className="has-text-grey-light">{name}</strong>
         </div>
       </div>
-      <div className="navbar-item"> 
-      <div className="buttons">                    
+      <div className="navbar-item">
+      <div className="buttons">
       <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
             Cerrar sesión
           </button>
@@ -227,7 +221,7 @@ class Personas extends Component {
   </div>
 </nav>
       }
-      {this.props.confirm.roll===2 && 
+      {this.props.confirm.roll===2 &&
       <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
   <div className="navbar-brand">
     <a className="navbar-item" href="/">
@@ -246,15 +240,15 @@ class Personas extends Component {
       <Link to="/" className="navbar-item has-text-grey-light">INICIO</Link>
       <Link to="/register" className="navbar-item has-text-grey-light">REGISTRAR PERSONA</Link>
       <Link to="/assistancelist" className="navbar-item has-text-grey-light">REGISTRAR ASISTENCIA</Link>
-      <Link to="/createevent" className="navbar-item has-text-grey-light">EVENTOS</Link>    
-         
+      <Link to="/createevent" className="navbar-item has-text-grey-light">EVENTOS</Link>
+
   </div>
   <div className="navbar-end">
         <div className="navbar-item">
           <strong className="has-text-grey-light">{name+"     "}</strong>
         </div>
-      <div className="navbar-item">            
-          <div className="buttons">   
+      <div className="navbar-item">
+          <div className="buttons">
       <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
             Cerrar sesión
           </button>
@@ -264,19 +258,38 @@ class Personas extends Component {
   </div>
 </nav>
       }
-        <h3 className="title has-text-centered">PERSONAS</h3>
-        
+            <h3 className="title has-text-centered">GESTION DE PERSONAS</h3>
+
+
+
+
+            <div align="Left">
+                <Link to="/register">
+                    <Button className="navbar-item has-text-grey-light" style={{ background: `#6D214F` }} > CREAR PERSONA </Button>
+                </Link>
+            </div>
+
+            <div align="right">
+                <Link to="/">
+                    <Button className="navbar-item has-text-grey-light" style={{ background: `#6D214F` }} > MENU </Button>
+                </Link>
+            </div>
+
+
+
+
+
         <hr/>
 
-        
+
         <div className="columns">
           <div className="column">
-            
+
           </div>
         </div>
         <div className="columns">
           <div className="column">
-            <div>pagina: {page}</div>        
+            <div>pagina: {page}</div>
         <div>
           <label htmlfor="size">N° filas</label>
           <select name="size" id="size" onChange={this.handleChange}>
@@ -288,37 +301,42 @@ class Personas extends Component {
         <table className="table is-bordered is-fullwidth">
               <thead>
                 <tr>
-                  <th>Nombre</th>
-                  <th>Apellido</th>
-                  <th>Tipo identificacion</th>
                   <th>Identificacion</th>
-                  <th>Celular</th>
-                  <th>Direccion</th>
-                  <th>Acciones</th>
+                  <th>Tipo</th>
+                  <th>Nombre 1</th>
+                  <th>Apellido 1</th>
+
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
                    {currPage &&
                 currPage.data.map(personas => (
-                    
-                  <tr key={personas.ID_MIEMBRO}>
+
+                                <tr key={personas.ID_MIEMBRO}>
+                                    <td>{personas.IDENTIFICACION}</td>
+                                    <td>MIEMBRO</td>
                     <td>{personas.PRIMER_NOMBRE}</td>
                     <td>{personas.PRIMER_APELLIDO}</td>
-                    <td>{personas.TIPO_IDENTIFICACION}</td>
-                    <td>{personas.IDENTIFICACION}</td>
-                    <td>{personas.CELULAR1}</td>
-                    <td>{personas.DIRECCION_CASA}</td>
-                    <td style={{textAlign: 'center'}} ><div className="columns is-variable is-one-third is-2-mobile is-0-tablet is-0-desktop"><div className="column"><OpenModal  titulo="DETALLES PERSONA" id={personas.ID_MIEMBRO} subtitulo="Persona" ></OpenModal></div><div className="column "><Link className="button is-medium" to={{pathname: '/editpersona', state: {cedula: personas.IDENTIFICACION, genero: personas.GENERO}}}><FaEdit/></Link></div><div className="column"><Button className="button is-medium" renderAs="a" onClick={() => this.addActiveClass(personas.ID_MIEMBRO)} ><FaTrashAlt/></Button></div></div></td>
+
+
+                                    <td style={{ textAlign: 'center' }} ><div className="columns is-variable is-one-third is-2-mobile is-0-tablet is-0-desktop">
+                                    <div className="column">
+                                    <OpenModal titulo="INFORMACION DE PERSONA" id={personas.ID_MIEMBRO} subtitulo="Persona" >
+                                    </OpenModal></div><div className="column ">
+                                    <Link className="button is-medium" to={{ pathname: '/editpersona', state: { cedula: personas.IDENTIFICACION, genero: personas.GENERO } }}>
+                                    <FaEdit /></Link></div><div className="column"><Button className="button is-medium" renderAs="a" onClick={() => this.addActiveClass(personas.ID_MIEMBRO)} >
+                                    <FaTrashAlt /></Button></div></div></td>
                   </tr>
         
         ))
-      }  
-            
+      }
+
               </tbody>
             </table>
-       
-          
-       
+
+
+
         <button className="button is-outlined" onClick={this.previousPage}>Previous Page</button>
         <button className="button is-outlined" onClick={this.nextPage}>Next Page</button>
 

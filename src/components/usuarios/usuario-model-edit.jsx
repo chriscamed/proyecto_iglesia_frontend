@@ -15,7 +15,7 @@ import withAuth from '../withAuth';
 class OpenModaledit extends Component {
   constructor(props){
     super(props);
-    
+
     this.state={
       PASSWORD: '',
       show: false,
@@ -37,7 +37,7 @@ class OpenModaledit extends Component {
           id:2,
           nombre:"Registrador de personas"
         }]
-     
+
     }
   }
   Auth = new AuthHelperMethods();
@@ -47,7 +47,7 @@ class OpenModaledit extends Component {
     this.props.history.replace('/login');
   }
    open = () => this.setState({ show: true });
-  close = () => this.setState({ show: false}); 
+  close = () => this.setState({ show: false});
 
   componentDidMount(){
       this.getEvento()
@@ -59,13 +59,13 @@ class OpenModaledit extends Component {
         'content-type': 'application/json',
         'Authorization': localStorage.getItem('id_token')
         }
-        }; 
+        };
     fetch('http://localhost:5000/user/individual/'+this.props.id,config)
     .then(response => response.json())
-    .then(datos => this.setState({usuario:datos}))    
+    .then(datos => this.setState({usuario:datos}))
     .catch(err => console.log(err))
-  } 
-    
+  }
+
   handleEditar = event => {
     event.preventDefault();
     const obj = {
@@ -89,26 +89,33 @@ class OpenModaledit extends Component {
   }
 
   render() {
-     
-  
+
+
       const {usuario}= this.state;
     return (
-      <div>
+        <div>
+
           <Button onClick={this.open} renderAs="a"><FaEdit/></Button>
-        <Modal show={this.state.show} onClose={this.close} closeOnEsc={true} closeOnBlur={true} > 
+        <Modal show={this.state.show} onClose={this.close} closeOnEsc={true} closeOnBlur={true} >
           <Modal.Card >
     <Modal.Card.Head onClose={this.close} style={{background:`#64234A`}}>
-          <Modal.Card.Title className="has-text-white">{this.props.titulo}</Modal.Card.Title>          
+          <Modal.Card.Title className="has-text-white">{this.props.titulo}</Modal.Card.Title>
     </Modal.Card.Head>
         <Modal.Card.Body>
           <Media>
             <Media.Item>
               <Content>
                 <div className="columns">
-                <div className="column">
+                                        <div className="column">
+
                 <label className="label">USUARIO: </label>
                 <input className="input" type="text" required value={usuario.USUARIO} onChange={e => this.setState({usuario: {...usuario,USUARIO:e.target.value.toUpperCase()}})} />
-              </div>
+
+
+
+
+
+                                        </div>
               </div>
               <div className="columns">
                 <div className="column">
@@ -120,7 +127,7 @@ class OpenModaledit extends Component {
               <div className="column">
               <label className="label">ROL: </label>
                 <div className="control">
-                <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`}}>            
+                <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`}}>
                     <select value={this.state.usuario.ROL}  onChange={e => this.setState({usuario: {...usuario,ROL:e.target.value.toUpperCase()}})} required>
                     <option value="">---Seleccione---</option>
                     {this.state.roles.map(option => (
@@ -128,11 +135,11 @@ class OpenModaledit extends Component {
                     {option.nombre}
                 </option>
                 ))}
-            </select> 
-            </div>       
+            </select>
             </div>
             </div>
-              </div>              
+            </div>
+              </div>
               </Content>
               <Level breakpoint="mobile">
                 <Level.Side align="left">
@@ -147,10 +154,10 @@ class OpenModaledit extends Component {
           </Media>
         </Modal.Card.Body>
         <Modal.Card.Foot style={{ alignItems: 'center', justifyContent: 'center' }}>
-          
+
         </Modal.Card.Foot>
       </Modal.Card>
-        </Modal>        
+        </Modal>
       </div>
     );
   }

@@ -1,11 +1,11 @@
 import decode from 'jwt-decode';
 
 export default class AuthHelperMethods {
-    
+
     // Initializing important variables
 
     login = (USUARIO,PASS) => {
-        
+
         // Get a token from api server using the fetch api
         return this.fetch(`http://localhost:5000/login`, {
             method: 'POST',
@@ -20,7 +20,7 @@ export default class AuthHelperMethods {
                     this.setToken(res.token);
                     Promise.resolve(res);
                 }
-                
+
         })
     }
 
@@ -74,7 +74,7 @@ export default class AuthHelperMethods {
         const headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
-            
+
         }
         // Setting Authorization header
         // Authorization: Bearer xxxxxxx.xxxxxxxx.xxxxxx

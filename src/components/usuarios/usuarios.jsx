@@ -143,170 +143,142 @@ class Usuarios extends Component {
     const { page, size, currPage } = this.state;
     return (
       <div>
-        {this.props.confirm.roll===1 &&
-      <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
-  <div className="navbar-brand">
-    <a className="navbar-item" href="/">
-      <img src="public/imagenes/logo.jpg" />
-    </a>
+        {this.props.confirm.roll === 1 &&
+          <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
+            <div className="navbar-brand">
+              <a className="navbar-item" href="/">
+                <img src="public/imagenes/logo.jpg" />
+              </a>
+              <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
 
-    <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
+            <div id="navbarBasicExample" className="navbar-menu">
+              <div className="navbar-end">
+                <div className="navbar-item">
+                  <strong className="has-text-grey-light">{name+"     "}</strong>
+                </div>
+                <div className="navbar-item">
+                  <div className="buttons">
+                    <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
+                      Cerrar sesión
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+        }
 
-  <div id="navbarBasicExample" className="navbar-menu">
+        {this.props.confirm.roll === 0 &&
+          <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
+            <div className="navbar-brand">
+              <a className="navbar-item" href="/">
+                <img src="public/imagenes/logo.jpg" />
+              </a>
+              <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
 
-  <div className="navbar-end">
-        <div className="navbar-item">
-          <strong className="has-text-grey-light">{name+"     "}</strong>
-        </div>
-      <div className="navbar-item">
-          <div className="buttons">
-      <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
-            Cerrar sesión
-          </button>
-        </div>
-      </div>
-    </div>
+            <div id="navbarBasicExample" className="navbar-menu ">
+              <div className="navbar-end">
+                <div className="navbar-item">
+                  <div className="buttons" >
+                    <strong className="has-text-grey-light">{name}</strong>
+                  </div>
+                </div>
+                <div className="navbar-item">
+                  <div className="buttons">
+                    <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
+                      Cerrar sesión
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+        }
 
-  </div>
-</nav>
-      }
-      {this.props.confirm.roll===0 &&
-      <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
-  <div className="navbar-brand">
-    <a className="navbar-item" href="/">
-      <img src="public/imagenes/logo.jpg" />
-    </a>
+        {this.props.confirm.roll === 2 &&
+          <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
+            <div className="navbar-brand">
+              <a className="navbar-item" href="/">
+                <img src="public/imagenes/logo.jpg" />
+              </a>
+              <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
 
-    <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div id="navbarBasicExample" className="navbar-menu ">
-
-  <div className="navbar-end">
-  <div className="navbar-item">
-      <div className="buttons" >
-            <strong className="has-text-grey-light">{name}</strong>
-        </div>
-      </div>
-      <div className="navbar-item">
-      <div className="buttons">
-      <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
-            Cerrar sesión
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</nav>
-      }
-      {this.props.confirm.roll===2 &&
-      <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
-  <div className="navbar-brand">
-    <a className="navbar-item" href="/">
-      <img src="public/imagenes/logo.jpg" />
-    </a>
-
-    <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div id="navbarBasicExample" className="navbar-menu">
-
-  <div className="navbar-end">
-        <div className="navbar-item">
-          <strong className="has-text-grey-light">{name+"     "}</strong>
-        </div>
-      <div className="navbar-item">
-          <div className="buttons">
-      <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
-            Cerrar sesión
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</nav>
-            }
+            <div id="navbarBasicExample" className="navbar-menu">
+              <div className="navbar-end">
+                <div className="navbar-item">
+                  <strong className="has-text-grey-light">{name+"     "}</strong>
+                </div>
+                <div className="navbar-item">
+                  <div className="buttons">
+                    <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
+                      Cerrar sesión
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+        }
 
         <h3 className="title has-text-centered"> GESTION DE USUARIOS</h3>
 
-
-
-
-            <table border="0">
-                <tr>
-                    <th>
-                    </th>
-                    <th>
+        <table border="0">
+          <tr>
+            <th></th>
+            <th>
+              <div className="columns">
+                <div className="column">
+                  <OpenModal  titulo="CREAR USUARIO" metodo={this.getOcupaciones} subtitulo="Usuario" ></OpenModal>
+                </div>
+              </div>
+            </th>
+          </tr>
+        </table>
         <div className="columns">
           <div className="column">
-            <OpenModal  titulo="CREAR USUARIO" metodo={this.getOcupaciones} subtitulo="Usuario" ></OpenModal>
-                            </div>
-                        </div>
-                    </th>
-
-
-                    </tr>
-            </table>
-
-
-
-
-        <div className="columns">
-          <div className="column">
-        <table className="table is-bordered is-fullwidth">
+            <table className="table is-bordered is-fullwidth">
               <thead>
                 <tr>
                   <th>Usuario</th>
                   <th>Rol</th>
-                                <th> Estado</th>
-                                <th></th>
+                  <th> Estado</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
-                   {currPage &&
-                currPage.data.map(usuarios => (
+                {currPage && currPage.data.map(usuarios => (
                   <tr key={usuarios.id}>
                     <td>{usuarios.USUARIO}</td>
-                                    {this.mapRol(usuarios.ROL)}
-                                    <td>ACTIVO</td>
-                                    <td>
-
-
-                                        <img style={{ width: '30px', height: '30px', margin: '5px' }} src="public/imagenes/edit.png" />
-                                                <OpenModaledit metodo={this.getOcupaciones}
-                                                id={usuarios.id} titulo="EDITAR USUARIO" subtitulo="Usuario"/>
-
-                                    </td>
+                    {this.mapRol(usuarios.ROL)}
+                    <td>ACTIVO</td>
+                    <td>
+                      <img style={{ width: '30px', height: '30px', margin: '5px' }} src="public/imagenes/edit.png" />
+                      <OpenModaledit metodo={this.getOcupaciones}id={usuarios.id} titulo="EDITAR USUARIO" subtitulo="Usuario"/>
+                    </td>
                   </tr>
-
-                            )
-                            )
-      }
-
+                ))}
               </tbody>
             </table>
 
-
-
-        <button className="button is-outlined" onClick={this.previousPage}>Previous Page</button>
-        <button className="button is-outlined" onClick={this.nextPage}>Next Page</button>
-
+            <button className="button is-outlined" onClick={this.previousPage}>Previous Page</button>
+            <button className="button is-outlined" onClick={this.nextPage}>Next Page</button>
           </div>
         </div>
-
       </div>
     );
   }

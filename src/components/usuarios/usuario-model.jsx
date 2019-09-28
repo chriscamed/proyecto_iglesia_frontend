@@ -8,22 +8,20 @@ import Modal from 'react-bulma-components/lib/components/modal';
 import Button from 'react-bulma-components/lib/components/button';
 import Content from 'react-bulma-components/lib/components/content';
 import Level from 'react-bulma-components/lib/components/level';
-import { FaEdit } from "react-icons/fa";
+
 //Our higher order component
 import withAuth from '../withAuth';
+import { link } from 'fs';
 
-class OpenModaledit extends Component {
+class OpenModal extends Component {
   constructor(props){
     super(props);
 
     this.state={
-      PASSWORD: '',
+      USUARIO:'',
+      PASSWORD:'',
+      ROL: null,
       show: false,
-      usuario:{
-          USUARIO: '',
-          PASS: '',
-          ROL: '',
-      },
       roles:[
         {
           id:0,
@@ -37,7 +35,6 @@ class OpenModaledit extends Component {
           id:2,
           nombre:"Registrador de personas"
         }]
-
     }
   }
   Auth = new AuthHelperMethods();
@@ -47,32 +44,14 @@ class OpenModaledit extends Component {
     this.props.history.replace('/login');
   }
    open = () => this.setState({ show: true });
-  close = () => this.setState({ show: false});
+  close = () => this.setState({ show: false });
 
-  componentDidMount(){
-      this.getEvento()
-  }
-
-  getEvento= () => {
-     const config = {
-        headers: {
-        'content-type': 'application/json',
-        'Authorization': localStorage.getItem('id_token')
-        }
-        };
-    fetch('http://localhost:5000/user/individual/'+this.props.id,config)
-    .then(response => response.json())
-    .then(datos => this.setState({usuario:datos}))
-    .catch(err => console.log(err))
-  }
-
-  handleEditar = event => {
+  handleAgregar = event => {
     event.preventDefault();
     const obj = {
-        id: this.props.id,
-        USUARIO: this.state.usuario.USUARIO,
+        USUARIO: this.state.USUARIO,
         PASS: this.state.PASSWORD,
-        ROL: this.state.usuario.ROL
+        ROL: this.state.ROL
         };
     const config = {
         headers: {
@@ -80,22 +59,43 @@ class OpenModaledit extends Component {
         'Authorization': localStorage.getItem('id_token')
         }
         };
-    axios.post('http://localhost:5000/user/update', obj,config)
+    axios.post('http://localhost:5000/user/create', obj,config)
         .then(response=>console.log(response.data,obj))
         .then(this.props.metodo)
-        .then(alert("se ha editado el usuario"))
+        .then(alert("Se ha agregado el usuario"))
         .then(this.close)
         .catch(err => console.log(err))
+
+        this.setState({USUARIO: '', PASSWORD: '', ROL:''})
   }
 
   render() {
+      return (
 
 
-      const {usuario}= this.state;
-    return (
+
+
         <div>
 
-          <Button onClick={this.open} renderAs="a"><FaEdit/></Button>
+
+              <div align="right">
+
+
+                  <Button onClick={this.open} renderAs="a" className="navbar-item has-text-grey-light"
+                      style={{ background: `#6D214F` }}> CREAR USUARIO </Button>
+
+
+              </div>
+
+
+
+              <div align="right">
+                  <Link to="/">
+                      <Button className="navbar-item has-text-grey-light" style={{ background: `#6D214F` }} > MENU </Button>
+                  </Link>
+              </div>
+
+
         <Modal show={this.state.show} onClose={this.close} closeOnEsc={true} closeOnBlur={true} >
           <Modal.Card >
     <Modal.Card.Head onClose={this.close} style={{background:`#64234A`}}>
@@ -106,29 +106,24 @@ class OpenModaledit extends Component {
             <Media.Item>
               <Content>
                 <div className="columns">
-                                        <div className="column">
-
-                <label className="label">USUARIO: </label>
-                <input className="input" type="text" required value={usuario.USUARIO} onChange={e => this.setState({usuario: {...usuario,USUARIO:e.target.value.toUpperCase()}})} />
-
-
-
-
-
-                                        </div>
-              </div>
-              <div className="columns">
                 <div className="column">
-                <label className="label">PASSWORD: </label>
-                <input className="input" type="password" required value={this.state.PASSWORD} onChange={e => this.setState({PASSWORD: e.target.value})} />
+                <label className="label">USUARIO: </label>
+                <  input className="input" type="text" required value={this.state.USUARIO} onChange={e => this.setState({USUARIO:e.target.value.toUpperCase()})} />
               </div>
               </div>
               <div className="columns">
               <div className="column">
-              <label className="label">ROL: </label>
+              <label className="label">PASSWORD: </label>
                 <div className="control">
+                <input className="input" type="password" required value={this.state.PASSWORD} onChange={e => this.setState({PASSWORD:e.target.value})} />
+            </div>
+            </div>
+              </div>
+              <div className="columns">
+              <div className="column">
+                <label className="label">ROL: </label>
                 <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`}}>
-                    <select value={this.state.usuario.ROL}  onChange={e => this.setState({usuario: {...usuario,ROL:e.target.value.toUpperCase()}})} required>
+                    <select value={this.state.ROL} onChange={e => this.setState({ROL:e.target.value})} required>
                     <option value="">---Seleccione---</option>
                     {this.state.roles.map(option => (
                     <option key={option.id} value={option.id}>
@@ -137,15 +132,20 @@ class OpenModaledit extends Component {
                 ))}
             </select>
             </div>
-            </div>
-            </div>
+              </div>
               </div>
               </Content>
               <Level breakpoint="mobile">
                 <Level.Side align="left">
                 <div className="columns">
-                <div className="column">
-                  <Button onClick={this.handleEditar} >Editar</Button>
+                                            <div className="column">
+
+
+                                                <Button onClick={this.handleAgregar} className="navbar-item has-text-grey-light" style={{ background: `#6D214F` }}> ACEPTAR </Button>
+
+
+
+
                   </div>
                   </div>
                 </Level.Side>
@@ -163,4 +163,4 @@ class OpenModaledit extends Component {
   }
 }
 
-export default OpenModaledit;
+export default OpenModal;

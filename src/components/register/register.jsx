@@ -443,7 +443,7 @@ class Register extends Component {
       OCUPACION:null,
       BARRIO:null,
       PROFESION:null,
-      ESTADO:null,
+      //ESTADO:null,
       MINISTERIO:null,
       fotopersona:null,
       invitado_por:null,
@@ -506,7 +506,7 @@ class Register extends Component {
       ocupaciones: [],
       barrios: [],
       profesiones: [],
-      estados: [],
+      //estados: [],
       miembros:[],
       ministerios:[],
       isChecked: true,
@@ -517,7 +517,7 @@ class Register extends Component {
     this.getOcupaciones();
     this.getBarrios();
     this.getProfesiones();
-    this.getEstados();
+    //this.getEstados();
     this.getMiembros();
     this.getMinisterios();
     (function() {
@@ -635,190 +635,135 @@ Auth = new AuthHelperMethods();
   handleSubmit = event => {
     if(this.state.isChecked===true){
 
-        const formData = new FormData();
-        formData.append('persona',JSON.stringify(this.state.persona));
-        if(this.state.persona.fotopersona!=null){
+      const formData = new FormData();
+      formData.append('persona',JSON.stringify(this.state.persona));
+      if(this.state.persona.fotopersona!=null){
         formData.append('fotopersona',this.state.persona.fotopersona);
-        }
-        const config = {
+      }
+      const config = {
         headers: {
-        'content-type': 'multipart/form-data',
-        'Authorization': localStorage.getItem('id_token')
+          'content-type': 'multipart/form-data',
+          'Authorization': localStorage.getItem('id_token')
         }
-        };
-        //const {persona} = this.state;
-        axios.post('http://localhost:5000/persona/crear', formData,config)
-        .then(response => console.log(response,formData))
-        .then(alert("Se ha agregado una persona"))
-        .catch(err => console.log(err))
-      }
-      else{
-        alert("Debe aceptar el tratamiento de los datos personales");
-        event.preventDefault();
-      }
+      };
+
+      //const {persona} = this.state;
+      axios.post('http://localhost:5000/persona/crear', formData,config)
+      .then(response => console.log(response,formData))
+      .then(alert("Se ha agregado una persona"))
+      .catch(err => console.log(err))
+
+    }else{
+      alert("Debe aceptar el tratamiento de los datos personales");
+      event.preventDefault();
     }
+  }
 
   render() {
     if (this.props.confirm) {
       name = this.props.confirm.user;
     }
     const {persona,tipos,tipos_civil,ocupaciones,barrios,profesiones,estados,temporal,isChecked,miembros,ministerios, tipos_genero}= this.state;
-      return (
+    return (
 
-
-
-
-
-          <div className="is-center">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      {this.props.confirm.roll===1 &&
-      <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
-  <div className="navbar-brand">
-
-
-
-
-
-                    <Heading size="1" weight="semibold" spaced={false} heading={false}>
-                        <font color="white">
-                               CREAR PERSONA
-                        </font>
-                        </Heading>
-
-
-
-                      <span></span>
-
-
-    <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div id="navbarBasicExample" className="navbar-menu">
-
-
-
-
-
-
-
-
-  <div className="navbar-end">
-        <div className="navbar-item">
-          <strong className="has-text-grey-light">{name+"     "}</strong>
-        </div>
-      <div className="navbar-item">
-          <div className="buttons">
-      <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
-            Cerrar sesión
-          </button>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</nav>
+    <div className="is-center">
+      {this.props.confirm.roll === 1 &&
+        <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
+          <div className="navbar-brand">
+            <Heading size="1" weight="semibold" spaced={false} heading={false}>
+              <font color="white">
+                CREAR PERSONA
+              </font>
+            </Heading>
+            <span></span>
+            <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
+          <div id="navbarBasicExample" className="navbar-menu">
+            <div className="navbar-end">
+              <div className="navbar-item">
+                <strong className="has-text-grey-light">{name+"     "}</strong>
+              </div>
+              <div className="navbar-item">
+                <div className="buttons">
+                  <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
+                    Cerrar sesión
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
       }
-      {this.props.confirm.roll===0 &&
+
+      {this.props.confirm.roll === 0 &&
       <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
-  <div className="navbar-brand">
-                      <Heading size="1" weight="semibold" spaced={false} heading={false}>
-                          <font color="white">
-                              CREAR PERSONA
-                        </font>
-                      </Heading>
-
-    <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div id="navbarBasicExample" className="navbar-menu ">
-
-
-
-
-
-
-  <div className="navbar-end">
-  <div className="navbar-item">
-      <div className="buttons" >
-            <strong className="has-text-grey-light">{name}</strong>
+        <div className="navbar-brand">
+          <Heading size="1" weight="semibold" spaced={false} heading={false}>
+            <font color="white">
+              CREAR PERSONA
+            </font>
+          </Heading>
+          <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
         </div>
-      </div>
-      <div className="navbar-item">
-      <div className="buttons">
-      <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
-            Cerrar sesión
-          </button>
+        <div id="navbarBasicExample" className="navbar-menu ">
+          <div className="navbar-end">
+            <div className="navbar-item">
+              <div className="buttons" >
+                <strong className="has-text-grey-light">{name}</strong>
+              </div>
+            </div>
+            <div className="navbar-item">
+              <div className="buttons">
+                <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
+                  Cerrar sesión
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</nav>
+      </nav>
       }
-      {this.props.confirm.roll===2 &&
+
+      {this.props.confirm.roll === 2 &&
       <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
-  <div className="navbar-brand">
-
-                      <Heading size="1" weight="semibold" spaced={false} heading={false}>
-                          <font color="white">
-                              CREAR PERSONA
-                        </font>
-                      </Heading>
-
-    <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div id="navbarBasicExample" className="navbar-menu">
-
-  <div className="navbar-end">
-        <div className="navbar-item">
-          <strong className="has-text-grey-light">{name+"     "}</strong>
+        <div className="navbar-brand">
+          <Heading size="1" weight="semibold" spaced={false} heading={false}>
+            <font color="white">
+              CREAR PERSONA
+            </font>
+          </Heading>
+          <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
         </div>
-      <div className="navbar-item">
-          <div className="buttons">
-      <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
-            Cerrar sesión
-          </button>
+        <div id="navbarBasicExample" className="navbar-menu">
+          <div className="navbar-end">
+            <div className="navbar-item">
+              <strong className="has-text-grey-light">{name+"     "}</strong>
+            </div>
+            <div className="navbar-item">
+              <div className="buttons">
+                <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
+                  Cerrar sesión
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</nav>
-            }
-
-
-
-
-
-
-
-
-              <br /> <br />
+      </nav>
+      }
+      
+      <br /> <br />
 
 
 

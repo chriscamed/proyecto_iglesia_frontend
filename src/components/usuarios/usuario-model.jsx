@@ -49,9 +49,11 @@ class OpenModal extends Component {
   handleAgregar = event => {
     event.preventDefault();
     const obj = {
+        ID_PERSONA: 11,
         USUARIO: this.state.USUARIO,
         PASS: this.state.PASSWORD,
         ROL: this.state.ROL
+        ESTADO: '1'
         };
     const config = {
         headers: {
@@ -66,7 +68,7 @@ class OpenModal extends Component {
         .then(this.close)
         .catch(err => console.log(err))
 
-        this.setState({USUARIO: '', PASSWORD: '', ROL:''})
+        this.setState({ID_PERSONA: '', USUARIO: '', PASSWORD: '', ROL:'', ESTADO:''})
   }
 
   render() {

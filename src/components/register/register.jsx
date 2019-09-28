@@ -762,54 +762,31 @@ Auth = new AuthHelperMethods();
         </div>
       </nav>
       }
-      
+
       <br /> <br />
 
-
-
-
-
-            <form onSubmit={this.handleSubmit}>
-
-
-
-
-
-
-                <div align= "center">
-
-
-                      <table cellSpacing="20px" cellPadding="20px" >
-
-
-
-
-
-
-                        <tr>
-                            <th >
-
-          <Campo title="Primer nombre" obligatorio={true} campo="text" valor={persona.PRIMER_NOMBRE}
-                                      cambiar={e => this.setState({ persona: { ...persona, PRIMER_NOMBRE: e.target.value.toUpperCase() } })}
-                                      style={{ border: `solid 2px rgb(143,136, 144)` }}
-                                      maximo="60" />
-                                  </th>
-
-
-                            <th>
-          <Campo title="Segundo nombre" obligatorio={false} campo="text" valor={persona.SEGUND_NOMBRE}
-           cambiar={e => this.setState({persona: {...persona,SEGUND_NOMBRE:e.target.value.toUpperCase()}})} maximo="60" />
-                            </th>
-
-                            <th>
-          <Campo title="Primer apellido" obligatorio={true} campo="text" valor={persona.PRIMER_APELLIDO}
-           cambiar={e => this.setState({persona: {...persona,PRIMER_APELLIDO:e.target.value.toUpperCase()}})} maximo="60" />
-                            </th>
-
-                            <th>
-          <Campo title="Segundo apellido" obligatorio={false} campo="text" valor={persona.SEGUND_APELLIDO}
-           cambiar={e => this.setState({persona: {...persona,SEGUND_APELLIDO:e.target.value.toUpperCase()}})} maximo="60" />
-                                </th>
+      <form onSubmit={this.handleSubmit}>
+        <div align= "center">
+          <table cellSpacing="20px" cellPadding="20px" >
+            <tr>
+              <th>
+                <Campo title="Primer nombre" obligatorio={true} campo="text" valor={persona.PRIMER_NOMBRE}
+                  cambiar={e => this.setState({ persona: { ...persona, PRIMER_NOMBRE: e.target.value.toUpperCase() } })}
+                  style={{ border: `solid 2px rgb(143,136, 144)` }}
+                  maximo="60" />
+              </th>
+              <th>
+                <Campo title="Segundo nombre" obligatorio={false} campo="text" valor={persona.SEGUND_NOMBRE}
+                  cambiar={e => this.setState({persona: {...persona,SEGUND_NOMBRE:e.target.value.toUpperCase()}})} maximo="60" />
+              </th>
+              <th>
+                <Campo title="Primer apellido" obligatorio={true} campo="text" valor={persona.PRIMER_APELLIDO}
+                  cambiar={e => this.setState({persona: {...persona,PRIMER_APELLIDO:e.target.value.toUpperCase()}})} maximo="60" />
+              </th>
+              <th>
+                <Campo title="Segundo apellido" obligatorio={false} campo="text" valor={persona.SEGUND_APELLIDO}
+                  cambiar={e => this.setState({persona: {...persona,SEGUND_APELLIDO:e.target.value.toUpperCase()}})} maximo="60" />
+              </th>
 
                           </tr>
 

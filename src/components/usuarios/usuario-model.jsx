@@ -18,9 +18,11 @@ class OpenModal extends Component {
     super(props);
 
     this.state={
+      ID_PERSONA:'',
       USUARIO:'',
       PASSWORD:'',
       ROL: null,
+      ESTADO: null,
       show: false,
       roles:[
         {
@@ -52,7 +54,7 @@ class OpenModal extends Component {
         ID_PERSONA: 11,
         USUARIO: this.state.USUARIO,
         PASS: this.state.PASSWORD,
-        ROL: this.state.ROL
+        ROL: this.state.ROL,
         ESTADO: '1'
         };
     const config = {

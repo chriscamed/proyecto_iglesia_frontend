@@ -14,7 +14,6 @@ class Home extends Component{
   state = {
     USUARIO: ''
   }
-  
   /* Create a new instance of the 'AuthHelperMethods' compoenent*/
   Auth = new AuthHelperMethods();
 

@@ -1,0 +1,12 @@
+div.tabla {
+    width: 80% !important;
+    position:absolute;
+   margin: 0 auto;
+   left: 0;
+   right: 0;
+   
+   
+ }
+th{
+    color:#57B3F3 !important;  
+}

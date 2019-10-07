@@ -6,6 +6,7 @@ import OpenModal from './usuario-model';
 import OpenModaledit from './usuario-model-edit';
 /* Once the 'Authservice' and 'withAuth' componenets are created, import them into App.js */
 import AuthHelperMethods from '../AuthHelperMethods';
+import './usuarios.css';
 
 
 //Our higher order component
@@ -237,51 +238,83 @@ class Usuarios extends Component {
 
         <h3 className="title has-text-centered"> GESTION DE USUARIOS</h3>
 
-        <table border="0">
-          <tr>
-            <th></th>
-            <th>
-              <div className="columns">
-                <div className="column">
-                  <OpenModal  titulo="CREAR USUARIO" metodo={this.getOcupaciones} subtitulo="Usuario" ></OpenModal>
-                </div>
-              </div>
-            </th>
-          </tr>
-        </table>
+        <hr />
+
+
+
         <div className="columns">
           <div className="column">
-            <table className="table is-bordered is-fullwidth">
-              <thead>
-                <tr>
-                  <th>Usuario</th>
-                  <th>Rol</th>
-                  <th> Estado</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {currPage && currPage.data.map(usuarios => (
-                  <tr key={usuarios.id}>
-                    <td>{usuarios.USUARIO}</td>
-                    {this.mapRol(usuarios.ROL)}
-                    <td>ACTIVO</td>
-                    <td>
-                      <img style={{ width: '30px', height: '30px', margin: '5px' }} src="public/imagenes/edit.png" />
-                      <OpenModaledit metodo={this.getOcupaciones}id={usuarios.id} titulo="EDITAR USUARIO" subtitulo="Usuario"/>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <div class="tabla" >
 
-            <button className="button is-outlined" onClick={this.previousPage}>Previous Page</button>
-            <button className="button is-outlined" onClick={this.nextPage}>Next Page</button>
+              <div className="columns">
+                <div className="column">
+
+
+                  <table >
+                    <thead>
+                      <tr>
+                        <th><div class="btnUsuario">
+                          <OpenModal titulo="AGREGAR USUARIO" metodo={this.getOcupaciones} subtitulo="Usuario" ></OpenModal>
+                        </div></th>
+
+
+                        <th><div class="btnUsuario">
+
+
+
+                          <form action="/">
+                            <input type="submit" class="btn btn-success" value="regresar" />
+                          </form>
+
+                        </div>
+
+
+                        </th>
+                      </tr>
+                    </thead>
+                  </table>
+
+
+
+
+
+                </div>
+              </div>
+              <table class="table table-striped" width="80%">
+                <thead>
+                  <tr>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Rol</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {currPage &&
+                    currPage.data.map(usuarios => (
+                      <tr key={usuarios.id}>
+                        <td>{usuarios.USUARIO}</td>
+                        {this.mapRol(usuarios.ROL)}
+                        <td></td>
+                        <td style={{ textAlign: 'center' }}><OpenModaledit metodo={this.getOcupaciones} id={usuarios.id} titulo="EDITAR USUARIO" subtitulo="Usuario" /></td>
+                        <td style={{ textAlign: 'center' }}><OpenModaledit metodo={this.getOcupaciones} id={usuarios.id} titulo="EDITAR USUARIO" subtitulo="Usuario" /></td>
+                      </tr>
+
+                    ))
+                  }
+
+                </tbody>
+              </table>
+            </div>
+
+
           </div>
         </div>
+
       </div>
     );
-  }
+  }   
 }
 
-export default withAuth(Usuarios);
+export default withAuth(Usuarios);  

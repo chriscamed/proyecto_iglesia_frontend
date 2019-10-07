@@ -15,11 +15,11 @@ import AuthHelperMethods from '../AuthHelperMethods';
 import withAuth from '../withAuth';
 
 class Personas extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={
+    this.state = {
       //eventos:[],
-       todos: [],
+      todos: [],
       size: 5,
       page: 1,
       currPage: null
@@ -27,7 +27,7 @@ class Personas extends Component {
     this.previousPage = this.previousPage.bind(this);
     this.nextPage = this.nextPage.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.addActiveClass= this.addActiveClass.bind(this);
+    this.addActiveClass = this.addActiveClass.bind(this);
   }
   /* Create a new instance of the 'AuthHelperMethods' compoenent*/
   Auth = new AuthHelperMethods();
@@ -37,14 +37,14 @@ class Personas extends Component {
     this.props.history.replace('/login');
   }
 
-  componentDidMount(){
+  componentDidMount() {
     const config = {
-        headers: {
+      headers: {
         'content-type': 'application/json',
         'Authorization': localStorage.getItem('id_token')
-        }
-        };
-    fetch(`http://localhost:5000/personas`,config)
+      }
+    };
+    fetch(`http://localhost:5000/personas`, config)
       .then(response => response.json())
       .then(todos => {
         const { page, size } = this.state;
@@ -57,14 +57,14 @@ class Personas extends Component {
           currPage
         });
       });
-      (function() {
-        var burger = document.querySelector('.burger');
-        var nav = document.querySelector('#'+burger.dataset.target);
-        burger.addEventListener('click', function(){
-          burger.classList.toggle('is-active');
-          nav.classList.toggle('is-active');
-        });
-      })();
+    (function () {
+      var burger = document.querySelector('.burger');
+      var nav = document.querySelector('#' + burger.dataset.target);
+      burger.addEventListener('click', function () {
+        burger.classList.toggle('is-active');
+        nav.classList.toggle('is-active');
+      });
+    })();
   }
   previousPage() {
     const { currPage, page, size, todos } = this.state;
@@ -92,30 +92,30 @@ class Personas extends Component {
   }
   addActiveClass(id) {
     const config = {
-        headers: {
+      headers: {
         'content-type': 'application/json',
         'authorization': localStorage.getItem('id_token')
-        },
-        method: 'DELETE'
-        };
-    fetch('http://localhost:5000/persona/eliminar/'+id,config)
-    .then(response => response.json())
-    .then(this.getOcupaciones)
-    .then(alert("Se ha eliminado exitosamente"))
-    .then(this.close)
-    .catch(err => console.log(err))
+      },
+      method: 'DELETE'
+    };
+    fetch('http://localhost:5000/persona/eliminar/' + id, config)
+      .then(response => response.json())
+      .then(this.getOcupaciones)
+      .then(alert("Se ha eliminado exitosamente"))
+      .then(this.close)
+      .catch(err => console.log(err))
 
   }
-  getOcupaciones= () => {
+  getOcupaciones = () => {
     const config = {
-        headers: {
+      headers: {
         'content-type': 'application/json',
         'Authorization': localStorage.getItem('id_token')
-        }
-        };
-    fetch('http://localhost:5000/personas',config)
-    .then(response => response.json())
-    .then(todos => {
+      }
+    };
+    fetch('http://localhost:5000/personas', config)
+      .then(response => response.json())
+      .then(todos => {
 
         const currPage = paginate(todos, 1, 5);
 
@@ -125,7 +125,7 @@ class Personas extends Component {
           currPage
         });
       })
-    .catch(err => console.log(err))
+      .catch(err => console.log(err))
   }
   handleChange(e) {
     const { value } = e.target;
@@ -148,7 +148,7 @@ class Personas extends Component {
     return (
       <div>
         {this.props.confirm.roll === 1 &&
-          <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
+          <nav className="navbar" style={{ background: `#6D214F` }} role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
               <a className="navbar-item" href="/">
                 <img src="public/imagenes/logo.jpg" />
@@ -165,7 +165,7 @@ class Personas extends Component {
               </div>
               <div className="navbar-end">
                 <div className="navbar-item">
-                  <strong className="has-text-grey-light">{name+"     "}</strong>
+                  <strong className="has-text-grey-light">{name + "     "}</strong>
                 </div>
                 <div className="navbar-item">
                   <div className="buttons">
@@ -180,7 +180,7 @@ class Personas extends Component {
         }
 
         {this.props.confirm.roll === 0 &&
-          <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
+          <nav className="navbar" style={{ background: `#6D214F` }} role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
               <a className="navbar-item" href="/">
                 <img src="public/imagenes/logo.jpg" />
@@ -217,7 +217,7 @@ class Personas extends Component {
         }
 
         {this.props.confirm.roll === 2 &&
-          <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
+          <nav className="navbar" style={{ background: `#6D214F` }} role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
               <a className="navbar-item" href="/">
                 <img src="public/imagenes/logo.jpg" />
@@ -237,7 +237,7 @@ class Personas extends Component {
               </div>
               <div className="navbar-end">
                 <div className="navbar-item">
-                  <strong className="has-text-grey-light">{name+"     "}</strong>
+                  <strong className="has-text-grey-light">{name + "     "}</strong>
                 </div>
                 <div className="navbar-item">
                   <div className="buttons">
@@ -265,23 +265,16 @@ class Personas extends Component {
           </Link>
         </div>
 
-        <hr/>
+        <hr />
 
         <div className="columns">
           <div className="column"></div>
         </div>
         <div className="columns">
           <div className="column">
-            <div>pagina: {page}</div>
-            <div>
-              <label htmlfor="size">N° filas</label>
-              <select name="size" id="size" onChange={this.handleChange}>
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="25">25</option>
-              </select>
-            </div>
-            <table className="table is-bordered is-fullwidth">
+
+
+            <table className="table is-bordered is-fullwidth" class="table table-striped" width="100%">
               <thead>
                 <tr>
                   <th>Identificacion</th>
@@ -318,9 +311,6 @@ class Personas extends Component {
                 ))}
               </tbody>
             </table>
-
-            <button className="button is-outlined" onClick={this.previousPage}>Previous Page</button>
-            <button className="button is-outlined" onClick={this.nextPage}>Next Page</button>
           </div>
         </div>
       </div>

@@ -16,7 +16,7 @@ class Usuarios extends Component {
     super(props);
     this.state={
       //eventos:[],
-       todos: [],
+      todos: [],
       size: 5,
       page: 1,
       currPage: null
@@ -35,11 +35,11 @@ class Usuarios extends Component {
 
   componentDidMount(){
     const config = {
-        headers: {
+      headers: {
         'content-type': 'application/json',
         'Authorization': localStorage.getItem('id_token')
-        }
-        };
+      }
+    };
     fetch(`http://localhost:5000/user/alluser`,config)
       .then(response => response.json())
       .then(todos => {
@@ -62,6 +62,7 @@ class Usuarios extends Component {
         });
       })();
   }
+
   previousPage() {
     const { currPage, page, size, todos } = this.state;
 
@@ -92,7 +93,7 @@ class Usuarios extends Component {
         'content-type': 'application/json',
         'Authorization': localStorage.getItem('id_token')
         }
-        };
+    };
     fetch('http://localhost:5000/user/alluser',config)
     .then(response => response.json())
     .then(todos => {
@@ -122,22 +123,22 @@ class Usuarios extends Component {
       currPage: newCurrPage
     });
   }
-  mapRol = (num) =>{
+  mapRol = (num) => {
     switch(num){
-    case 0:
-    return(
-    <td>registrador de asistencias</td>
-    )
-    case 1:
-    return(
-    <td>administrador</td>
-    )
-    case 2:
-    return(
-    <td>registrador de personas</td>
-    )
+      case 0:
+      return(
+        <td>Registrador de asistencia</td>
+      )
+      case 1:
+      return(
+        <td>Administrador</td>
+      )
+      case 2:
+      return(
+        <td>Registrador de persona</td>
+      )
     }
-    }
+  }
 
   render() {
     const { page, size, currPage } = this.state;
@@ -256,7 +257,7 @@ class Usuarios extends Component {
                 <tr>
                   <th>Usuario</th>
                   <th>Rol</th>
-                  <th> Estado</th>
+                  <th>Estado</th>
                   <th></th>
                 </tr>
               </thead>

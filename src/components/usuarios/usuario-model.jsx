@@ -27,7 +27,7 @@ class OpenModal extends Component {
       roles:[
         {
           id:0,
-          nombre:"Registrador de asistencias"
+          nombre:"Registrador de asistencia"
         },
         {
           id:1,
@@ -45,7 +45,7 @@ class OpenModal extends Component {
     this.Auth.logout()
     this.props.history.replace('/login');
   }
-   open = () => this.setState({ show: true });
+  open = () => this.setState({ show: true });
   close = () => this.setState({ show: false });
 
   handleAgregar = event => {
@@ -74,93 +74,72 @@ class OpenModal extends Component {
   }
 
   render() {
-      return (
+    return (
+      <div>
+        <div align="right">
+          <Button onClick={this.open} renderAs="a" className="navbar-item has-text-grey-light"
+            style={{ background: `#6D214F` }}>CREAR USUARIO</Button>
+        </div>
+        <div align="right">
+          <Link to="/">
+            <Button className="navbar-item has-text-grey-light" style={{ background: `#6D214F` }} > MENU </Button>
+          </Link>
+        </div>
 
-
-
-
-        <div>
-
-
-              <div align="right">
-
-
-                  <Button onClick={this.open} renderAs="a" className="navbar-item has-text-grey-light"
-                      style={{ background: `#6D214F` }}> CREAR USUARIO </Button>
-
-
-              </div>
-
-
-
-              <div align="right">
-                  <Link to="/">
-                      <Button className="navbar-item has-text-grey-light" style={{ background: `#6D214F` }} > MENU </Button>
-                  </Link>
-              </div>
-
-
-        <Modal show={this.state.show} onClose={this.close} closeOnEsc={true} closeOnBlur={true} >
+        <Modal show={this.state.show} onClose={this.close} closeOnEsc={true} closeOnBlur={true}>
           <Modal.Card >
-    <Modal.Card.Head onClose={this.close} style={{background:`#64234A`}}>
-          <Modal.Card.Title className="has-text-white">{this.props.titulo}</Modal.Card.Title>
-    </Modal.Card.Head>
-        <Modal.Card.Body>
-          <Media>
-            <Media.Item>
-              <Content>
-                <div className="columns">
-                <div className="column">
-                <label className="label">USUARIO: </label>
-                <  input className="input" type="text" required value={this.state.USUARIO} onChange={e => this.setState({USUARIO:e.target.value.toUpperCase()})} />
-              </div>
-              </div>
-              <div className="columns">
-              <div className="column">
-              <label className="label">PASSWORD: </label>
-                <div className="control">
-                <input className="input" type="password" required value={this.state.PASSWORD} onChange={e => this.setState({PASSWORD:e.target.value})} />
-            </div>
-            </div>
-              </div>
-              <div className="columns">
-              <div className="column">
-                <label className="label">ROL: </label>
-                <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`}}>
-                    <select value={this.state.ROL} onChange={e => this.setState({ROL:e.target.value})} required>
-                    <option value="">---Seleccione---</option>
-                    {this.state.roles.map(option => (
-                    <option key={option.id} value={option.id}>
-                    {option.nombre}
-                </option>
-                ))}
-            </select>
-            </div>
-              </div>
-              </div>
-              </Content>
-              <Level breakpoint="mobile">
-                <Level.Side align="left">
-                <div className="columns">
-                                            <div className="column">
-
-
-                                                <Button onClick={this.handleAgregar} className="navbar-item has-text-grey-light" style={{ background: `#6D214F` }}> ACEPTAR </Button>
-
-
-
-
-                  </div>
-                  </div>
-                </Level.Side>
-              </Level>
-            </Media.Item>
-          </Media>
-        </Modal.Card.Body>
-        <Modal.Card.Foot style={{ alignItems: 'center', justifyContent: 'center' }}>
-
-        </Modal.Card.Foot>
-      </Modal.Card>
+            <Modal.Card.Head onClose={this.close} style={{background:`#64234A`}}>
+              <Modal.Card.Title className="has-text-white">{this.props.titulo}</Modal.Card.Title>
+            </Modal.Card.Head>
+            <Modal.Card.Body>
+              <Media>
+                <Media.Item>
+                  <Content>
+                    <div className="columns">
+                      <div className="column">
+                        <label className="label">USUARIO:</label>
+                        <input className="input" type="text" required value={this.state.USUARIO} onChange={e => this.setState({USUARIO:e.target.value.toUpperCase()})}/>
+                      </div>
+                    </div>
+                    <div className="columns">
+                      <div className="column">
+                        <label className="label">PASSWORD:</label>
+                        <div className="control">
+                          <input className="input" type="password" required value={this.state.PASSWORD} onChange={e => this.setState({PASSWORD:e.target.value})}/>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="columns">
+                      <div className="column">
+                        <label className="label">ROL:</label>
+                        <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`}}>
+                          <select value={this.state.ROL} onChange={e => this.setState({ROL:e.target.value})} required>
+                            <option value="">---Seleccione---</option>
+                            {this.state.roles.map(option => (
+                              <option key={option.id} value={option.id}>
+                                {option.nombre}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </Content>
+                  <Level breakpoint="mobile">
+                    <Level.Side align="left">
+                      <div className="columns">
+                        <div className="column">
+                          <Button onClick={this.handleAgregar} className="navbar-item has-text-grey-light" style={{ background: `#6D214F` }}> ACEPTAR </Button>
+                        </div>
+                      </div>
+                    </Level.Side>
+                  </Level>
+                </Media.Item>
+              </Media>
+            </Modal.Card.Body>
+            <Modal.Card.Foot style={{ alignItems: 'center', justifyContent: 'center' }}>
+            </Modal.Card.Foot>
+          </Modal.Card>
         </Modal>
       </div>
     );

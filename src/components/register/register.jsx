@@ -787,31 +787,22 @@ Auth = new AuthHelperMethods();
                 <Campo title="Segundo apellido" obligatorio={false} campo="text" valor={persona.SEGUND_APELLIDO}
                   cambiar={e => this.setState({persona: {...persona,SEGUND_APELLIDO:e.target.value.toUpperCase()}})} maximo="60" />
               </th>
+            </tr>
 
-                          </tr>
-
-                          <br />
-
-
-                        <tr>
-
-
-                            <td>
-          <Campo title="Identificacion" obligatorio={true} campo="number" valor={persona.IDENTIFICACION}
-                                    cambiar={e => this.setState({ persona: { ...persona, IDENTIFICACION: e.target.value } })} maximo="60" />
-                            </td>
-
-
-                            <td>
-                                <Campo title="Tipo identificacion" obligatorio={true} campo="select2" options={tipos}
-                                    cambiar={e => this.setState({ persona: { ...persona, TIPO_IDENTIFICACION: e.target.value } })} />
-                            </td>
-
-
-                            <td>
-                                <Campo title="GENERO" obligatorio={true} campo="select52" options ={tipos_genero}
-          cambiar={e => this.setState({persona: {...persona,GENERO:e.target.value}})}  />
-                            </td>
+            <br/>
+            <tr>
+              <td>
+                <Campo title="Identificacion" obligatorio={true} campo="number" valor={persona.IDENTIFICACION}
+                  cambiar={e => this.setState({ persona: { ...persona, IDENTIFICACION: e.target.value } })} maximo="60" />
+              </td>
+              <td>
+                <Campo title="Tipo identificacion" obligatorio={true} campo="select2" options={tipos}
+                  cambiar={e => this.setState({ persona: { ...persona, TIPO_IDENTIFICACION: e.target.value } })} />
+              </td>
+              <td>
+                <Campo title="GENERO" obligatorio={true} campo="select52" options ={tipos_genero}
+                  cambiar={e => this.setState({persona: {...persona,GENERO:e.target.value}})}  />
+              </td>
 
 
                             <td>

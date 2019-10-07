@@ -770,10 +770,17 @@ Auth = new AuthHelperMethods();
           <table cellSpacing="20px" cellPadding="20px" >
             <tr>
               <th>
-                <Campo title="Primer nombre" obligatorio={true} campo="text" valor={persona.PRIMER_NOMBRE}
-                  cambiar={e => this.setState({ persona: { ...persona, PRIMER_NOMBRE: e.target.value.toUpperCase() } })}
-                  style={{ border: `solid 2px rgb(143,136, 144)` }}
-                  maximo="60" />
+              <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+
+              
+
+
+
+
               </th>
               <th>
                 <Campo title="Segundo nombre" obligatorio={false} campo="text" valor={persona.SEGUND_NOMBRE}

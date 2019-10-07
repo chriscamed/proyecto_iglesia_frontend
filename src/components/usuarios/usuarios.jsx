@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import paginate from 'paginate-array';
@@ -7,18 +6,17 @@ import OpenModal from './usuario-model';
 import OpenModaledit from './usuario-model-edit';
 /* Once the 'Authservice' and 'withAuth' componenets are created, import them into App.js */
 import AuthHelperMethods from '../AuthHelperMethods';
-import './usuarios.css';
 
 
 //Our higher order component
 import withAuth from '../withAuth';
 
 class Usuarios extends Component {
-  constructor(props) {
+  constructor(props){
     super(props);
-    this.state = {
+    this.state={
       //eventos:[],
-      todos: [],
+       todos: [],
       size: 5,
       page: 1,
       currPage: null
@@ -35,14 +33,14 @@ class Usuarios extends Component {
     this.props.history.replace('/login');
   }
 
-  componentDidMount() {
+  componentDidMount(){
     const config = {
-      headers: {
+        headers: {
         'content-type': 'application/json',
         'Authorization': localStorage.getItem('id_token')
-      }
-    };
-    fetch(`http://localhost:5000/user/alluser`, config)
+        }
+        };
+    fetch(`http://localhost:5000/user/alluser`,config)
       .then(response => response.json())
       .then(todos => {
         const { page, size } = this.state;
@@ -55,14 +53,14 @@ class Usuarios extends Component {
           currPage
         });
       });
-    (function () {
-      var burger = document.querySelector('.burger');
-      var nav = document.querySelector('#' + burger.dataset.target);
-      burger.addEventListener('click', function () {
-        burger.classList.toggle('is-active');
-        nav.classList.toggle('is-active');
-      });
-    })();
+      (function() {
+        var burger = document.querySelector('.burger');
+        var nav = document.querySelector('#'+burger.dataset.target);
+        burger.addEventListener('click', function(){
+          burger.classList.toggle('is-active');
+          nav.classList.toggle('is-active');
+        });
+      })();
   }
   previousPage() {
     const { currPage, page, size, todos } = this.state;
@@ -88,16 +86,16 @@ class Usuarios extends Component {
       this.setState({ ...this.state, page: newPage, currPage: newCurrPage });
     }
   }
-  getOcupaciones = () => {
+  getOcupaciones= () => {
     const config = {
-      headers: {
+        headers: {
         'content-type': 'application/json',
         'Authorization': localStorage.getItem('id_token')
-      }
-    };
-    fetch('http://localhost:5000/user/alluser', config)
-      .then(response => response.json())
-      .then(todos => {
+        }
+        };
+    fetch('http://localhost:5000/user/alluser',config)
+    .then(response => response.json())
+    .then(todos => {
 
         const currPage = paginate(todos, 1, 5);
 
@@ -107,7 +105,7 @@ class Usuarios extends Component {
           currPage
         });
       })
-      .catch(err => console.log(err))
+    .catch(err => console.log(err))
   }
   handleChange(e) {
     const { value } = e.target;
@@ -124,34 +122,33 @@ class Usuarios extends Component {
       currPage: newCurrPage
     });
   }
-  mapRol = (num) => {
-    switch (num) {
-      case 0:
-        return (
-          <td>registrador de asistencias</td>
-        )
-      case 1:
-        return (
-          <td>administrador</td>
-        )
-      case 2:
-        return (
-          <td>registrador de personas</td>
-        )
+  mapRol = (num) =>{
+    switch(num){
+    case 0:
+    return(
+    <td>registrador de asistencias</td>
+    )
+    case 1:
+    return(
+    <td>administrador</td>
+    )
+    case 2:
+    return(
+    <td>registrador de personas</td>
+    )
     }
-  }
+    }
 
   render() {
     const { page, size, currPage } = this.state;
     return (
       <div>
         {this.props.confirm.roll === 1 &&
-          <nav className="navbar" style={{ background: `#6D214F` }} role="navigation" aria-label="main navigation">
+          <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
               <a className="navbar-item" href="/">
                 <img src="public/imagenes/logo.jpg" />
               </a>
-
               <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
@@ -160,30 +157,28 @@ class Usuarios extends Component {
             </div>
 
             <div id="navbarBasicExample" className="navbar-menu">
-
               <div className="navbar-end">
                 <div className="navbar-item">
-                  <strong className="has-text-grey-light">{name + "     "}</strong>
+                  <strong className="has-text-grey-light">{name+"     "}</strong>
                 </div>
                 <div className="navbar-item">
                   <div className="buttons">
                     <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
                       Cerrar sesión
-          </button>
+                    </button>
                   </div>
                 </div>
               </div>
-
             </div>
           </nav>
         }
+
         {this.props.confirm.roll === 0 &&
-          <nav className="navbar" style={{ background: `#6D214F` }} role="navigation" aria-label="main navigation">
+          <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
               <a className="navbar-item" href="/">
                 <img src="public/imagenes/logo.jpg" />
               </a>
-
               <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
@@ -192,12 +187,6 @@ class Usuarios extends Component {
             </div>
 
             <div id="navbarBasicExample" className="navbar-menu ">
-              <div className="navbar-start">
-                <div className="navbar-item">
-
-
-                </div>
-              </div>
               <div className="navbar-end">
                 <div className="navbar-item">
                   <div className="buttons" >
@@ -208,20 +197,20 @@ class Usuarios extends Component {
                   <div className="buttons">
                     <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
                       Cerrar sesión
-          </button>
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
           </nav>
         }
+
         {this.props.confirm.roll === 2 &&
-          <nav className="navbar" style={{ background: `#6D214F` }} role="navigation" aria-label="main navigation">
+          <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
               <a className="navbar-item" href="/">
                 <img src="public/imagenes/logo.jpg" />
               </a>
-
               <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
@@ -230,98 +219,66 @@ class Usuarios extends Component {
             </div>
 
             <div id="navbarBasicExample" className="navbar-menu">
-
               <div className="navbar-end">
                 <div className="navbar-item">
-                  <strong className="has-text-grey-light">{name + "     "}</strong>
+                  <strong className="has-text-grey-light">{name+"     "}</strong>
                 </div>
                 <div className="navbar-item">
                   <div className="buttons">
                     <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
                       Cerrar sesión
-          </button>
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
           </nav>
         }
-        <h3 className="title has-text-centered">USUARIOS</h3>
 
-        <hr />
+        <h3 className="title has-text-centered"> GESTION DE USUARIOS</h3>
 
-
-
-        <div className="columns">
-          <div className="column">
-            <div class="tabla" >
-
+        <table border="0">
+          <tr>
+            <th></th>
+            <th>
               <div className="columns">
                 <div className="column">
-
-
-                  <table >
-                    <thead>
-                      <tr>
-                        <th><div class="btnUsuario">
-                          <OpenModal titulo="AGREGAR USUARIO" metodo={this.getOcupaciones} subtitulo="Usuario" ></OpenModal>
-                        </div></th>
-
-
-                        <th><div class="btnUsuario">
-
-
-
-                          <form action="/">
-                            <input type="submit" class="btn btn-success" value="regresar" />
-                          </form>
-
-                        </div>
-
-
-                        </th>
-                      </tr>
-                    </thead>
-                  </table>
-
-
-
-
-
+                  <OpenModal  titulo="CREAR USUARIO" metodo={this.getOcupaciones} subtitulo="Usuario" ></OpenModal>
                 </div>
               </div>
-              <table class="table table-striped" width="80%">
-                <thead>
-                  <tr>
-                    <th scope="col">Usuario</th>
-                    <th scope="col">Rol</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
+            </th>
+          </tr>
+        </table>
+        <div className="columns">
+          <div className="column">
+            <table className="table is-bordered is-fullwidth" class="table table-striped" width="100%">
+              <thead>
+                <tr>
+                  <th>Usuario</th>
+                  <th>Rol</th>
+                  <th> Estado</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {currPage && currPage.data.map(usuarios => (
+                  <tr key={usuarios.id}>
+                    <td>{usuarios.USUARIO}</td>
+                    {this.mapRol(usuarios.ROL)}
+                    <td>ACTIVO</td>
+                    <td>
+                      <img style={{ width: '30px', height: '30px', margin: '5px' }} src="public/imagenes/edit.png" />
+                      <OpenModaledit metodo={this.getOcupaciones}id={usuarios.id} titulo="EDITAR USUARIO" subtitulo="Usuario"/>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {currPage &&
-                    currPage.data.map(usuarios => (
-                      <tr key={usuarios.id}>
-                        <td>{usuarios.USUARIO}</td>
-                        {this.mapRol(usuarios.ROL)}
-                        <td></td>
-                        <td style={{ textAlign: 'center' }}><OpenModaledit metodo={this.getOcupaciones} id={usuarios.id} titulo="EDITAR USUARIO" subtitulo="Usuario" /></td>
-                        <td style={{ textAlign: 'center' }}><OpenModaledit metodo={this.getOcupaciones} id={usuarios.id} titulo="EDITAR USUARIO" subtitulo="Usuario" /></td>
-                      </tr>
+                ))}
+              </tbody>
+            </table>
 
-                    ))
-                  }
-
-                </tbody>
-              </table>
-            </div>
-
-
+            <button className="button is-outlined" onClick={this.previousPage}>Previous Page</button>
+            <button className="button is-outlined" onClick={this.nextPage}>Next Page</button>
           </div>
         </div>
-
       </div>
     );
   }

@@ -108,6 +108,19 @@ class OpenModaledit extends Component {
                 <div className="columns">
                                         <div className="column">
 
+                                        <label className="label">ID: </label>
+                <div className="control">
+                <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`}}>
+                    <select value={this.state.usuario.ROL}  onChange={e => this.setState({usuario: {...usuario,ROL:e.target.value.toUpperCase()}})} required>
+                    <option value="">---Seleccione---</option>
+                    {this.state.roles.map(option => (
+                    <option key={option.id} value={option.id}>
+                    {option.nombre}
+                </option>
+
+
+
+
                 <label className="label">USUARIO: </label>
                 <input className="input" type="text" required value={usuario.USUARIO} onChange={e => this.setState({usuario: {...usuario,USUARIO:e.target.value.toUpperCase()}})} />
 

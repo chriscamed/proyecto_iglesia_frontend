@@ -36,7 +36,17 @@ class OpenModal extends Component {
         {
           id:2,
           nombre:"Registrador de personas"
-        }]
+        }],
+      personas:[
+        {
+          id:11,
+          nombre:"Pepito"
+        },
+        {
+          id:12,
+          nombre:"Fulanito"
+        }
+      ]
     }
   }
   Auth = new AuthHelperMethods();
@@ -51,7 +61,7 @@ class OpenModal extends Component {
   handleAgregar = event => {
     event.preventDefault();
     const obj = {
-        ID_PERSONA: 11,
+        ID_PERSONA: this.state.ID_PERSONA,
         USUARIO: this.state.USUARIO,
         PASS: this.state.PASSWORD,
         ROL: this.state.ROL,
@@ -95,6 +105,21 @@ class OpenModal extends Component {
               <Media>
                 <Media.Item>
                   <Content>
+                    <div className="columns">
+                      <div className="column">
+                        <label className="label">PERSONA:</label>
+                        <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`}}>
+                          <select value={this.state.ID_PERSONA} onChange={e => this.setState({ID_PERSONA:e.target.value})} required>
+                            <option value="">---Seleccione---</option>
+                            {this.state.personas.map(option => (
+                              <option key={option.id} value={option.id}>
+                                {option.nombre}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+                    </div>
                     <div className="columns">
                       <div className="column">
                         <label className="label">USUARIO:</label>

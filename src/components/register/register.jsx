@@ -770,11 +770,10 @@ Auth = new AuthHelperMethods();
           <table cellSpacing="20px" cellPadding="20px" >
             <tr>
               <th>
-              <div class="form-group">
-                  <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>
+                <Campo title="Primer nombre" obligatorio={true} campo="text" valor={persona.PRIMER_NOMBRE}
+                  cambiar={e => this.setState({ persona: { ...persona, PRIMER_NOMBRE: e.target.value.toUpperCase() } })}
+                  style={{ border: `solid 2px rgb(143,136, 144)` }}
+                  maximo="60" />
 
               
 
@@ -794,22 +793,31 @@ Auth = new AuthHelperMethods();
                 <Campo title="Segundo apellido" obligatorio={false} campo="text" valor={persona.SEGUND_APELLIDO}
                   cambiar={e => this.setState({persona: {...persona,SEGUND_APELLIDO:e.target.value.toUpperCase()}})} maximo="60" />
               </th>
-            </tr>
 
-            <br/>
-            <tr>
-              <td>
-                <Campo title="Identificacion" obligatorio={true} campo="number" valor={persona.IDENTIFICACION}
-                  cambiar={e => this.setState({ persona: { ...persona, IDENTIFICACION: e.target.value } })} maximo="60" />
-              </td>
-              <td>
-                <Campo title="Tipo identificacion" obligatorio={true} campo="select2" options={tipos}
-                  cambiar={e => this.setState({ persona: { ...persona, TIPO_IDENTIFICACION: e.target.value } })} />
-              </td>
-              <td>
-                <Campo title="GENERO" obligatorio={true} campo="select52" options ={tipos_genero}
-                  cambiar={e => this.setState({persona: {...persona,GENERO:e.target.value}})}  />
-              </td>
+                          </tr>
+
+                          <br />
+
+
+                        <tr>
+
+
+                            <td>
+          <Campo title="Identificacion" obligatorio={true} campo="number" valor={persona.IDENTIFICACION}
+                                    cambiar={e => this.setState({ persona: { ...persona, IDENTIFICACION: e.target.value } })} maximo="60" />
+                            </td>
+
+
+                            <td>
+                                <Campo title="Tipo identificacion" obligatorio={true} campo="select2" options={tipos}
+                                    cambiar={e => this.setState({ persona: { ...persona, TIPO_IDENTIFICACION: e.target.value } })} />
+                            </td>
+
+
+                            <td>
+                                <Campo title="GENERO" obligatorio={true} campo="select52" options ={tipos_genero}
+          cambiar={e => this.setState({persona: {...persona,GENERO:e.target.value}})}  />
+                            </td>
 
 
                             <td>

@@ -166,6 +166,7 @@ class OpenModal extends Component {
             </Modal.Card.Foot>
           </Modal.Card>
         </Modal>
+        
       </div>
     );
   }

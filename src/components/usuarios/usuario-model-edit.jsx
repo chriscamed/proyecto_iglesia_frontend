@@ -79,7 +79,7 @@ class OpenModaledit extends Component {
   handleEditar = event => {
     event.preventDefault();
     const obj = {
-      id: this.props.id,
+      USER_ID: this.props.id,
       PASSWORD: this.state.usuario.PASSWORD,
       ROL: this.state.usuario.ROL,
       ESTADO: this.state.usuario.ESTADO
@@ -102,6 +102,7 @@ class OpenModaledit extends Component {
 
     const {usuario}= this.state;
     return (
+      console.log(this.state.usuario);
       <div>
         <Button onClick={this.open} renderAs="a"><FaEdit/></Button>
         <Modal show={this.state.show} onClose={this.close} closeOnEsc={true} closeOnBlur={true} >
@@ -116,13 +117,13 @@ class OpenModaledit extends Component {
                     <div className="columns">
                       <div className="column">
                         <label className="label">USUARIO: </label>
-                        <input className="input" type="text" required value={usuario.USUARIO} onChange={e => this.setState({usuario: {...usuario,USUARIO:e.target.value.toUpperCase()}})} />
+                        <input className="input" type="text" disabled={true} value={usuario.USUARIO} onChange={e => this.setState({usuario: {...usuario,USUARIO:e.target.value.toUpperCase()}})} />
                       </div>
                     </div>
                     <div className="columns">
                       <div className="column">
                         <label className="label">PASSWORD: </label>
-                        <input className="input" type="password" required value={this.state.PASSWORD} onChange={e => this.setState({PASSWORD: e.target.value})} />
+                        <input className="input" type="password" required value={usuario.PASSWORD} onChange={e => this.setState({usuario: {...usuario,PASSWORD:e.target.value.toUpperCase()}})} />
                       </div>
                     </div>
                     <div className="columns">

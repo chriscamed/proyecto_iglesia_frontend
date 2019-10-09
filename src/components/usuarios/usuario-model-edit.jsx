@@ -102,7 +102,7 @@ class OpenModaledit extends Component {
 
     const {usuario}= this.state;
     return (
-      console.log(this.state.usuario)
+      //console.log(this.state.usuario)
       <div>
         <Button onClick={this.open} renderAs="a"><FaEdit/></Button>
         <Modal show={this.state.show} onClose={this.close} closeOnEsc={true} closeOnBlur={true} >

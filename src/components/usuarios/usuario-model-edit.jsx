@@ -80,7 +80,6 @@ class OpenModaledit extends Component {
     event.preventDefault();
     const obj = {
       id: this.props.id,
-      USUARIO: this.state.usuario.USUARIO,
       PASSWORD: this.state.usuario.PASSWORD,
       ROL: this.state.usuario.ROL,
       ESTADO: this.state.usuario.ESTADO

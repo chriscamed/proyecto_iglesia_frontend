@@ -75,20 +75,26 @@ class OpenModal extends Component {
       ROL: this.state.ROL,
       ESTADO: '1'
     };
-    const config = {
-      headers: {
-        'content-type': 'application/json',
-        'Authorization': localStorage.getItem('id_token')
-      }
-    };
-    // console.log(this.state.personas);
-    axios.post('http://localhost:5000/user/create', obj,config)
-    .then(response=>console.log(response.data,obj))
-    .then(this.props.metodo)
-    .then(alert("Se ha agregado el usuario"))
-    .then(this.close)
-    .catch(err => console.log(err))
-
+    // console.log(obj);
+    if (obj.ID_PERSONA == '' || obj.USUARIO == '' || obj.PASS == '' || obj.ROL == null) {
+      // console.log('prueba false');
+      return alert("Favor diligenciar todos los campos");
+    }else{
+      // console.log('prueba true');
+      const config = {
+        headers: {
+          'content-type': 'application/json',
+          'Authorization': localStorage.getItem('id_token')
+        }
+      };
+      // console.log(this.state.personas);
+      axios.post('http://localhost:5000/user/create', obj,config)
+      .then(response=>console.log(response.data,obj))
+      .then(this.props.metodo)
+      .then(alert("Se ha agregado el usuario"))
+      .then(this.close)
+      .catch(err => console.log(err))
+    }
     this.setState({ID_PERSONA: '', USUARIO: '', PASSWORD: '', ROL:'', ESTADO:''})
   }
 
@@ -161,19 +167,20 @@ class OpenModal extends Component {
                       </div>
                     </div>
                   </Content>
-                  <Level breakpoint="mobile">
-                    <Level.Side align="left">
-                      <div className="columns">
-                        <div className="column">
-                          <Button onClick={this.handleAgregar} className="navbar-item has-text-grey-light" style={{ background: `#6D214F` }}> ACEPTAR </Button>
-                        </div>
-                      </div>
-                    </Level.Side>
-                  </Level>
+
                 </Media.Item>
               </Media>
             </Modal.Card.Body>
             <Modal.Card.Foot style={{ alignItems: 'center', justifyContent: 'center' }}>
+              <Level breakpoint="mobile">
+                <Level.Side align="left">
+                  <div className="columns">
+                    <div className="column">
+                      <Button onClick={this.handleAgregar} className="navbar-item has-text-grey-light" style={{ background: `#6D214F` }}> ACEPTAR </Button>
+                    </div>
+                  </div>
+                </Level.Side>
+              </Level>
             </Modal.Card.Foot>
           </Modal.Card>
         </Modal>

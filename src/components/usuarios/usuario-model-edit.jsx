@@ -83,18 +83,25 @@ class OpenModaledit extends Component {
       ROL: this.state.usuario.ROL,
       ESTADO: this.state.usuario.ESTADO,
     };
-    const config = {
-      headers: {
-        'content-type': 'application/json',
-        'Authorization': localStorage.getItem('id_token')
-      }
-    };
-    axios.post('http://localhost:5000/user/update', obj,config)
-      .then(response=>console.log(response.data,obj))
-      .then(this.props.metodo)
-      .then(alert("se ha editado el usuario"))
-      .then(this.close)
-      .catch(err => console.log(err))
+    // console.log(obj);
+    if (obj.PASSWORD == undefined || obj.PASSWORD == '' || obj.ROL == '' || obj.ESTADO == '') {
+      // console.log('prueba false');
+      return alert("Favor diligenciar todos los campos");
+    }else{
+      // console.log('prueba true');
+      const config = {
+        headers: {
+          'content-type': 'application/json',
+          'Authorization': localStorage.getItem('id_token')
+        }
+      };
+      axios.post('http://localhost:5000/user/update', obj,config)
+        .then(response=>console.log(response.data,obj))
+        .then(this.props.metodo)
+        .then(alert("se ha editado el usuario"))
+        .then(this.close)
+        .catch(err => console.log(err))
+    }
   }
 
   render() {
@@ -159,19 +166,20 @@ class OpenModaledit extends Component {
                       </div>
                     </div>
                   </Content>
-                  <Level breakpoint="mobile">
-                    <Level.Side align="left">
-                      <div className="columns">
-                        <div className="column">
-                          <Button onClick={this.handleEditar} >Editar</Button>
-                        </div>
-                      </div>
-                    </Level.Side>
-                  </Level>
+
                 </Media.Item>
               </Media>
             </Modal.Card.Body>
             <Modal.Card.Foot style={{ alignItems: 'center', justifyContent: 'center' }}>
+              <Level breakpoint="mobile">
+                <Level.Side align="left">
+                  <div className="columns">
+                    <div className="column">
+                      <Button onClick={this.handleEditar} className="navbar-item has-text-grey-light" style={{ background: `#6D214F` }}> EDITAR </Button>
+                    </div>
+                  </div>
+                </Level.Side>
+              </Level>
             </Modal.Card.Foot>
           </Modal.Card>
         </Modal>

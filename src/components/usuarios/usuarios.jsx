@@ -113,7 +113,7 @@ class Usuarios extends Component {
   }
 
   getMiembros = () => {
-    
+
   }
   handleChange(e) {
     const { value } = e.target;
@@ -274,7 +274,6 @@ class Usuarios extends Component {
                     <td>{usuarios.USUARIO}</td>
                     {this.mapRol(usuarios.ROL)}
                     <td>
-                      <img style={{ width: '30px', height: '30px', margin: '5px' }} src="public/imagenes/edit.png" />
                       <OpenModaledit metodo={this.getOcupaciones} user={usuarios} titulo="EDITAR USUARIO" subtitulo="Usuario"/>
                     </td>
                   </tr>

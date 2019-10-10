@@ -81,13 +81,13 @@ class OpenModal extends Component {
         'Authorization': localStorage.getItem('id_token')
       }
     };
-    console.log(this.state.personas);
-    // axios.post('http://localhost:5000/user/create', obj,config)
-    // .then(response=>console.log(response.data,obj))
-    // .then(this.props.metodo)
-    // .then(alert("Se ha agregado el usuario"))
-    // .then(this.close)
-    // .catch(err => console.log(err))
+    // console.log(this.state.personas);
+    axios.post('http://localhost:5000/user/create', obj,config)
+    .then(response=>console.log(response.data,obj))
+    .then(this.props.metodo)
+    .then(alert("Se ha agregado el usuario"))
+    .then(this.close)
+    .catch(err => console.log(err))
 
     this.setState({ID_PERSONA: '', USUARIO: '', PASSWORD: '', ROL:'', ESTADO:''})
   }
@@ -132,7 +132,9 @@ class OpenModal extends Component {
                     <div className="columns">
                       <div className="column">
                         <label className="label">USUARIO:</label>
-                        <input className="input" type="text" required value={this.state.USUARIO} onChange={e => this.setState({USUARIO:e.target.value.toUpperCase()})}/>
+                        <div className="control">
+                          <input className="input" type="text" required value={this.state.USUARIO} onChange={e => this.setState({USUARIO:e.target.value.toUpperCase()})}/>
+                        </div>
                       </div>
                     </div>
                     <div className="columns">

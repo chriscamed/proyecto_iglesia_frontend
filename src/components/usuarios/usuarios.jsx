@@ -53,6 +53,7 @@ class Usuarios extends Component {
           currPage
         });
       });
+
       (function() {
         var burger = document.querySelector('.burger');
         var nav = document.querySelector('#'+burger.dataset.target);
@@ -61,6 +62,7 @@ class Usuarios extends Component {
           nav.classList.toggle('is-active');
         });
       })();
+      //console.log(currPage);
   }
 
   previousPage() {
@@ -87,7 +89,8 @@ class Usuarios extends Component {
       this.setState({ ...this.state, page: newPage, currPage: newCurrPage });
     }
   }
-  getOcupaciones= () => {
+  getOcupaciones = () => {
+    this.getMiembros();
     const config = {
         headers: {
         'content-type': 'application/json',
@@ -107,6 +110,10 @@ class Usuarios extends Component {
         });
       })
     .catch(err => console.log(err))
+  }
+
+  getMiembros = () => {
+    
   }
   handleChange(e) {
     const { value } = e.target;
@@ -266,10 +273,9 @@ class Usuarios extends Component {
                   <tr key={usuarios.id}>
                     <td>{usuarios.USUARIO}</td>
                     {this.mapRol(usuarios.ROL)}
-                    <td>ACTIVO</td>
                     <td>
                       <img style={{ width: '30px', height: '30px', margin: '5px' }} src="public/imagenes/edit.png" />
-                      <OpenModaledit metodo={this.getOcupaciones}id={usuarios.id} titulo="EDITAR USUARIO" subtitulo="Usuario"/>
+                      <OpenModaledit metodo={this.getOcupaciones} user={usuarios} titulo="EDITAR USUARIO" subtitulo="Usuario"/>
                     </td>
                   </tr>
                 ))}

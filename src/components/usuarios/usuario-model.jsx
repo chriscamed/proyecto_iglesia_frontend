@@ -37,16 +37,7 @@ class OpenModal extends Component {
           id:2,
           nombre:"Registrador de personas"
         }],
-      personas:[
-        {
-          id:11,
-          nombre:"Pepito"
-        },
-        {
-          id:12,
-          nombre:"Fulanito"
-        }
-      ]
+      personas:[]
     }
   }
   Auth = new AuthHelperMethods();
@@ -58,29 +49,47 @@ class OpenModal extends Component {
   open = () => this.setState({ show: true });
   close = () => this.setState({ show: false });
 
+  componentDidMount(){
+    this.getMiembros();
+  }
+
+  getMiembros = () => {
+    const config = {
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': localStorage.getItem('id_token')
+      }
+    };
+    fetch('http://localhost:5000/persona/members/all',config)
+    .then(response => response.json())
+    .then(datos => this.setState({personas:datos}))
+    .catch(err => console.log(err))
+  }
+
   handleAgregar = event => {
     event.preventDefault();
     const obj = {
-        ID_PERSONA: this.state.ID_PERSONA,
-        USUARIO: this.state.USUARIO,
-        PASS: this.state.PASSWORD,
-        ROL: this.state.ROL,
-        ESTADO: '1'
-        };
+      ID_PERSONA: this.state.ID_PERSONA,
+      USUARIO: this.state.USUARIO,
+      PASS: this.state.PASSWORD,
+      ROL: this.state.ROL,
+      ESTADO: '1'
+    };
     const config = {
-        headers: {
+      headers: {
         'content-type': 'application/json',
         'Authorization': localStorage.getItem('id_token')
-        }
-        };
-    axios.post('http://localhost:5000/user/create', obj,config)
-        .then(response=>console.log(response.data,obj))
-        .then(this.props.metodo)
-        .then(alert("Se ha agregado el usuario"))
-        .then(this.close)
-        .catch(err => console.log(err))
+      }
+    };
+    console.log(this.state.personas);
+    // axios.post('http://localhost:5000/user/create', obj,config)
+    // .then(response=>console.log(response.data,obj))
+    // .then(this.props.metodo)
+    // .then(alert("Se ha agregado el usuario"))
+    // .then(this.close)
+    // .catch(err => console.log(err))
 
-        this.setState({ID_PERSONA: '', USUARIO: '', PASSWORD: '', ROL:'', ESTADO:''})
+    this.setState({ID_PERSONA: '', USUARIO: '', PASSWORD: '', ROL:'', ESTADO:''})
   }
 
   render() {
@@ -112,8 +121,8 @@ class OpenModal extends Component {
                           <select value={this.state.ID_PERSONA} onChange={e => this.setState({ID_PERSONA:e.target.value})} required>
                             <option value="">---Seleccione---</option>
                             {this.state.personas.map(option => (
-                              <option key={option.id} value={option.id}>
-                                {option.nombre}
+                              <option key={option.ID_PERSONA} value={option.ID_PERSONA}>
+                                {option.PRIMER_NOMBRE} {option.SEGUND_NOMBRE} {option.PRIMER_APELLIDO} {option.SEGUND_APELLIDO}
                               </option>
                             ))}
                           </select>
@@ -166,7 +175,7 @@ class OpenModal extends Component {
             </Modal.Card.Foot>
           </Modal.Card>
         </Modal>
-        
+
       </div>
     );
   }

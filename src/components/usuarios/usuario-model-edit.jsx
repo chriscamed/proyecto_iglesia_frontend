@@ -15,14 +15,13 @@ import withAuth from '../withAuth';
 class OpenModaledit extends Component {
   constructor(props){
     super(props);
-
     this.state={
       show: false,
-      usuario:{
-        USUARIO: '',
+      usuario: {
+        USUARIO: this.props.user.USUARIO,
         PASSWORD: '',
-        ROL: '',
-        ESTADO: ''
+        ROL: this.props.user.ROL,
+        ESTADO: this.props.user.ESTADO
       },
       roles:[
         {
@@ -49,60 +48,59 @@ class OpenModaledit extends Component {
       ]
     }
   }
-
   Auth = new AuthHelperMethods();
 
   _handleLogout = () => {
     this.Auth.logout()
     this.props.history.replace('/login');
   }
-   open = () => this.setState({ show: true });
-   close = () => this.setState({ show: false});
+  open = () => this.setState({ show: true });
+  close = () => this.setState({ show: false});
 
   componentDidMount(){
       this.getEvento()
   }
 
-  getEvento= () => {
-     const config = {
-        headers: {
+  getEvento = () => {
+    const config = {
+      headers: {
         'content-type': 'application/json',
         'Authorization': localStorage.getItem('id_token')
-        }
-        };
-    fetch('http://localhost:5000/user/individual/'+this.props.id,config)
+      }
+    };
+    fetch('http://localhost:5000/user/individual/' + this.props.user.ID_USER,config)
     .then(response => response.json())
     .then(datos => this.setState({usuario:datos}))
     .catch(err => console.log(err))
+    //console.log(this.props);
   }
 
   handleEditar = event => {
     event.preventDefault();
     const obj = {
-      USER_ID: this.props.id,
+      USER_ID: this.props.user.ID_USER,
       PASSWORD: this.state.usuario.PASSWORD,
       ROL: this.state.usuario.ROL,
-      ESTADO: this.state.usuario.ESTADO
+      ESTADO: this.state.usuario.ESTADO,
     };
     const config = {
-        headers: {
-          'content-type': 'application/json',
-          'Authorization': localStorage.getItem('id_token')
-        }
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': localStorage.getItem('id_token')
+      }
     };
     axios.post('http://localhost:5000/user/update', obj,config)
-        .then(response=>console.log(response.data,obj))
-        .then(this.props.metodo)
-        .then(alert("se ha editado el usuario"))
-        .then(this.close)
-        .catch(err => console.log(err))
+      .then(response=>console.log(response.data,obj))
+      .then(this.props.metodo)
+      .then(alert("se ha editado el usuario"))
+      .then(this.close)
+      .catch(err => console.log(err))
   }
 
   render() {
 
     const {usuario}= this.state;
     return (
-      //console.log(this.state.usuario)
       <div>
         <Button onClick={this.open} renderAs="a"><FaEdit/></Button>
         <Modal show={this.state.show} onClose={this.close} closeOnEsc={true} closeOnBlur={true} >

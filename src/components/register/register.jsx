@@ -644,7 +644,54 @@ Auth = new AuthHelperMethods();
   }
 
   handleCrearPersona = event => {
-    console.log(this.state.persona);
+    const obj = {
+      PRIMER_NOMBRE: this.state.persona.PRIMER_NOMBRE,
+      SEGUND_NOMBRE: this.state.persona.SEGUND_NOMBRE,
+      PRIMER_APELLIDO: this.state.persona.PRIMER_APELLIDO,
+      SEGUND_APELLIDO: this.state.persona.SEGUND_APELLIDO,
+      TIPO_IDENTIFICACION: this.state.persona.TIPO_IDENTIFICACION,
+      IDENTIFICACION: this.state.persona.IDENTIFICACION,
+      FECHA_NACIMIENTO: this.state.persona.FECHA_NACIMIENTO,
+      GENERO: this.state.persona.GENERO,
+      ESTADO_CIVIL: this.state.persona.ESTADO_CIVIL,
+      DIRECCION_CASA: this.state.persona.DIRECCION_CASA,
+      ID_BARRIO: this.state.persona.BARRIO,
+      CORREO: this.state.persona.CORREO,
+      CELULAR_1: this.state.persona.CELULAR1,
+      CELULAR_2: this.state.persona.CELULAR2,
+      TELEFONO_FIJO: this.state.persona.TELEFONO_FIJO,
+      EMPRESA: this.state.persona.EMPRESA,
+      TELEFONO_EMPRESA: this.state.persona.TELEFONO_EXT,
+      ID_PROFESION: this.state.persona.PROFESION,
+      ID_OCUPACION: this.state.persona.OCUPACION,
+      FECHA_BAUTIZO: this.state.persona.FECHA_BAUTIZO,
+      ID_MINISTERIO: this.state.persona.MINISTERIO,
+      FOTO_PERSONA: this.state.persona.fotopersona,
+      ID_PERSONA_INVITA: this.state.persona.invitado_por,
+      TIPO_PERSONA: 1
+    };
+    console.log(obj);
+
+    if (obj.PRIMER_NOMBRE == "" || obj.PRIMER_APELLIDO == "" || obj.TIPO_IDENTIFICACION == "" ||
+        obj.IDENTIFICACION == null || obj.IDENTIFICACION == "" || obj.GENERO == "" ||
+        obj.FECHA_NACIMIENTO == null || obj.ESTADO_CIVIL == "" || obj.DIRECCION_CASA == "" ||
+        obj.ID_BARRIO == null || obj.CORREO == "" || obj.CELULAR_1 == "" || obj.ID_MINISTERIO == null) {
+          return alert("Favor diligenciar todos los campos obligatorios marcados con (*)");
+    }else{
+      const config = {
+        headers: {
+          'content-type': 'multipart/form-data',
+          'Authorization': localStorage.getItem('id_token')
+        }
+      };
+
+      //const {persona} = this.state;
+      axios.post('http://localhost:5000/persona/crear', obj,config)
+      console.log(response.data);
+      .then(response => console.log(response.data,obj))
+      .then(alert("Se ha agregado una persona"))
+      .catch(err => console.log(err))
+    }
   }
 
   render() {
@@ -787,7 +834,7 @@ Auth = new AuthHelperMethods();
                       cambiar={e => this.setState({persona: {...persona, GENERO: e.target.value}})}/>
                   </td>
                   <td>
-                    <Campo title="FECHA NACIMIENTO" obligatorio={false} campo="date" valor={persona.FECHA_NACIMIENTO}
+                    <Campo title="FECHA NACIMIENTO" obligatorio={true} campo="date" valor={persona.FECHA_NACIMIENTO}
                       cambiar={e => this.setState({persona: {...persona, FECHA_NACIMIENTO: e.target.value }})} maximo={this.fechaActual()}/>
                   </td>
                 </tr>
@@ -801,7 +848,7 @@ Auth = new AuthHelperMethods();
                       cambiar={e => this.setState({persona: {...persona, DIRECCION_CASA: e.target.value}})}/>
                   </td>
                   <td>
-                    <Campo title="Barrio" obligatorio={false} campo="select4" options={barrios}
+                    <Campo title="Barrio" obligatorio={true} campo="select4" options={barrios}
                       cambiar={e => this.setState({persona: {...persona, BARRIO: e.target.value}})}
                       metodo={this.getBarrios}/>
                   </td>
@@ -849,7 +896,7 @@ Auth = new AuthHelperMethods();
                       cambiar={e => this.setState({persona: {...persona, FECHA_BAUTIZO: e.target.value}})} maximo={this.fechaActual()}/>
                   </td>
                   <td width='50px'>
-                    <Campo title="Ministerio" obligatorio={false} campo="select" options={ministerios}
+                    <Campo title="Ministerio" obligatorio={true} campo="select" options={ministerios}
                       cambiar={e => this.setState({persona: {...persona, MINISTERIO:e.target.value}})}
                       metodo={this.getMinisterios} style={{ border: 'solid 2px rgb(143,136, 144)'}}/>
                   </td>
@@ -867,8 +914,6 @@ Auth = new AuthHelperMethods();
           </table>
           </div>
         </div>
-
-
         <br/>
             <div>
               <div align="center">
@@ -876,15 +921,15 @@ Auth = new AuthHelperMethods();
                   <div className="column">
                     <Button onClick={this.handleCrearPersona} className="navbar-item has-text-grey-light" style={{ background: `#6D214F` }}>CREAR</Button>
                   </div>
+                  <div className="column">
+                    <Link to="/personas">
+                      <Button className="navbar-item has-text-grey-light" style={{ background: `#6D214F` }}>CANCELAR</Button>
+                    </Link>
+                  </div>
                 </div>
-                <Link to="/personas">
-                  <button type="submit"
-                    style={{ backgroundColor: `#64234A`, color: `#FFF`, width: '150px', height: '50px' }}>CANCELAR</button>
-                </Link>
               </div>
             </div>
           </div>
-
     );
   }
 }

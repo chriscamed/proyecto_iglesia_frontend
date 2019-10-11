@@ -88,7 +88,7 @@ class OpenModal extends Component {
         }
       };
       // console.log(this.state.personas);
-      axios.post('http://localhost:5000/user/create', obj,config)
+      axios.post('http://localhost:5000/user/create', obj, config)
       .then(response=>console.log(response.data,obj))
       .then(this.props.metodo)
       .then(alert("Se ha agregado el usuario"))

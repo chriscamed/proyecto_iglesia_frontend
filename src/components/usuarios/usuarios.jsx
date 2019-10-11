@@ -147,6 +147,19 @@ class Usuarios extends Component {
     }
   }
 
+  mapEstado = (num) => {
+    switch(num){
+      case 0:
+      return(
+        <td>Inactivo</td>
+      )
+      case 1:
+      return(
+        <td>Activo</td>
+      )
+    }
+  }
+
   render() {
     const { page, size, currPage } = this.state;
     return (
@@ -273,6 +286,7 @@ class Usuarios extends Component {
                   <tr key={usuarios.id}>
                     <td>{usuarios.USUARIO}</td>
                     {this.mapRol(usuarios.ROL)}
+                    {this.mapEstado(usuarios.ESTADO)}
                     <td>
                       <OpenModaledit metodo={this.getOcupaciones} user={usuarios} titulo="EDITAR USUARIO" subtitulo="Usuario"/>
                     </td>

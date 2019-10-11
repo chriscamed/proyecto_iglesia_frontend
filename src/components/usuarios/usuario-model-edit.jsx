@@ -85,27 +85,27 @@ class OpenModaledit extends Component {
     };
     // console.log(obj);
     if (obj.PASSWORD == undefined || obj.PASSWORD == '' || obj.ROL == '' || obj.ESTADO == '') {
-      // console.log('prueba false');
       return alert("Favor diligenciar todos los campos");
     }else{
-      // console.log('prueba true');
       const config = {
         headers: {
           'content-type': 'application/json',
           'Authorization': localStorage.getItem('id_token')
         }
       };
-      axios.post('http://localhost:5000/user/update', obj,config)
+      axios.post('http://localhost:5000/user/update', obj, config)
+      // console.log(response.data);
         .then(response=>console.log(response.data,obj))
         .then(this.props.metodo)
         .then(alert("se ha editado el usuario"))
         .then(this.close)
         .catch(err => console.log(err))
     }
+
+    this.setState({PASSWORD: ''})
   }
 
   render() {
-
     const {usuario}= this.state;
     return (
       <div>

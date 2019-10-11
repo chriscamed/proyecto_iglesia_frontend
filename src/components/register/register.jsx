@@ -687,7 +687,7 @@ Auth = new AuthHelperMethods();
 
       //const {persona} = this.state;
       axios.post('http://localhost:5000/persona/crear', obj,config)
-      console.log(response.data);
+      // console.log(response.data);
       .then(response => console.log(response.data,obj))
       .then(alert("Se ha agregado una persona"))
       .catch(err => console.log(err))

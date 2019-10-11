@@ -112,9 +112,6 @@ class Usuarios extends Component {
     .catch(err => console.log(err))
   }
 
-  getMiembros = () => {
-
-  }
   handleChange(e) {
     const { value } = e.target;
     const { todos, page } = this.state;
@@ -130,6 +127,7 @@ class Usuarios extends Component {
       currPage: newCurrPage
     });
   }
+
   mapRol = (num) => {
     switch(num){
       case 0:
@@ -163,7 +161,7 @@ class Usuarios extends Component {
   render() {
     const { page, size, currPage } = this.state;
     return (
-      <div>
+      <div class='col-md-12' style={{margin: '10px'}}>
         {this.props.confirm.roll === 1 &&
           <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
@@ -258,45 +256,41 @@ class Usuarios extends Component {
 
         <h3 className="title has-text-centered"> GESTION DE USUARIOS</h3>
 
-        <table border="0">
-          <tr>
-            <th></th>
-            <th>
-              <div className="columns">
-                <div className="column">
-                  <OpenModal  titulo="CREAR USUARIO" metodo={this.getOcupaciones} subtitulo="Usuario" ></OpenModal>
-                </div>
-              </div>
-            </th>
-          </tr>
-        </table>
-        <div className="columns">
-          <div className="column">
-            <table className="table is-bordered is-fullwidth" class="table table-striped" width="100%">
-              <thead>
-                <tr>
-                  <th>Usuario</th>
-                  <th>Rol</th>
-                  <th>Estado</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {currPage && currPage.data.map(usuarios => (
-                  <tr key={usuarios.id}>
-                    <td>{usuarios.USUARIO}</td>
-                    {this.mapRol(usuarios.ROL)}
-                    {this.mapEstado(usuarios.ESTADO)}
-                    <td>
-                      <OpenModaledit metodo={this.getOcupaciones} user={usuarios} titulo="EDITAR USUARIO" subtitulo="Usuario"/>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        <div style={{margin: '10px'}}>
+          <div align="left">
+            <OpenModal titulo="CREAR USUARIO" metodo={this.getOcupaciones} subtitulo="Usuario" className="navbar-item has-text-grey-light" style={{background: '#6D214F'}}>
+            </OpenModal>
+          </div>
+          <br/>
 
-            <button className="button is-outlined" onClick={this.previousPage}>Previous Page</button>
-            <button className="button is-outlined" onClick={this.nextPage}>Next Page</button>
+          <div className="columns" style={{margin: '10px'}}>
+            <div className="column">
+              <table className="table is-bordered is-fullwidth" class="table table-striped" width="100%">
+                <thead>
+                  <tr>
+                    <th>Usuario</th>
+                    <th>Rol</th>
+                    <th>Estado</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {currPage && currPage.data.map(usuarios => (
+                    <tr key={usuarios.id}>
+                      <td>{usuarios.USUARIO}</td>
+                      {this.mapRol(usuarios.ROL)}
+                      {this.mapEstado(usuarios.ESTADO)}
+                      <td>
+                        <OpenModaledit metodo={this.getOcupaciones} user={usuarios} titulo="EDITAR USUARIO" subtitulo="Usuario"/>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+
+              <button className="button is-outlined" onClick={this.previousPage}>Previous Page</button>
+              <button className="button is-outlined" onClick={this.nextPage}>Next Page</button>
+            </div>
           </div>
         </div>
       </div>

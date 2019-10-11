@@ -6,6 +6,7 @@ import '../../estilo.css';
 import '../../App.css';
 import '../../App.sass';
 import OpenModal from './modelo.jsx';
+import Button from 'react-bulma-components/lib/components/button';
 import { FaCheck } from 'react-icons/fa';
 import { IoIosCloseCircleOutline } from "react-icons/io";
 /* Once the 'Authservice' and 'withAuth' componenets are created, import them into App.js */
@@ -273,15 +274,7 @@ function Campo(props){
       </div>
     );
   }
-
-
-
-
-
-
-
-
-    if (props.campo === "select52") {
+  if (props.campo === "select52") {
         return (
             <div className="field">
                 <Nombre title={props.title} obligatorio={props.obligatorio} />
@@ -317,24 +310,6 @@ function Campo(props){
             </div>
         );
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   if(props.campo==="date"){
   return(
       <div className="field"  >
@@ -384,7 +359,6 @@ function Campo(props){
       }
   </div>);
   }
-
   if(props.campo==="file"){
   return(
   <div className="field">
@@ -513,6 +487,7 @@ class Register extends Component {
     }
 
   }
+
   componentDidMount(){
     this.getOcupaciones();
     this.getBarrios();
@@ -529,6 +504,7 @@ class Register extends Component {
         });
       })();
   }
+
   getMinisterios= () => {
     const config = {
         headers: {
@@ -541,6 +517,7 @@ class Register extends Component {
     .then(datos => this.setState({ministerios: datos}))
     .catch(err => console.log(err))
   }
+
   getOcupaciones= () => {
     const config = {
         headers: {
@@ -553,6 +530,7 @@ class Register extends Component {
     .then(datos => this.setState({ocupaciones: datos}))
     .catch(err => console.log(err))
   }
+
   getBarrios= () => {
     const config = {
         headers: {
@@ -565,6 +543,7 @@ class Register extends Component {
     .then(datos => this.setState({barrios: datos}))
     .catch(err => console.log(err))
   }
+
   getProfesiones= () => {
     const config = {
         headers: {
@@ -577,6 +556,7 @@ class Register extends Component {
     .then(datos => this.setState({profesiones: datos}))
     .catch(err => console.log(err))
   }
+
   getEstados= () => {
     const config = {
         headers: {
@@ -589,6 +569,7 @@ class Register extends Component {
     .then(datos => this.setState({estados: datos}))
     .catch(err => console.log(err))
   }
+
   getMiembros= () => {
     const config = {
         headers: {
@@ -601,6 +582,7 @@ class Register extends Component {
     .then(datos => this.setState({miembros: datos}))
     .catch(err => console.log(err))
   }
+
   fechaActual(){
     var d = new Date();
      var   month = '' + (d.getMonth() + 1);
@@ -613,6 +595,7 @@ class Register extends Component {
     return [year, month, day].join('-');
 
   }
+
   validarEmail(){
 
   var texto = this.state.persona.CORREO;
@@ -624,6 +607,7 @@ class Register extends Component {
   }
 
 }
+
 Auth = new AuthHelperMethods();
 
   _handleLogout = () => {
@@ -659,6 +643,10 @@ Auth = new AuthHelperMethods();
     }
   }
 
+  handleCrearPersona = event => {
+    console.log(this.state.persona);
+  }
+
   render() {
     if (this.props.confirm) {
       name = this.props.confirm.user;
@@ -666,374 +654,237 @@ Auth = new AuthHelperMethods();
     const {persona,tipos,tipos_civil,ocupaciones,barrios,profesiones,estados,temporal,isChecked,miembros,ministerios, tipos_genero}= this.state;
     return (
 
-    <div className="is-center">
-      {this.props.confirm.roll === 1 &&
-        <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
-          <div className="navbar-brand">
-            <Heading size="1" weight="semibold" spaced={false} heading={false}>
-              <font color="white">
-                CREAR PERSONA
-              </font>
-            </Heading>
-            <span></span>
-            <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-            </a>
-          </div>
-          <div id="navbarBasicExample" className="navbar-menu">
-            <div className="navbar-end">
-              <div className="navbar-item">
-                <strong className="has-text-grey-light">{name+"     "}</strong>
-              </div>
-              <div className="navbar-item">
-                <div className="buttons">
-                  <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
-                    Cerrar sesión
-                  </button>
+      <div class="row" style={{margin: '10px'}}>
+        {this.props.confirm.roll === 1 &&
+          <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
+            <div className="navbar-brand">
+              <a className="navbar-item" href="/">
+                <img src="public/imagenes/logo.jpg" />
+              </a>
+              <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+
+            <div id="navbarBasicExample" className="navbar-menu">
+              <div className="navbar-end">
+                <div className="navbar-item">
+                  <strong className="has-text-grey-light">{name+"     "}</strong>
+                </div>
+                <div className="navbar-item">
+                  <div className="buttons">
+                    <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
+                      Cerrar sesión
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </nav>
-      }
+          </nav>
+        }
 
-      {this.props.confirm.roll === 0 &&
-      <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
-        <div className="navbar-brand">
-          <Heading size="1" weight="semibold" spaced={false} heading={false}>
-            <font color="white">
-              CREAR PERSONA
-            </font>
-          </Heading>
-          <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
-        </div>
-        <div id="navbarBasicExample" className="navbar-menu ">
-          <div className="navbar-end">
-            <div className="navbar-item">
-              <div className="buttons" >
-                <strong className="has-text-grey-light">{name}</strong>
-              </div>
+        {this.props.confirm.roll === 0 &&
+          <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
+            <div className="navbar-brand">
+              <a className="navbar-item" href="/">
+                <img src="public/imagenes/logo.jpg" />
+              </a>
+              <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
             </div>
-            <div className="navbar-item">
-              <div className="buttons">
-                <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
-                  Cerrar sesión
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-      }
 
-      {this.props.confirm.roll === 2 &&
-      <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
-        <div className="navbar-brand">
-          <Heading size="1" weight="semibold" spaced={false} heading={false}>
-            <font color="white">
-              CREAR PERSONA
-            </font>
-          </Heading>
-          <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
-        </div>
-        <div id="navbarBasicExample" className="navbar-menu">
-          <div className="navbar-end">
-            <div className="navbar-item">
-              <strong className="has-text-grey-light">{name+"     "}</strong>
-            </div>
-            <div className="navbar-item">
-              <div className="buttons">
-                <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
-                  Cerrar sesión
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-      }
-
-      <br /> <br />
-
-      <form onSubmit={this.handleSubmit}>
-        <div align= "center">
-          <table cellSpacing="20px" cellPadding="20px" >
-            <tr>
-              <th>
-                <Campo title="Primer nombre" obligatorio={true} campo="text" valor={persona.PRIMER_NOMBRE}
-                  cambiar={e => this.setState({ persona: { ...persona, PRIMER_NOMBRE: e.target.value.toUpperCase() } })}
-                  style={{ border: `solid 2px rgb(143,136, 144)` }}
-                  maximo="60" />
-
-              
-
-
-
-
-              </th>
-              <th>
-                <Campo title="Segundo nombre" obligatorio={false} campo="text" valor={persona.SEGUND_NOMBRE}
-                  cambiar={e => this.setState({persona: {...persona,SEGUND_NOMBRE:e.target.value.toUpperCase()}})} maximo="60" />
-              </th>
-              <th>
-                <Campo title="Primer apellido" obligatorio={true} campo="text" valor={persona.PRIMER_APELLIDO}
-                  cambiar={e => this.setState({persona: {...persona,PRIMER_APELLIDO:e.target.value.toUpperCase()}})} maximo="60" />
-              </th>
-              <th>
-                <Campo title="Segundo apellido" obligatorio={false} campo="text" valor={persona.SEGUND_APELLIDO}
-                  cambiar={e => this.setState({persona: {...persona,SEGUND_APELLIDO:e.target.value.toUpperCase()}})} maximo="60" />
-              </th>
-
-                          </tr>
-
-                          <br />
-
-
-                        <tr>
-
-
-                            <td>
-          <Campo title="Identificacion" obligatorio={true} campo="number" valor={persona.IDENTIFICACION}
-                                    cambiar={e => this.setState({ persona: { ...persona, IDENTIFICACION: e.target.value } })} maximo="60" />
-                            </td>
-
-
-                            <td>
-                                <Campo title="Tipo identificacion" obligatorio={true} campo="select2" options={tipos}
-                                    cambiar={e => this.setState({ persona: { ...persona, TIPO_IDENTIFICACION: e.target.value } })} />
-                            </td>
-
-
-                            <td>
-                                <Campo title="GENERO" obligatorio={true} campo="select52" options ={tipos_genero}
-          cambiar={e => this.setState({persona: {...persona,GENERO:e.target.value}})}  />
-                            </td>
-
-
-                            <td>
-                                <Campo title="FECHA NACIMIENTO" obligatorio={false} campo="date" valor={persona.FECHA_NACIMIENTO}
-                                    cambiar={e => this.setState({ persona: { ...persona, FECHA_NACIMIENTO: e.target.value } })} maximo={this.fechaActual()} />
-                            </td>
-
-                          </tr>
-
-                          <br />
-
-                          <tr>
-
-
-                            <td>
-
-          <Campo title="Estado Civil" obligatorio={true} campo="select2" options={tipos_civil}
-           cambiar={e => this.setState({persona: {...persona,ESTADO_CIVIL:e.target.value}})} />
-
-                            </td>
-
-                            <td>
-
-                            <Campo title="Direccion" obligatorio={true} campo="text" valor={persona.DIRECCION_CASA}
-                                cambiar={e => this.setState({ persona: { ...persona, DIRECCION_CASA: e.target.value } })} />
-
-                            </td>
-
-                            <td>
-
-                                <Campo title="Barrio" obligatorio={false} campo="select4" options={barrios}
-                                    cambiar={e => this.setState({ persona: { ...persona, BARRIO: e.target.value } })}
-                                    metodo={this.getBarrios} />
-                                <div align="right">
-                                    <img style={{ width: '30px', height: '30px' }} src="public/imagenes/edit.png" />
-                                </div>
-                            </td>
-
-                            </tr>
-                          <br />
-
-
-                              <tr>
-
-                                  <td>
-                                  <Campo title="Correo electronico:" obligatorio={false} campo="email" valor={persona.CORREO} validar={this.validarEmail()}
-                                          cambiar={e => this.setState({ persona: { ...persona, CORREO: e.target.value } })} />
-                                  </td>
-
-
-
-
-                                  <td>
-                        <Campo title="Telefono Celular:" obligatorio={true} campo="number" valor={persona.CELULAR1}
-                                          cambiar={e => this.setState({ persona: { ...persona, CELULAR1: e.target.value } })} />
-                                  </td>
-
-
-                                  <td>
-                                      <Campo title="Telefono celular 2:" obligatorio={false} campo="number" valor={persona.CELULAR2}
-                                          cambiar={e => this.setState({ persona: { ...persona, CELULAR2: e.target.value } })} />
-                                  </td>
-
-
-                                  <td>
-          <Campo title="Telefono fijo: " obligatorio={false} campo="number" valor={persona.TELEFONO_FIJO}
-           cambiar={e => this.setState({persona: {...persona,TELEFONO_FIJO:e.target.value}})} />
-                                      </td>
-
-
-
-
-                              </tr>
-
-                          <br />
-
-
-
-
-
-
-
-
-
-
-
-
-                              <tr>
-
-     <td>
-          <Campo title="Profesion" obligatorio={false} campo="select5" options={profesiones}
-           cambiar={e => this.setState({persona: {...persona,PROFESION:e.target.value}})}
-                                          metodo={this.getProfesiones} />
-                                      <a> <img style={{ width: '30px', height: '30px', }} src="public/imagenes/edit.png" /></a>
-                                  </td>
-
-
-       <td>
-          <Campo title="Ocupacion" obligatorio={false} campo="select3" options={ocupaciones}
-           cambiar={e => this.setState({persona: {...persona,OCUPACION:e.target.value}})}
-                                          metodo={this.getOcupaciones} />
-
-
-
-                                      <img style={{ width: '30px', height: '30px', }} src="public/imagenes/edit.png" />
-                                      </td>
-
-                                  <td>
-          <Campo title="Empresa donde labora" obligatorio={false} campo="text" valor={persona.EMPRESA}
-                                      cambiar={e => this.setState({ persona: { ...persona, EMPRESA: e.target.value.toUpperCase() } })}
-                                  />
-                                      </td>
-                                  <td>
-          <Campo title="Telefono" obligatorio={false} campo="number" valor={persona.TELEFONO_EXT}
-                                      cambiar={e => this.setState({ persona: { ...persona, TELEFONO_EXT: e.target.value } })} />
-                                      </td>
-                              </tr>
-
-                          <br />
-
-
-
-
-
-                              <tr>
-                                  <td>
-          <Campo title="BAUTIZADO" obligatorio={false} campo="radio" radio1="SI" radio2="NO" rad="bautizado"
-                                          cambiar={e => this.setState({ temporal: { ...temporal, BAUTIZADO: e.target.value } })} radio3="SI" radio4="NO" />
-                                      </td>
-
-        {
-                                      (temporal.BAUTIZADO === "NO") ? (
-                                          <td>
-            <Campo title="Bautizado" obligatorio={false} campo="date2" valor={persona.FECHA_BAUTIZO}
-                                                  cambiar={e => this.setState({ persona: { ...persona, FECHA_BAUTIZO: e.target.value } })} maximo={this.fechaActual()} />
-                                          </td>
-        ):(
-                                              <td>
-          <Campo title="Fecha bautismo" obligatorio={false} campo="date" valor={persona.FECHA_BAUTIZO}
-           cambiar={e => this.setState({persona: {...persona,FECHA_BAUTIZO:e.target.value}})} maximo={this.fechaActual()} />
-                                                  </td>
-        )}
-
-
-                                  <td width='50px'>
-          <Campo title="Ministerio" obligatorio={false} campo="select" options={ministerios}
-           cambiar={e => this.setState({persona: {...persona,MINISTERIO:e.target.value }})}
-                                      metodo={this.getMinisterios} style={{ border: `solid 2px rgb(143,136, 144)` }}/>  </td>
-
-                                  <td>
-                                      <Campo title="Invitado por:" obligatorio={false} campo="select8" options={miembros}
-                                      cambiar={e => this.setState({ persona: { ...persona, invitado_por: e.target.value } })}
-                                      style={{ border: `solid 2px rgb(143,136, 144)` }} />
-                                  </td>
-
-
-                                  <td width= '50px'>
-          <Campo title="Foto" obligatorio={false} campo="file" valor={persona.fotopersona}
-          cambiar={e => this.setState({persona: {...persona,fotopersona:e.target.files[0]}})}/>
-                                  </td>
-
-
-                          </tr>
-                          <br />
-          <label class="checkbox ">
-            <input type="checkbox" checked={isChecked} onChange={e => this.setState({isChecked:!isChecked})} />
-             Acepta tratamiento de datos personales
-          </label>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                      </table>
-                      <br />
-                      <div>
-
-                      <div align="center">
-                      <button type="submit"
-                                  style={{ backgroundColor: `#64234A`, color: `#FFF`, width: '150px', height: '50px' }}>ACEPTAR</button>
-                          <a>           </a>
-                          <a>           </a>
-                          <a>           </a>
-                          <a>           </a>
-
-
-                              <Link to="/personas">
-                                  <button type="submit"
-                                      style={{ backgroundColor: `#64234A`, color: `#FFF`, width: '150px', height: '50px' }}> CANCELAR </button>
-                              </Link>
-                          </div>
-
-
-                          </div>
+            <div id="navbarBasicExample" className="navbar-menu ">
+              <div className="navbar-end">
+                <div className="navbar-item">
+                  <div className="buttons" >
+                    <strong className="has-text-grey-light">{name}</strong>
+                  </div>
                 </div>
-     </form>
+                <div className="navbar-item">
+                  <div className="buttons">
+                    <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
+                      Cerrar sesión
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+        }
+
+        {this.props.confirm.roll === 2 &&
+          <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
+            <div className="navbar-brand">
+              <a className="navbar-item" href="/">
+                <img src="public/imagenes/logo.jpg" />
+              </a>
+              <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+
+            <div id="navbarBasicExample" className="navbar-menu">
+              <div className="navbar-end">
+                <div className="navbar-item">
+                  <strong className="has-text-grey-light">{name+"     "}</strong>
+                </div>
+                <div className="navbar-item">
+                  <div className="buttons">
+                    <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
+                      Cerrar sesión
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+        }
+
+        <h3 className="title has-text-centered">CREAR PERSONA</h3>
+
+        <div className="columns" style={{margin: '10px'}}>
+          <div className="column">
+          <table className="table is-bordered is-fullwidth" class="table table-striped" width="100%">
+            <tbody>
+                <tr>
+                  <td>
+                    <Campo title="Primer nombre" obligatorio={true} campo="text" valor={persona.PRIMER_NOMBRE}
+                      cambiar={e => this.setState({persona: {...persona, PRIMER_NOMBRE: e.target.value.toUpperCase()}})}
+                      style={{ border: 'solid 2px rgb(143,136, 144)'}}
+                      maximo="25"/>
+                  </td>
+                  <td>
+                    <Campo title="Segundo nombre" obligatorio={false} campo="text" valor={persona.SEGUND_NOMBRE}
+                      cambiar={e => this.setState({persona: {...persona, SEGUND_NOMBRE: e.target.value.toUpperCase()}})} maximo="25"/>
+                  </td>
+                  <td>
+                    <Campo title="Primer apellido" obligatorio={true} campo="text" valor={persona.PRIMER_APELLIDO}
+                      cambiar={e => this.setState({persona: {...persona, PRIMER_APELLIDO: e.target.value.toUpperCase()}})} maximo="25"/>
+                  </td>
+                  <td>
+                    <Campo title="Segundo apellido" obligatorio={false} campo="text" valor={persona.SEGUND_APELLIDO}
+                      cambiar={e => this.setState({persona: {...persona, SEGUND_APELLIDO: e.target.value.toUpperCase()}})} maximo="25"/>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <Campo title="Tipo identificacion" obligatorio={true} campo="select2" options={tipos}
+                      cambiar={e => this.setState({persona: {...persona, TIPO_IDENTIFICACION: e.target.value}})}/>
+                  </td>
+                  <td>
+                    <Campo title="Identificacion" obligatorio={true} campo="number" valor={persona.IDENTIFICACION}
+                      cambiar={e => this.setState({persona: {...persona, IDENTIFICACION: e.target.value}})} maximo="11"/>
+                  </td>
+                  <td>
+                    <Campo title="Genero" obligatorio={true} campo="select52" options ={tipos_genero}
+                      cambiar={e => this.setState({persona: {...persona, GENERO: e.target.value}})}/>
+                  </td>
+                  <td>
+                    <Campo title="FECHA NACIMIENTO" obligatorio={false} campo="date" valor={persona.FECHA_NACIMIENTO}
+                      cambiar={e => this.setState({persona: {...persona, FECHA_NACIMIENTO: e.target.value }})} maximo={this.fechaActual()}/>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <Campo title="Estado Civil" obligatorio={true} campo="select2" options={tipos_civil}
+                      cambiar={e => this.setState({persona: {...persona, ESTADO_CIVIL: e.target.value}})}/>
+                  </td>
+                  <td>
+                    <Campo title="Direccion" obligatorio={true} campo="text" valor={persona.DIRECCION_CASA}
+                      cambiar={e => this.setState({persona: {...persona, DIRECCION_CASA: e.target.value}})}/>
+                  </td>
+                  <td>
+                    <Campo title="Barrio" obligatorio={false} campo="select4" options={barrios}
+                      cambiar={e => this.setState({persona: {...persona, BARRIO: e.target.value}})}
+                      metodo={this.getBarrios}/>
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>
+                    <Campo title="Correo electronico:" obligatorio={false} campo="email" valor={persona.CORREO} validar={this.validarEmail()}
+                      cambiar={e => this.setState({persona: {...persona, CORREO: e.target.value}})}/>
+                  </td>
+                  <td>
+                    <Campo title="Telefono Celular:" obligatorio={true} campo="number" valor={persona.CELULAR1}
+                      cambiar={e => this.setState({persona: {...persona, CELULAR1: e.target.value}})}/>
+                  </td>
+                  <td>
+                    <Campo title="Telefono celular 2:" obligatorio={false} campo="number" valor={persona.CELULAR2}
+                      cambiar={e => this.setState({persona: {...persona, CELULAR2: e.target.value}})}/>
+                  </td>
+                  <td>
+                    <Campo title="Telefono fijo: " obligatorio={false} campo="number" valor={persona.TELEFONO_FIJO}
+                      cambiar={e => this.setState({persona: {...persona, TELEFONO_FIJO:e.target.value}})}/>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <Campo title="Profesion" obligatorio={false} campo="select5" options={profesiones}
+                      cambiar={e => this.setState({persona: {...persona, PROFESION:e.target.value}})}/>
+                  </td>
+                  <td>
+                    <Campo title="Ocupacion" obligatorio={false} campo="select3" options={ocupaciones}
+                      cambiar={e => this.setState({persona: {...persona, OCUPACION:e.target.value}})}/>
+                  </td>
+                  <td>
+                    <Campo title="Empresa donde labora" obligatorio={false} campo="text" valor={persona.EMPRESA}
+                      cambiar={e => this.setState({persona: {...persona, EMPRESA: e.target.value.toUpperCase()}})}/>
+                  </td>
+                  <td>
+                    <Campo title="Telefono" obligatorio={false} campo="number" valor={persona.TELEFONO_EXT}
+                      cambiar={e => this.setState({persona: {...persona, TELEFONO_EXT: e.target.value}})}/>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <Campo title="Fecha bautismo" obligatorio={false} campo="date" valor={persona.FECHA_BAUTIZO}
+                      cambiar={e => this.setState({persona: {...persona, FECHA_BAUTIZO: e.target.value}})} maximo={this.fechaActual()}/>
+                  </td>
+                  <td width='50px'>
+                    <Campo title="Ministerio" obligatorio={false} campo="select" options={ministerios}
+                      cambiar={e => this.setState({persona: {...persona, MINISTERIO:e.target.value}})}
+                      metodo={this.getMinisterios} style={{ border: 'solid 2px rgb(143,136, 144)'}}/>
+                  </td>
+                  <td>
+                    <Campo title="Invitado por:" obligatorio={false} campo="select8" options={miembros}
+                      cambiar={e => this.setState({persona: {...persona, invitado_por: e.target.value}})}
+                      style={{ border: 'solid 2px rgb(143,136, 144)'}}/>
+                  </td>
+                  <td width= '50px'>
+                    <Campo title="Foto" obligatorio={false} campo="file" valor={persona.fotopersona}
+                      cambiar={e => this.setState({persona: {...persona, fotopersona:e.target.files[0]}})}/>
+                  </td>
+                </tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
 
 
+        <br/>
+            <div>
+              <div align="center">
+                <div className="columns">
+                  <div className="column">
+                    <Button onClick={this.handleCrearPersona} className="navbar-item has-text-grey-light" style={{ background: `#6D214F` }}>CREAR</Button>
+                  </div>
+                </div>
+                <Link to="/personas">
+                  <button type="submit"
+                    style={{ backgroundColor: `#64234A`, color: `#FFF`, width: '150px', height: '50px' }}>CANCELAR</button>
+                </Link>
+              </div>
+            </div>
+          </div>
 
-      </div>
     );
   }
 }

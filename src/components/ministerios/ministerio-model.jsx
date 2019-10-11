@@ -18,26 +18,20 @@ class OpenModal extends Component {
     super(props);
 
     this.state={
-      ID_PERSONA:'',
-      USUARIO:'',
-      PASSWORD:'',
-      ROL: null,
+      IDENTIFICACION:'',
+      NOMBRE:'',
+      DESCRIPCION:'',
       ESTADO: null,
       show: false,
-      roles:[
-        {
-          id:0,
-          nombre:"Registrador de asistencia"
-        },
+      estados:[
         {
           id:1,
-          nombre:"Administrador"
+          nombre:"Activo"
         },
         {
-          id:2,
-          nombre:"Registrador de personas"
+          id:0,
+          nombre:"Inactivo"
         }],
-      personas:[]
     }
   }
   Auth = new AuthHelperMethods();
@@ -49,53 +43,35 @@ class OpenModal extends Component {
   open = () => this.setState({ show: true });
   close = () => this.setState({ show: false });
 
-  componentDidMount(){
-    this.getMiembros();
-  }
-
-  getMiembros = () => {
-    const config = {
-      headers: {
-        'content-type': 'application/json',
-        'Authorization': localStorage.getItem('id_token')
-      }
-    };
-    fetch('http://localhost:5000/persona/members/all',config)
-    .then(response => response.json())
-    .then(datos => this.setState({personas:datos}))
-    .catch(err => console.log(err))
-  }
-
   handleAgregar = event => {
     event.preventDefault();
     const obj = {
-      ID_PERSONA: this.state.ID_PERSONA,
-      USUARIO: this.state.USUARIO,
-      PASS: this.state.PASSWORD,
-      ROL: this.state.ROL,
-      ESTADO: '1'
+      IDENTIFICACION: 3,
+      NOMBRE: this.state.NOMBRE,
+      DESCRIPCION: this.state.NOMBRE,
+      ESTADO: this.state.ESTADO
     };
     // console.log(obj);
-    if (obj.ID_PERSONA == '' || obj.USUARIO == '' || obj.PASS == '' || obj.ROL == null) {
+    if (obj.NOMBRE == '' || obj.ESTADO == null) {
       // console.log('prueba false');
       return alert("Favor diligenciar todos los campos");
     }else{
-      // console.log('prueba true');
+      console.log(obj);
       const config = {
         headers: {
           'content-type': 'application/json',
           'Authorization': localStorage.getItem('id_token')
         }
       };
-      // console.log(this.state.personas);
-      axios.post('http://localhost:5000/user/create', obj, config)
+
+      axios.post('http://localhost:5000/ministerio/crear', obj, config)
       .then(response=>console.log(response.data,obj))
       .then(this.props.metodo)
-      .then(alert("Se ha agregado el usuario"))
+      .then(alert("Se ha agregado el ministerio"))
       .then(this.close)
       .catch(err => console.log(err))
     }
-    this.setState({ID_PERSONA: '', USUARIO: '', PASSWORD: '', ROL:'', ESTADO:''})
+    this.setState({NOMBRE: '', DESCRIPCION: '', ESTADO: ''})
   }
 
   render() {
@@ -103,7 +79,7 @@ class OpenModal extends Component {
       <div>
         <div align="left">
           <Button onClick={this.open} renderAs="a" className="navbar-item has-text-grey-light"
-            style={{ background: `#6D214F` }}>CREAR USUARIO</Button>
+            style={{ background: `#6D214F` }}>CREAR MINISTERIO</Button>
         </div>
 
         <Modal show={this.state.show} onClose={this.close} closeOnEsc={true} closeOnBlur={true}>
@@ -117,42 +93,19 @@ class OpenModal extends Component {
                   <Content>
                     <div className="columns">
                       <div className="column">
-                        <label className="label">PERSONA:</label>
-                        <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`}}>
-                          <select value={this.state.ID_PERSONA} onChange={e => this.setState({ID_PERSONA:e.target.value})} required>
-                            <option value="">---Seleccione---</option>
-                            {this.state.personas.map(option => (
-                              <option key={option.ID_PERSONA} value={option.ID_PERSONA}>
-                                {option.PRIMER_NOMBRE} {option.SEGUND_NOMBRE} {option.PRIMER_APELLIDO} {option.SEGUND_APELLIDO}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="columns">
-                      <div className="column">
-                        <label className="label">USUARIO:</label>
+                        <label className="label">NOMBRE:</label>
                         <div className="control">
-                          <input className="input" type="text" required value={this.state.USUARIO} onChange={e => this.setState({USUARIO:e.target.value.toUpperCase()})}/>
+                          <input className="input" type="text" required value={this.state.NOMBRE} onChange={e => this.setState({NOMBRE:e.target.value.toUpperCase()})}/>
                         </div>
                       </div>
                     </div>
                     <div className="columns">
                       <div className="column">
-                        <label className="label">PASSWORD:</label>
-                        <div className="control">
-                          <input className="input" type="password" required value={this.state.PASSWORD} onChange={e => this.setState({PASSWORD:e.target.value})}/>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="columns">
-                      <div className="column">
-                        <label className="label">ROL:</label>
+                        <label className="label">ESTADO:</label>
                         <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`}}>
-                          <select value={this.state.ROL} onChange={e => this.setState({ROL:e.target.value})} required>
+                          <select value={this.state.ESTADO} onChange={e => this.setState({ESTADO:e.target.value})} required>
                             <option value="">---Seleccione---</option>
-                            {this.state.roles.map(option => (
+                            {this.state.estados.map(option => (
                               <option key={option.id} value={option.id}>
                                 {option.nombre}
                               </option>

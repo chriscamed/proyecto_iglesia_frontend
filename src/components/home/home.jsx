@@ -165,7 +165,7 @@ class Home extends Component{
                   </th>
                   <th>
                     <div class="content has-text-centered">
-                      <Link to="/">
+                      <Link to="/ministerios">
                         <img style={{ width: '150px', height: '150px', margin: '10px' }} src="public/imagenes/ministerios.png" />
                         <h5>MINISTERIOS</h5>
                       </Link>

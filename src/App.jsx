@@ -12,6 +12,7 @@ import EventList from './components/events/Events';
 import Assistance from './components/assistance/form/Assistance';
 import AssistanceList from './components/assistance/Assistance-List';
 import Usuarios from './components/usuarios/usuarios';
+import Ministerios from './components/ministerios/ministerios';
 import Personas from './components/personas/personas';
 import NotFound from './components/404';
 import Login from './login';
@@ -22,7 +23,7 @@ import Generar from './components/qr/generar';
 const App = () => (
 
   <div>
-    <Router>   
+    <Router>
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/login" exact component={Login} />
@@ -34,11 +35,12 @@ const App = () => (
           <Route path="/editpersona" exact component={Edit}/>
           <Route path="/assistancelist" exact component={AssistanceList} />
           <Route path="/usuarios" exact component={Usuarios} />
+          <Route path="/ministerios" exact component={Ministerios} />
           <Route path="/generarqr" exact component={Generar}/>
           <Route path="/personas" exact component={Personas} />
           <Route component={NotFound} />
         </Switch>
-     
+
     </Router>
   </div>
 );

@@ -644,7 +644,9 @@ Auth = new AuthHelperMethods();
   }
 
   handleCrearPersona = event => {
+    
     const obj = {
+      persona:{
       PRIMER_NOMBRE: this.state.persona.PRIMER_NOMBRE,
       SEGUND_NOMBRE: this.state.persona.SEGUND_NOMBRE,
       PRIMER_APELLIDO: this.state.persona.PRIMER_APELLIDO,
@@ -669,13 +671,14 @@ Auth = new AuthHelperMethods();
       FOTO_PERSONA: this.state.persona.fotopersona,
       ID_PERSONA_INVITA: this.state.persona.invitado_por,
       TIPO_PERSONA: 1
+      }
     };
     console.log(obj);
 
-    if (obj.PRIMER_NOMBRE == "" || obj.PRIMER_APELLIDO == "" || obj.TIPO_IDENTIFICACION == "" ||
-        obj.IDENTIFICACION == null || obj.IDENTIFICACION == "" || obj.GENERO == "" ||
-        obj.FECHA_NACIMIENTO == null || obj.ESTADO_CIVIL == "" || obj.DIRECCION_CASA == "" ||
-        obj.ID_BARRIO == null || obj.CORREO == "" || obj.CELULAR_1 == "" || obj.ID_MINISTERIO == null) {
+    if (obj.persona.PRIMER_NOMBRE == "" || obj.persona.PRIMER_APELLIDO == "" || obj.persona.TIPO_IDENTIFICACION == "" ||
+        obj.persona.IDENTIFICACION == null || obj.persona.IDENTIFICACION == "" || obj.persona.GENERO == "" ||
+        obj.persona.FECHA_NACIMIENTO == null || obj.persona.ESTADO_CIVIL == "" || obj.persona.DIRECCION_CASA == "" ||
+        obj.persona.ID_BARRIO == null || obj.persona.CORREO == "" || obj.persona.CELULAR_1 == "" || obj.persona.ID_MINISTERIO == null) {
           return alert("Favor diligenciar todos los campos obligatorios marcados con (*)");
     }else{
       const config = {
@@ -798,7 +801,7 @@ Auth = new AuthHelperMethods();
 
         <div className="columns" style={{margin: '10px'}}>
           <div className="column">
-          <table className="table is-bordered is-fullwidth" class="table table-striped" width="100%">
+          <table className="table is-bordered is-fullwidth" class="table" width="85%" >
             <tbody>
                 <tr>
                   <td>

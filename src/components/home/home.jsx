@@ -142,6 +142,8 @@ class Home extends Component{
           </h1>
         </div>
 
+
+
         {this.props.confirm.roll === 1 &&
           <div>
             <div class="content has-text-centered">
@@ -204,8 +206,30 @@ class Home extends Component{
                         <h5>DONACIONES</h5>
                       </Link>
                     </div>
-                  </td>
-                </tr>
+                            </td>
+
+
+                            <td>
+                                <div class="content has-text-centered">
+                                    <Link to="/tipoevento">
+                                        <img style={{ width: '150px', height: '150px', margin: '10px' }} src="public/imagenes/tipoEvento.png" />
+                                        <h5>TIPO EVENTO</h5>
+                                    </Link>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="content has-text-centered">
+                                    <Link to="/logistica">
+                                        <img style={{ width: '150px', height: '150px', margin: '10px' }} src="public/imagenes/logistica.png" />
+                                        <h5>LOGISTICA</h5>
+                                    </Link>
+                                </div>
+                            </td>
+
+                         </tr>
               </table>
             </div>
           </div>

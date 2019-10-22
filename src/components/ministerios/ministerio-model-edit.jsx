@@ -68,6 +68,7 @@ class OpenModaledit extends Component {
     const obj = {
       ID_MINISTERIO: this.props.user.ID_MINISTERIO,
       NOMBRE: this.state.ministerio.NOMBRE,
+      ESTADO: this.state.ministerio.ESTADO
     };
     // console.log(obj);
     if (obj.NOMBRE == '') {

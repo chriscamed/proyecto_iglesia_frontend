@@ -34,6 +34,7 @@ class Usuarios extends Component {
   }
 
   componentDidMount(){
+    this.getPersonas();
     const config = {
       headers: {
         'content-type': 'application/json',
@@ -62,7 +63,7 @@ class Usuarios extends Component {
           nav.classList.toggle('is-active');
         });
       })();
-      //console.log(currPage);
+      // console.log(currPage)
   }
 
   previousPage() {
@@ -90,7 +91,6 @@ class Usuarios extends Component {
     }
   }
   getOcupaciones = () => {
-    this.getMiembros();
     const config = {
         headers: {
         'content-type': 'application/json',
@@ -127,6 +127,32 @@ class Usuarios extends Component {
       currPage: newCurrPage
     });
   }
+
+  getPersonas = () => {
+    const config = {
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': localStorage.getItem('id_token')
+      }
+    };
+    fetch('http://localhost:5000/personas',config)
+    .then(response => response.json())
+    .then(datos => this.setState({personas:datos}))
+    .catch(err => console.log(err))
+  }
+
+  // mapNombre = (num) => {
+  //
+  //   this.state.personas.map(persona =>{
+  //     // console.log(persona.ID_PERSONA)
+  //     if (persona.ID_PERSONA == num) {
+  //       var nombre = persona.PRIMER_NOMBRE+" "+persona.PRIMER_APELLIDO
+  //     }else{
+  //       var nombre = " "
+  //     }
+  //   })
+  //   return (<td>{num}</td>)
+  // }
 
   mapRol = (num) => {
     switch(num){
@@ -268,6 +294,7 @@ class Usuarios extends Component {
               <table className="table is-bordered is-fullwidth" class="table table-striped" width="100%">
                 <thead>
                   <tr>
+                    <th>Nombre</th>
                     <th>Usuario</th>
                     <th>Rol</th>
                     <th>Estado</th>
@@ -277,6 +304,7 @@ class Usuarios extends Component {
                 <tbody>
                   {currPage && currPage.data.map(usuarios => (
                     <tr key={usuarios.id}>
+                      <td>{usuarios.PRIMER_NOMBRE} {usuarios.PRIMER_APELLIDO}</td>
                       <td>{usuarios.USUARIO}</td>
                       {this.mapRol(usuarios.ROL)}
                       {this.mapEstado(usuarios.ESTADO)}

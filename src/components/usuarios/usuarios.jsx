@@ -63,7 +63,6 @@ class Usuarios extends Component {
           nav.classList.toggle('is-active');
         });
       })();
-      // console.log(currPage)
   }
 
   previousPage() {
@@ -140,19 +139,6 @@ class Usuarios extends Component {
     .then(datos => this.setState({personas:datos}))
     .catch(err => console.log(err))
   }
-
-  // mapNombre = (num) => {
-  //
-  //   this.state.personas.map(persona =>{
-  //     // console.log(persona.ID_PERSONA)
-  //     if (persona.ID_PERSONA == num) {
-  //       var nombre = persona.PRIMER_NOMBRE+" "+persona.PRIMER_APELLIDO
-  //     }else{
-  //       var nombre = " "
-  //     }
-  //   })
-  //   return (<td>{num}</td>)
-  // }
 
   mapRol = (num) => {
     switch(num){

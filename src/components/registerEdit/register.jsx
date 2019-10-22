@@ -129,7 +129,7 @@ function Campo(props){
       <Nombre title={props.title} obligatorio={props.obligatorio}/>
       <div className="field has-addons">
       <div className="control">
-           <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`}}>
+           <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`, width: '290px'}}>
             <select value={props.valor}  onChange={props.cambiar}>
             <option value="">---Seleccione---</option>
             {props.options.map(option => (
@@ -173,7 +173,7 @@ function Campo(props){
       <Nombre title={props.title} obligatorio={props.obligatorio}/>
       <div className="field has-addons">
       <div className="control">
-           <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`}}>
+           <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`, width: '290px'}}>
             <select value={props.valor}  onChange={props.cambiar}>
             <option value="">---Seleccione---</option>
             {props.options.map(option => (
@@ -198,7 +198,7 @@ function Campo(props){
       <Nombre title={props.title} obligatorio={props.obligatorio}/>
       <div className="field has-addons">
       <div className="control">
-           <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`}}>
+           <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`, width: '290px'}}>
             <select value={props.valor}  onChange={props.cambiar}>
             <option selected value="">---Seleccione---</option>
             {props.options.map(option => (
@@ -315,8 +315,8 @@ function Campo(props){
   return(
   <div className="field">
       <Nombre title={props.title} obligatorio={props.obligatorio}/>
-      <div className="control">
-           <input className="input" type="date"  value={props.valor} onChange={props.cambiar} max={props.maximo}/>
+      <div className="control" style={{ border: `solid 2px rgb(143,136, 144)`, width: '290px'}}>
+           <input className="input" type="date"  value={props.valor} onChange={props.cambiar} max={props.maximo} />
       </div>
   </div>);
   }

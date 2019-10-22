@@ -174,9 +174,6 @@ class Personas extends Component {
               </a>
             </div>
             <div id="navbarBasicExample" className="navbar-menu">
-              <div className="navbar-start">
-                <Link to="/" className="navbar-item has-text-grey-light">INICIO</Link>
-              </div>
               <div className="navbar-end">
                 <div className="navbar-item">
                   <strong className="has-text-grey-light">{name + "     "}</strong>

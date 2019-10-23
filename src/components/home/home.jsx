@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Heading from 'react-bulma-components/lib/components/heading';
 import { Link } from 'react-router-dom';
 import '../../App.css';
-
+import './home.css';
 import '../../App.sass';
 /* Once the 'Authservice' and 'withAuth' componenets are created, import them into App.js */
 import AuthHelperMethods from '../AuthHelperMethods';
@@ -135,17 +135,14 @@ class Home extends Component {
           </nav>
         }
 
-        <br /><br /><br /><br /><br />
+        <br />
 
        
-          <table class= "tabla_home">
-            <tr>
-              <h1 class="titulo" align="center" >SAMI Sistema De Administracion Ministerial </h1>
-              <td><img class='circular--square' src="public/imagenes/logo.jpg" /></td>
+        <div class="maxtitulos">
 
-            </tr>
-
-          </table>
+<div class="titulosdiv"><span class="titulos" ><br />SAMI Sistema de Administracion Ministerial</span></div>
+<div clas="imgtitulo"><img class="redondos" src="public/imagenes/logo.jpg" height="180" width="130" /> </div>
+</div>
 
 
 

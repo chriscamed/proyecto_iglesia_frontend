@@ -8466,3 +8466,38 @@ a.has-text-danger:hover, a.has-text-danger:focus {
   fieldset[disabled] .pagination-link,
   fieldset[disabled] .pagination-ellipsis {
     cursor: not-allowed; }
+
+/*CSS PARA EL HOME*/
+    .circular--square {
+      width:150px;
+      height:150px;
+      border-radius:85px;
+      border:1px solid black; 
+  
+    }
+
+    .tabla_home {
+      margin: auto;
+      text-align: center !important;
+      align-items: center !important;
+       
+      }
+
+      .td-center {
+        text-align: center !important;
+        align-items: center !important;
+        color: rgb(109, 33, 79);
+
+    }
+
+    .titulo {
+      text-align: center !important;
+      align-items: center !important;
+      color: rgb(109, 33, 79);
+
+  }
+
+/*CSS PARA EL HOME*/
+input[type="email"], input[type="password"],input[type="text"] {
+  border: #863867 2px solid;
+  color: #64234A; }

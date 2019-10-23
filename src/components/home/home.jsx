@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Heading from 'react-bulma-components/lib/components/heading';
 import { Link } from 'react-router-dom';
 import '../../App.css';
+
 import '../../App.sass';
 /* Once the 'Authservice' and 'withAuth' componenets are created, import them into App.js */
 import AuthHelperMethods from '../AuthHelperMethods';
@@ -9,7 +10,7 @@ import AuthHelperMethods from '../AuthHelperMethods';
 //Our higher order component
 import withAuth from '../withAuth';
 
-class Home extends Component{
+class Home extends Component {
 
   state = {
     USUARIO: ''
@@ -21,15 +22,15 @@ class Home extends Component{
     this.Auth.logout()
     this.props.history.replace('/login');
   }
-  componentDidMount(){
-    (function() {
-        var burger = document.querySelector('.burger');
-        var nav = document.querySelector('#'+burger.dataset.target);
-        burger.addEventListener('click', function(){
-          burger.classList.toggle('is-active');
-          nav.classList.toggle('is-active');
-        });
-      })();
+  componentDidMount() {
+    (function () {
+      var burger = document.querySelector('.burger');
+      var nav = document.querySelector('#' + burger.dataset.target);
+      burger.addEventListener('click', function () {
+        burger.classList.toggle('is-active');
+        nav.classList.toggle('is-active');
+      });
+    })();
   }
 
   //Render the protected component
@@ -40,22 +41,22 @@ class Home extends Component{
     }
     //let name = this.props.confirm.username;
     console.log(this.props.confirm.roll)
-    return(
-	     <div>
+    return (
+      <div>
         {this.props.confirm.roll === 1 &&
           <div>
-            <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
+            <nav className="navbar" style={{ background: `#6D214F` }} role="navigation" aria-label="main navigation">
               <div className="navbar-brand">
                 <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-  		            <span aria-hidden="true"></span>
-  		            <span aria-hidden="true"></span>
-  		            <span aria-hidden="true"></span>
-  		          </a>
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                </a>
               </div>
               <div id="navbarBasicExample" className="navbar-menu">
                 <div className="navbar-end">
                   <div className="navbar-item">
-                    <strong className="has-text-grey-light">{name+"     "}</strong>
+                    <strong className="has-text-grey-light">{name + "     "}</strong>
                   </div>
                   <div className="navbar-item">
                     <div className="buttons">
@@ -71,10 +72,10 @@ class Home extends Component{
         }
 
         {this.props.confirm.roll === 0 &&
-          <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
+          <nav className="navbar" style={{ background: `#6D214F` }} role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
               <a className="navbar-item" href="/">
-                <img src="public/imagenes/logo.jpg" />
+                <img class='circular--square' src="public/imagenes/logo.jpg" />
               </a>
               <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                 <span aria-hidden="true"></span>
@@ -104,10 +105,10 @@ class Home extends Component{
         }
 
         {this.props.confirm.roll === 2 &&
-          <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
+          <nav className="navbar" style={{ background: `#6D214F` }} role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
               <a className="navbar-item" href="/">
-                <img src="public/imagenes/logo.jpg" />
+                <img class='circular--square' src="public/imagenes/logo.jpg" />
               </a>
               <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                 <span aria-hidden="true"></span>
@@ -120,7 +121,7 @@ class Home extends Component{
               </div>
               <div className="navbar-end">
                 <div className="navbar-item">
-                  <strong className="has-text-grey-light">{name+"     "}</strong>
+                  <strong className="has-text-grey-light">{name + "     "}</strong>
                 </div>
                 <div className="navbar-item">
                   <div className="buttons">
@@ -134,13 +135,21 @@ class Home extends Component{
           </nav>
         }
 
-        <br/><br/><br/><br/><br/>
+        <br /><br /><br /><br /><br />
 
-        <div class="content has-text-centered">
-          <h1>SAMI Sistema De Administracion Ministerial
-            <img style={{ width: '120px', height: '120' }} src="public/imagenes/logo.jpg" />
-          </h1>
-        </div>
+       
+          <table class= "tabla_home">
+            <tr>
+              <h1 class="titulo" align="center" >SAMI Sistema De Administracion Ministerial </h1>
+              <td><img class='circular--square' src="public/imagenes/logo.jpg" /></td>
+
+            </tr>
+
+          </table>
+
+
+
+        
 
 
 
@@ -206,30 +215,30 @@ class Home extends Component{
                         <h5>DONACIONES</h5>
                       </Link>
                     </div>
-                            </td>
+                  </td>
 
 
-                            <td>
-                                <div class="content has-text-centered">
-                                    <Link to="/tipoevento">
-                                        <img style={{ width: '150px', height: '150px', margin: '10px' }} src="public/imagenes/tipoEvento.png" />
-                                        <h5>TIPO EVENTO</h5>
-                                    </Link>
-                                </div>
-                            </td>
-                        </tr>
+                  <td>
+                    <div class="content has-text-centered">
+                      <Link to="/tipoevento">
+                        <img style={{ width: '150px', height: '150px', margin: '10px' }} src="public/imagenes/tipoEvento.png" />
+                        <h5>TIPO EVENTO</h5>
+                      </Link>
+                    </div>
+                  </td>
+                </tr>
 
-                        <tr>
-                            <td>
-                                <div class="content has-text-centered">
-                                    <Link to="/logistica">
-                                        <img style={{ width: '150px', height: '150px', margin: '10px' }} src="public/imagenes/logistica.png" />
-                                        <h5>LOGISTICA</h5>
-                                    </Link>
-                                </div>
-                            </td>
+                <tr>
+                  <td>
+                    <div class="content has-text-centered">
+                      <Link to="/logistica">
+                        <img style={{ width: '150px', height: '150px', margin: '10px' }} src="public/imagenes/logistica.png" />
+                        <h5>LOGISTICAA</h5>
+                      </Link>
+                    </div>
+                  </td>
 
-                         </tr>
+                </tr>
               </table>
             </div>
           </div>

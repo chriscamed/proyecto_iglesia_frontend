@@ -798,7 +798,7 @@ Auth = new AuthHelperMethods();
 
         <div className="columns" style={{margin: '0px'}}>
           <div className="column">
-          <table className="table is-bordered is-fullwidth" class="table" width="85%" >
+          <table className="table is-bordered is-fullwidth" class="table" width="85%" align="center" >
             <tbody>
                 <tr>
                   <td>

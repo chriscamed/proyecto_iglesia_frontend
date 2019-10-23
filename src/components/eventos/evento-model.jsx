@@ -26,11 +26,11 @@ class OpenModal extends Component {
       estados:[
         {
           id:1,
-          nombre:"Activo"
+          nombre:"Culto"
         },
         {
           id:0,
-          nombre:"Inactivo"
+          nombre:"Reunion de damas"
         }],
     }
   }
@@ -79,7 +79,7 @@ class OpenModal extends Component {
       <div>
         <div align="left">
           <Button onClick={this.open} renderAs="a" className="navbar-item has-text-grey-light"
-            style={{ background: `#6D214F` }}>CREAR TIPO DE EVENTO</Button>
+            style={{ background: `#6D214F` }}>CREAR EVENTO</Button>
         </div>
 
         <Modal show={this.state.show} onClose={this.close} closeOnEsc={true} closeOnBlur={true}>
@@ -93,7 +93,38 @@ class OpenModal extends Component {
                   <Content>
                     <div className="columns">
                       <div className="column">
-                        <label className="label">NOMBRE:</label>
+                        <label className="label">TIPO DE EVENTO:</label>
+                        <div className="select" style={{border:`solid 0px rgb(134, 56, 103)`}}>
+                          <select value={this.state.ESTADO} onChange={e => this.setState({ESTADO:e.target.value})} required>
+                            <option value="">---Seleccione---</option>
+                            {this.state.estados.map(option => (
+                              <option key={option.id} value={option.id}>
+                                {option.nombre}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="columns">
+                      <div className="column">
+                        <label className="label">FECHA:</label>
+                        <div className="control">
+                          <input className="input" type="text" required value={this.state.NOMBRE} onChange={e => this.setState({NOMBRE:e.target.value.toUpperCase()})}/>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="columns">
+                      <div className="column">
+                        <label className="label">HORA INICIO:</label>
+                        <div className="control">
+                          <input className="input" type="text" required value={this.state.NOMBRE} onChange={e => this.setState({NOMBRE:e.target.value.toUpperCase()})}/>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="columns">
+                      <div className="column">
+                        <label className="label">HORA FIN:</label>
                         <div className="control">
                           <input className="input" type="text" required value={this.state.NOMBRE} onChange={e => this.setState({NOMBRE:e.target.value.toUpperCase()})}/>
                         </div>

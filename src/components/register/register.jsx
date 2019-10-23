@@ -112,10 +112,7 @@ function Campo(props){
       </select>
            </div>
       </div>
-       <div className="control">
-      <OpenModal Actualizar={props.metodo} titulo="AGREGAR/EDITAR MINISTERIO" subtitulo="Ministerio" options={props.options}
-       ></OpenModal>
-      </div>
+       
       </div>
   </div>
   );
@@ -898,7 +895,7 @@ Auth = new AuthHelperMethods();
                   <td width='50px'>
                     <Campo title="Ministerio" obligatorio={true} campo="select" options={ministerios}
                       cambiar={e => this.setState({persona: {...persona, MINISTERIO:e.target.value}})}
-                      metodo={this.getMinisterios} style={{ border: 'solid 0px rgb(143,136, 144)'}}/>
+                      style={{ border: 'solid 0px rgb(143,136, 144)'}}/>
                   </td>
                   <td>
                     <Campo title="Invitado por:" obligatorio={false} campo="select8" options={miembros}

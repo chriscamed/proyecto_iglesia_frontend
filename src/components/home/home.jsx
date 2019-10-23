@@ -42,28 +42,26 @@ class Home extends Component {
     //let name = this.props.confirm.username;
     console.log(this.props.confirm.roll)
     return (
-      <div>
+      <div class='col-md-12' style={{margin: '10px'}}>
         {this.props.confirm.roll === 1 &&
-          <div>
-            <nav className="navbar" style={{ background: `#6D214F` }} role="navigation" aria-label="main navigation">
-              <div className="navbar-brand">
-                <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                  <span aria-hidden="true"></span>
-                  <span aria-hidden="true"></span>
-                  <span aria-hidden="true"></span>
-                </a>
-              </div>
-              <div id="navbarBasicExample" className="navbar-menu">
-                <div className="navbar-end">
-                  <div className="navbar-item">
-                    <strong className="has-text-grey-light">{name + "     "}</strong>
-                  </div>
-                  <div className="navbar-item">
-                    <div className="buttons">
-                      <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
-                        Cerrar sesión
-                      </button>
-                    </div>
+          <nav className="navbar" style={{ background: `#6D214F` }} role="navigation" aria-label="main navigation">
+            <div className="navbar-brand">
+              <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+            <div id="navbarBasicExample" className="navbar-menu">
+              <div className="navbar-end">
+                <div className="navbar-item">
+                  <strong className="has-text-grey-light">{name + "     "}</strong>
+                </div>
+                <div className="navbar-item">
+                  <div className="buttons">
+                    <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
+                      Cerrar sesión
+                    </button>
                   </div>
                 </div>
               </div>
@@ -135,18 +133,11 @@ class Home extends Component {
           </nav>
         }
 
-        <br />
-
-
+        <br/>
         <div class="maxtitulos">
-
-<div class="titulosdiv"><span class="titulos" ><br />SAMI Sistema de Administracion Ministerial</span></div>
-<div clas="imgtitulo"><img class="redondos" src="public/imagenes/logo.jpg" height="180" width="130" /> </div>
-</div>
-
-
-
-
+          <div class="titulosdiv"><span class="titulos" ><br />SAMI Sistema de Administracion Ministerial</span></div>
+          <div clas="imgtitulo"><img class="redondos" src="public/imagenes/logo.jpg" height="180" width="100"/> </div>
+        </div>
 
         {this.props.confirm.roll === 1 &&
           <div>
@@ -179,13 +170,14 @@ class Home extends Component {
                   </th>
                   <th>
                     <div class="content has-text-centered">
-                      <Link to="/createevent">
+                      <Link to="/eventos">
                         <img style={{ width: '150px', height: '150px', margin: '10px' }} src="public/imagenes/calendar.png" />
                         <h5>EVENTOS</h5>
                       </Link>
                     </div>
                   </th>
                 </tr>
+
                 <tr>
                   <td>
                     <div class="content has-text-centered">
@@ -211,8 +203,6 @@ class Home extends Component {
                       </Link>
                     </div>
                   </td>
-
-
                   <td>
                     <div class="content has-text-centered">
                       <Link to="/tipoevento">
@@ -228,11 +218,10 @@ class Home extends Component {
                     <div class="content has-text-centered">
                       <Link to="/logistica">
                         <img style={{ width: '150px', height: '150px', margin: '10px' }} src="public/imagenes/logistica.png" />
-                        <h5>LOGISTICA5</h5>
+                        <h5>LOGISTICA</h5>
                       </Link>
                     </div>
                   </td>
-
                 </tr>
               </table>
             </div>

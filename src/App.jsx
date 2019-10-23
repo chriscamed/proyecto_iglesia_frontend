@@ -8,7 +8,7 @@ import './index.css';
 import Home from './components/home/Home';
 import Register from './components/register/Register';
 import Logistics from './components/logistics/Logistics';
-import EventList from './components/events/Events';
+import EventList from './components/eventos/Eventos';
 import Assistance from './components/assistance/form/Assistance';
 import AssistanceList from './components/assistance/Assistance-List';
 import Usuarios from './components/usuarios/usuarios';
@@ -30,7 +30,7 @@ const App = () => (
           <Route path="/login" exact component={Login} />
           <Route path="/register" exact component={Register} />
           <Route path="/createlog" exact component={Logistics} />
-          <Route path="/createevent" exact component={EventList} />
+          <Route path="/eventos" exact component={EventList} />
           <Route path="/reports" exact component={Reports} />
           <Route path="/createassi/:event_id/:event_name" exact component={Assistance} />
           <Route path="/editpersona" exact component={Edit}/>

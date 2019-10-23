@@ -118,7 +118,7 @@ class OpenModal extends Component {
                     <div className="columns">
                       <div className="column">
                         <label className="label">PERSONA:</label>
-                        <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`}}>
+                        <div className="select" style={{border:`solid 0px rgb(134, 56, 103)`}}>
                           <select value={this.state.ID_PERSONA} onChange={e => this.setState({ID_PERSONA:e.target.value})} required>
                             <option value="">---Seleccione---</option>
                             {this.state.personas.map(option => (
@@ -149,7 +149,7 @@ class OpenModal extends Component {
                     <div className="columns">
                       <div className="column">
                         <label className="label">ROL:</label>
-                        <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`}}>
+                        <div className="select" style={{border:`solid 0px rgb(134, 56, 103)`}}>
                           <select value={this.state.ROL} onChange={e => this.setState({ROL:e.target.value})} required>
                             <option value="">---Seleccione---</option>
                             {this.state.roles.map(option => (

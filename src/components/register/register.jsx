@@ -101,7 +101,7 @@ function Campo(props){
       <Nombre title={props.title} obligatorio={props.obligatorio}/>
       <div className="field has-addons">
       <div className="control">
-           <div className="select" style={{border:`solid 3px rgb(143,136, 144)`}}>
+           <div className="select" style={{border:`solid 0px rgb(143,136, 144)`}}>
             <select onChange={props.cambiar}>
             <option value="">---Seleccione---</option>
             {props.options.map(option => (
@@ -127,7 +127,7 @@ function Campo(props){
       <Nombre title={props.title} obligatorio={props.obligatorio}/>
       <div className="field has-addons">
       <div className="control">
-                  <div className="select" style={{ border: `solid 3px rgb(143,136, 144)`, width: '290px'}}>
+                  <div className="select" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
             <select onChange={props.cambiar}>
             <option value="">---Seleccione---</option>
             {props.options.map(option => (
@@ -151,7 +151,7 @@ function Campo(props){
   <div className="field">
       <Nombre title={props.title} obligatorio={props.obligatorio}/>
       <div className="control">
-              <div className="select" style={{ border: `solid 3px rgb(143,136, 144)` }}>
+              <div className="select" style={{ border: `solid 0px rgb(143,136, 144)` }}>
             <select onChange={props.cambiar}>
             <option value="">---Seleccione---</option>
             {props.options.map(option => (
@@ -171,7 +171,7 @@ function Campo(props){
       <Nombre title={props.title} obligatorio={props.obligatorio}/>
       <div className="field has-addons">
       <div className="control">
-                  <div className="select" style={{ border: `solid 3px rgb(143,136, 144)`, width: '290px'}}>
+                  <div className="select" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
             <select onChange={props.cambiar}>
             <option value="">---Seleccione---</option>
             {props.options.map(option => (
@@ -196,7 +196,7 @@ function Campo(props){
       <Nombre title={props.title} obligatorio={props.obligatorio}/>
       <div className="field has-addons">
       <div className="control">
-                  <div className="select"style={{ border: `solid 3px rgb(143,136, 144)`, width: '290px'}}>
+                  <div className="select"style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
             <select onChange={props.cambiar}>
             <option selected value="">---Seleccione---</option>
             {props.options.map(option => (
@@ -222,7 +222,7 @@ function Campo(props){
   <div className="field">
       <Nombre title={props.title} obligatorio={props.obligatorio}/>
       <div className="control">
-              <div className="select" style={{ border: `solid 2px rgb(143,136, 144)` }}>
+              <div className="select" style={{ border: `solid 0px rgb(143,136, 144)` }}>
             <select onChange={props.cambiar}>
             <option value="">---Seleccione---</option>
             {props.options.map(option => (
@@ -242,7 +242,7 @@ function Campo(props){
         {
           (props.obligatorio===true)?(
            <div className="control">
-                        <div className="select" style={{ border: `solid 2px rgb(143,136, 144)` }}>
+                        <div className="select" style={{ border: `solid 0px rgb(143,136, 144)` }}>
             <select onChange={props.cambiar} required>
             <option value="">---Seleccione---</option>
             {props.options.map(option => (
@@ -255,7 +255,7 @@ function Campo(props){
         </div>
           ):(
             <div className="control">
-                            <div className="select" style={{ border: `solid 2px rgb(143,136, 144)` }}>
+                            <div className="select" style={{ border: `solid 0px rgb(143,136, 144)` }}>
             <select onChange={props.cambiar}>
             <option value="">---Seleccione---</option>
             {props.options.map(option => (
@@ -278,7 +278,7 @@ function Campo(props){
                 {
                     (props.obligatorio === true) ? (
                         <div className="control">
-                            <div className="select" style={{ border: `solid 2px rgb(143,136, 144)` }}>
+                            <div className="select" style={{ border: `solid 0px rgb(143,136, 144)` }}>
                                 <select onChange={props.cambiar} required>
                                     <option value="">---Seleccione---</option>
                                     {props.options.map(option => (
@@ -291,7 +291,7 @@ function Campo(props){
                         </div>
                     ) : (
                             <div className="control">
-                                <div className="select" style={{ border: `solid 2px rgb(143,136, 144)` }}>
+                                <div className="select" style={{ border: `solid 0px rgb(143,136, 144)` }}>
                                     <select onChange={props.cambiar}>
                                         <option value="">---Seleccione---</option>
                                         {props.options.map(option => (
@@ -311,7 +311,7 @@ function Campo(props){
   return(
       <div className="field"  >
       <Nombre title={props.title} obligatorio={props.obligatorio}/>
-          <div className="control" style={{ border: `solid 2px rgb(143,136, 144)`, width: '290px'}}>
+          <div className="control" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
            <input className="input" type="date"  value={props.valor} onChange={props.cambiar} max={props.maximo}/>
       </div>
   </div>);
@@ -320,7 +320,7 @@ function Campo(props){
   return(
   <div className="field">
       <Nombre title={props.title} obligatorio={props.obligatorio}/>
-          <div className="control" style={{ border: `solid 2px rgb(143,136, 144)` }}>
+          <div className="control" style={{ border: `solid 0px rgb(143,136, 144)` }}>
            <input className="input" type="date" disabled  value={props.valor} onChange={props.cambiar} max={props.maximo}/>
       </div>
   </div>);
@@ -331,7 +331,7 @@ function Campo(props){
       <Nombre title={props.title} obligatorio={props.obligatorio}/>
       {
         (props.obligatorio===true)?(
-                  <div className="control" style={{ border: `solid 2px rgb(143,136, 144)` }}>
+                  <div className="control" style={{ border: `solid 0px rgb(143,136, 144)` }}>
           <label className="radio">
           {props.radio1}&nbsp; &nbsp; &nbsp;
             <input type="radio" name={props.rad} value={props.radio3} onChange={props.cambiar} required/>
@@ -342,7 +342,7 @@ function Campo(props){
           </label>
       </div>):
       (
-                      <div className="control" style={{ border: `solid 2px rgb(143,136, 144)` }}>
+                      <div className="control" style={{ border: `solid 0px rgb(143,136, 144)` }}>
           <label className="radio">
           {props.radio1}&nbsp; &nbsp; &nbsp;
             <input type="radio" name={props.rad} value={props.radio3} onChange={props.cambiar}/>
@@ -360,7 +360,7 @@ function Campo(props){
   return(
   <div className="field">
       <Nombre title={props.title} obligatorio={props.obligatorio}/>
-          <div className="control" style={{ border: `solid 2px rgb(143,136, 144)` }}>
+          <div className="control" style={{ border: `solid 0px rgb(143,136, 144)` }}>
           <div className="file has-name ">
             <label className="file-label">
               <input className="file-input" type="file" name="personaImage" onChange={props.cambiar}/>
@@ -796,7 +796,7 @@ Auth = new AuthHelperMethods();
 
         <h3 className="title has-text-centered">CREAR PERSONA</h3>
 
-        <div className="columns" style={{margin: '10px'}}>
+        <div className="columns" style={{margin: '0px'}}>
           <div className="column">
           <table className="table is-bordered is-fullwidth" class="table" width="85%" >
             <tbody>
@@ -804,7 +804,7 @@ Auth = new AuthHelperMethods();
                   <td>
                     <Campo title="Primer nombre" obligatorio={true} campo="text" valor={persona.PRIMER_NOMBRE}
                       cambiar={e => this.setState({persona: {...persona, PRIMER_NOMBRE: e.target.value.toUpperCase()}})}
-                      style={{ border: 'solid 2px rgb(143,136, 144)'}}
+                      style={{ border: 'solid 0px rgb(143,136, 144)'}}
                       maximo="25"/>
                   </td>
                   <td>
@@ -898,12 +898,12 @@ Auth = new AuthHelperMethods();
                   <td width='50px'>
                     <Campo title="Ministerio" obligatorio={true} campo="select" options={ministerios}
                       cambiar={e => this.setState({persona: {...persona, MINISTERIO:e.target.value}})}
-                      metodo={this.getMinisterios} style={{ border: 'solid 2px rgb(143,136, 144)'}}/>
+                      metodo={this.getMinisterios} style={{ border: 'solid 0px rgb(143,136, 144)'}}/>
                   </td>
                   <td>
                     <Campo title="Invitado por:" obligatorio={false} campo="select8" options={miembros}
                       cambiar={e => this.setState({persona: {...persona, invitado_por: e.target.value}})}
-                      style={{ border: 'solid 2px rgb(143,136, 144)'}}/>
+                      style={{ border: 'solid 0px rgb(143,136, 144)'}}/>
                   </td>
                   <td width= '50px'>
                     <Campo title="Foto" obligatorio={false} campo="file" valor={persona.fotopersona}

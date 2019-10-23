@@ -1963,7 +1963,8 @@ a.box:active {
       width: 1344px; } }
 
 .content li + li {
-  margin-top: 0.25em; }
+  margin-top: 0.25em;
+ }
 
 .content p:not(:last-child),
 .content dl:not(:last-child),
@@ -8498,6 +8499,20 @@ a.has-text-danger:hover, a.has-text-danger:focus {
   }
 
 /*CSS PARA EL HOME*/
-input[type="email"], input[type="password"],input[type="text"] {
-  border: #863867 2px solid;
-  color: #64234A; }
+input[type="email"], input[type="password"],input[type="text"],input[type="select"] {
+  border: #863867 2px solid !important;
+  color: #64234A !important; 
+}
+
+select, input[type="date"], input[type="radio"], input[type="number"], input[type="time"], input[type="file-label"] {
+  border: #863867 2px solid !important;
+  color: #64234A !important;
+  text-transform: uppercase; }
+.file-cta{
+  border: #863867 2px solid !important;
+  color: #64234A !important;
+   }
+.file-name{
+  border: #863867 2px solid !important;
+  color: #64234A !important;
+   }

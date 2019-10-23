@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Heading from 'react-bulma-components/lib/components/heading';
 import { Link } from 'react-router-dom';
 import '../../App.css';
+import './home.css';
 import '../../App.sass';
 /* Once the 'Authservice' and 'withAuth' componenets are created, import them into App.js */
 import AuthHelperMethods from '../AuthHelperMethods';
@@ -9,7 +10,7 @@ import AuthHelperMethods from '../AuthHelperMethods';
 //Our higher order component
 import withAuth from '../withAuth';
 
-class Home extends Component{
+class Home extends Component {
 
   state = {
     USUARIO: ''
@@ -21,15 +22,15 @@ class Home extends Component{
     this.Auth.logout()
     this.props.history.replace('/login');
   }
-  componentDidMount(){
-    (function() {
-        var burger = document.querySelector('.burger');
-        var nav = document.querySelector('#'+burger.dataset.target);
-        burger.addEventListener('click', function(){
-          burger.classList.toggle('is-active');
-          nav.classList.toggle('is-active');
-        });
-      })();
+  componentDidMount() {
+    (function () {
+      var burger = document.querySelector('.burger');
+      var nav = document.querySelector('#' + burger.dataset.target);
+      burger.addEventListener('click', function () {
+        burger.classList.toggle('is-active');
+        nav.classList.toggle('is-active');
+      });
+    })();
   }
 
   //Render the protected component
@@ -39,28 +40,30 @@ class Home extends Component{
       name = this.props.confirm.user;
     }
     //let name = this.props.confirm.username;
-    // console.log(this.props.confirm.roll)
-    return(
-	     <div class='col-md-12' style={{margin: '10px'}}>
+    console.log(this.props.confirm.roll)
+    return (
+      <div>
         {this.props.confirm.roll === 1 &&
-          <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
-            <div className="navbar-brand">
-              <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-  		           <span aria-hidden="true"></span>
-  		           <span aria-hidden="true"></span>
-  		           <span aria-hidden="true"></span>
-  		         </a>
-            </div>
-            <div id="navbarBasicExample" className="navbar-menu">
-              <div className="navbar-end">
-                <div className="navbar-item">
-                  <strong className="has-text-grey-light">{name+"     "}</strong>
-                </div>
-                <div className="navbar-item">
-                  <div className="buttons">
-                    <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
-                      Cerrar sesión
-                    </button>
+          <div>
+            <nav className="navbar" style={{ background: `#6D214F` }} role="navigation" aria-label="main navigation">
+              <div className="navbar-brand">
+                <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                </a>
+              </div>
+              <div id="navbarBasicExample" className="navbar-menu">
+                <div className="navbar-end">
+                  <div className="navbar-item">
+                    <strong className="has-text-grey-light">{name + "     "}</strong>
+                  </div>
+                  <div className="navbar-item">
+                    <div className="buttons">
+                      <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
+                        Cerrar sesión
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -69,10 +72,10 @@ class Home extends Component{
         }
 
         {this.props.confirm.roll === 0 &&
-          <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
+          <nav className="navbar" style={{ background: `#6D214F` }} role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
               <a className="navbar-item" href="/">
-                <img src="public/imagenes/logo.jpg" />
+                <img class='circular--square' src="public/imagenes/logo.jpg" />
               </a>
               <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                 <span aria-hidden="true"></span>
@@ -102,10 +105,10 @@ class Home extends Component{
         }
 
         {this.props.confirm.roll === 2 &&
-          <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
+          <nav className="navbar" style={{ background: `#6D214F` }} role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
               <a className="navbar-item" href="/">
-                <img src="public/imagenes/logo.jpg" />
+                <img class='circular--square' src="public/imagenes/logo.jpg" />
               </a>
               <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                 <span aria-hidden="true"></span>
@@ -118,7 +121,7 @@ class Home extends Component{
               </div>
               <div className="navbar-end">
                 <div className="navbar-item">
-                  <strong className="has-text-grey-light">{name+"     "}</strong>
+                  <strong className="has-text-grey-light">{name + "     "}</strong>
                 </div>
                 <div className="navbar-item">
                   <div className="buttons">
@@ -132,12 +135,18 @@ class Home extends Component{
           </nav>
         }
 
-        <div class="content has-text-centered">
-          <h1>
-            <img style={{ width: '80px', height: '80' }} src="public/imagenes/logo.jpg" />
-            SAMI Sistema De Administracion Ministerial
-          </h1>
-        </div>
+        <br />
+
+
+        <div class="maxtitulos">
+
+<div class="titulosdiv"><span class="titulos" ><br />SAMI Sistema de Administracion Ministerial</span></div>
+<div clas="imgtitulo"><img class="redondos" src="public/imagenes/logo.jpg" height="180" width="130" /> </div>
+</div>
+
+
+
+
 
         {this.props.confirm.roll === 1 &&
           <div>
@@ -202,6 +211,8 @@ class Home extends Component{
                       </Link>
                     </div>
                   </td>
+
+
                   <td>
                     <div class="content has-text-centered">
                       <Link to="/tipoevento">
@@ -211,15 +222,17 @@ class Home extends Component{
                     </div>
                   </td>
                 </tr>
+
                 <tr>
                   <td>
                     <div class="content has-text-centered">
                       <Link to="/logistica">
                         <img style={{ width: '150px', height: '150px', margin: '10px' }} src="public/imagenes/logistica.png" />
-                        <h5>LOGISTICA</h5>
+                        <h5>LOGISTICA5</h5>
                       </Link>
                     </div>
                   </td>
+
                 </tr>
               </table>
             </div>

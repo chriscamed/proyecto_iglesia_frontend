@@ -114,7 +114,7 @@ class OpenModaledit extends Component {
                       <div className="column">
                         <label className="label">ESTADO: </label>
                         <div className="control">
-                          <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`}}>
+                          <div className="select" style={{border:`solid 0px rgb(134, 56, 103)`}}>
                             <select value={this.state.ministerio.ESTADO}  onChange={e => this.setState({ministerio: {...ministerio,ESTADO:e.target.value.toUpperCase()}})} required>
                               <option value="">---Seleccione---</option>
                               {this.state.estados.map(option => (

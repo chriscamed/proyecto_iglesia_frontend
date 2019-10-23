@@ -1,0 +1,49 @@
+img.redondos {
+    border: 2px solid grey;
+    margin: 0;
+    padding: 0;
+    border-radius: 180px;
+    overflow: hidden;
+    }
+
+
+div.maxtitulos {
+   
+   
+    display: flex;
+  justify-content: center;
+  vertical-align:middle;
+  
+}
+div.titulosdiv {
+    
+    float:left;
+    padding: 10px;
+  margin: 10px;
+  display: flex;
+  vertical-align:middle;
+    
+}
+div.imgtitulo {
+    
+    float:right;
+    padding: 10px;
+  margin: 10px;
+}
+span.titulos{
+    display:inline-block;
+		vertical-align:middle;
+        line-height:normal;
+        font-size:25px;
+        color:#6d214f;
+
+}
+th {
+    border: 5px ;
+  }
+
+  img.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    }

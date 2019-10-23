@@ -1963,7 +1963,8 @@ a.box:active {
       width: 1344px; } }
 
 .content li + li {
-  margin-top: 0.25em; }
+  margin-top: 0.25em;
+ }
 
 .content p:not(:last-child),
 .content dl:not(:last-child),
@@ -8466,3 +8467,52 @@ a.has-text-danger:hover, a.has-text-danger:focus {
   fieldset[disabled] .pagination-link,
   fieldset[disabled] .pagination-ellipsis {
     cursor: not-allowed; }
+
+/*CSS PARA EL HOME*/
+    .circular--square {
+      width:150px;
+      height:150px;
+      border-radius:85px;
+      border:1px solid black; 
+  
+    }
+
+    .tabla_home {
+      margin: auto;
+      text-align: center !important;
+      align-items: center !important;
+       
+      }
+
+      .td-center {
+        text-align: center !important;
+        align-items: center !important;
+        color: rgb(109, 33, 79);
+
+    }
+
+    .titulo {
+      text-align: center !important;
+      align-items: center !important;
+      color: rgb(109, 33, 79);
+
+  }
+
+/*CSS PARA EL HOME*/
+input[type="email"], input[type="password"],input[type="text"],input[type="select"] {
+  border: #863867 2px solid !important;
+  color: #64234A !important; 
+}
+
+select, input[type="date"], input[type="radio"], input[type="number"], input[type="time"], input[type="file-label"] {
+  border: #863867 2px solid !important;
+  color: #64234A !important;
+  text-transform: uppercase; }
+.file-cta{
+  border: #863867 2px solid !important;
+  color: #64234A !important;
+   }
+.file-name{
+  border: #863867 2px solid !important;
+  color: #64234A !important;
+   }

@@ -103,7 +103,7 @@ function Campo(props){
       <Nombre title={props.title} obligatorio={props.obligatorio}/>
       <div className="field has-addons">
       <div className="control">
-           <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`}}>
+           <div className="select" style={{border:`solid 0px rgb(134, 56, 103)`}}>
             <select value={props.valor} onChange={props.cambiar}>
             <option value="">---Seleccione---</option>
             {props.options.map(option => (
@@ -129,7 +129,7 @@ function Campo(props){
       <Nombre title={props.title} obligatorio={props.obligatorio}/>
       <div className="field has-addons">
       <div className="control">
-           <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`, width: '290px'}}>
+           <div className="select" style={{border:`solid 0px rgb(134, 56, 103)`, width: '290px'}}>
             <select value={props.valor}  onChange={props.cambiar}>
             <option value="">---Seleccione---</option>
             {props.options.map(option => (
@@ -153,7 +153,7 @@ function Campo(props){
   <div className="field">
       <Nombre title={props.title} obligatorio={props.obligatorio}/>
       <div className="control">
-           <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`}}>
+           <div className="select" style={{border:`solid 0px rgb(134, 56, 103)`}}>
             <select value={props.valor}  onChange={props.cambiar}>
             <option value="">---Seleccione---</option>
             {props.options.map(option => (
@@ -173,7 +173,7 @@ function Campo(props){
       <Nombre title={props.title} obligatorio={props.obligatorio}/>
       <div className="field has-addons">
       <div className="control">
-           <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`, width: '290px'}}>
+           <div className="select" style={{border:`solid 0px rgb(134, 56, 103)`, width: '290px'}}>
             <select value={props.valor}  onChange={props.cambiar}>
             <option value="">---Seleccione---</option>
             {props.options.map(option => (
@@ -198,7 +198,7 @@ function Campo(props){
       <Nombre title={props.title} obligatorio={props.obligatorio}/>
       <div className="field has-addons">
       <div className="control">
-           <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`, width: '290px'}}>
+           <div className="select" style={{border:`solid 0px rgb(134, 56, 103)`, width: '290px'}}>
             <select value={props.valor}  onChange={props.cambiar}>
             <option selected value="">---Seleccione---</option>
             {props.options.map(option => (
@@ -227,7 +227,7 @@ function Campo(props){
                 {
                     (props.obligatorio === true) ? (
                         <div className="control">
-                            <div className="select" style={{ border: `solid 2px rgb(143,136, 144)` }}>
+                            <div className="select" style={{ border: `solid 0px rgb(143,136, 144)` }}>
                                 <select onChange={props.cambiar} required>
                                     <option value="">---Seleccione---</option>
                                     {props.options.map(option => (
@@ -240,7 +240,7 @@ function Campo(props){
                         </div>
                     ) : (
                             <div className="control">
-                                <div className="select" style={{ border: `solid 2px rgb(143,136, 144)` }}>
+                                <div className="select" style={{ border: `solid 0px rgb(143,136, 144)` }}>
                                     <select onChange={props.cambiar}>
                                         <option value="">---Seleccione---</option>
                                         {props.options.map(option => (
@@ -262,7 +262,7 @@ function Campo(props){
   <div className="field">
       <Nombre title={props.title} obligatorio={props.obligatorio}/>
       <div className="control">
-           <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`}}>
+           <div className="select" style={{border:`solid 0px rgb(134, 56, 103)`}}>
             <select value={props.valor}  onChange={props.cambiar}>
             <option value="">---Seleccione---</option>
             {props.options.map(option => (
@@ -282,7 +282,7 @@ function Campo(props){
         {
           (props.obligatorio===true)?(
            <div className="control">
-          <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`}}>
+          <div className="select" style={{border:`solid 0px rgb(134, 56, 103)`}}>
             <select value={props.valor}  onChange={props.cambiar} required>
             <option value="">---Seleccione---</option>
             {props.options.map(option => (
@@ -295,7 +295,7 @@ function Campo(props){
         </div>
           ):(
             <div className="control">
-          <div className="select" style={{border:`solid 2px rgb(134, 56, 103)`}}>
+          <div className="select" style={{border:`solid 0px rgb(134, 56, 103)`}}>
             <select value={props.valor}  onChange={props.cambiar}>
             <option value="">---Seleccione---</option>
             {props.options.map(option => (
@@ -315,7 +315,7 @@ function Campo(props){
   return(
   <div className="field">
       <Nombre title={props.title} obligatorio={props.obligatorio}/>
-      <div className="control" style={{ border: `solid 2px rgb(143,136, 144)`, width: '290px'}}>
+      <div className="control" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
            <input className="input" type="date"  value={props.valor} onChange={props.cambiar} max={props.maximo} />
       </div>
   </div>);
@@ -924,7 +924,7 @@ Auth = new AuthHelperMethods();
 
                                 <Campo title="Primer nombre" obligatorio={true} campo="text" valor={persona.PRIMER_NOMBRE}
                                     cambiar={e => this.setState({ persona: { ...persona, PRIMER_NOMBRE: e.target.value.toUpperCase() } })}
-                                    style={{ border: `solid 2px rgb(143,136, 144)` }}
+                                    style={{ border: `solid 0px rgb(143,136, 144)` }}
                                     maximo="60" />
                             </th>
 
@@ -1115,12 +1115,12 @@ Auth = new AuthHelperMethods();
                             <td width='50px'>
                                 <Campo title="Ministerio" obligatorio={false} campo="select" options={ministerios}
                                     cambiar={e => this.setState({ persona: { ...persona, MINISTERIO: e.target.value } })}
-                                    metodo={this.getMinisterios} style={{ border: `solid 2px rgb(143,136, 144)` }} />  </td>
+                                    metodo={this.getMinisterios} style={{ border: `solid 0px rgb(143,136, 144)` }} />  </td>
 
                             <td>
                                 <Campo title="Invitado por:" obligatorio={false} campo="select8" options={miembros}
                                     cambiar={e => this.setState({ persona: { ...persona, invitado_por: e.target.value } })}
-                                    style={{ border: `solid 2px rgb(143,136, 144)` }} />
+                                    style={{ border: `solid 0px rgb(143,136, 144)` }} />
                             </td>
 
 

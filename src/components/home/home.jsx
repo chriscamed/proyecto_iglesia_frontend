@@ -39,35 +39,33 @@ class Home extends Component{
       name = this.props.confirm.user;
     }
     //let name = this.props.confirm.username;
-    console.log(this.props.confirm.roll)
+    // console.log(this.props.confirm.roll)
     return(
-	     <div>
+	     <div class='col-md-12' style={{margin: '10px'}}>
         {this.props.confirm.roll === 1 &&
-          <div>
-            <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
-              <div className="navbar-brand">
-                <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-  		            <span aria-hidden="true"></span>
-  		            <span aria-hidden="true"></span>
-  		            <span aria-hidden="true"></span>
-  		          </a>
-              </div>
-              <div id="navbarBasicExample" className="navbar-menu">
-                <div className="navbar-end">
-                  <div className="navbar-item">
-                    <strong className="has-text-grey-light">{name+"     "}</strong>
-                  </div>
-                  <div className="navbar-item">
-                    <div className="buttons">
-                      <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
-                        Cerrar sesión
-                      </button>
-                    </div>
+          <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
+            <div className="navbar-brand">
+              <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+  		           <span aria-hidden="true"></span>
+  		           <span aria-hidden="true"></span>
+  		           <span aria-hidden="true"></span>
+  		         </a>
+            </div>
+            <div id="navbarBasicExample" className="navbar-menu">
+              <div className="navbar-end">
+                <div className="navbar-item">
+                  <strong className="has-text-grey-light">{name+"     "}</strong>
+                </div>
+                <div className="navbar-item">
+                  <div className="buttons">
+                    <button className="button is-info is-inverted is-outlined" onClick={this._handleLogout}>
+                      Cerrar sesión
+                    </button>
                   </div>
                 </div>
               </div>
-            </nav>
-          </div>
+            </div>
+          </nav>
         }
 
         {this.props.confirm.roll === 0 &&
@@ -134,15 +132,12 @@ class Home extends Component{
           </nav>
         }
 
-        <br/><br/><br/><br/><br/>
-
         <div class="content has-text-centered">
-          <h1>SAMI Sistema De Administracion Ministerial
-            <img style={{ width: '120px', height: '120' }} src="public/imagenes/logo.jpg" />
+          <h1>
+            <img style={{ width: '80px', height: '80' }} src="public/imagenes/logo.jpg" />
+            SAMI Sistema De Administracion Ministerial
           </h1>
         </div>
-
-
 
         {this.props.confirm.roll === 1 &&
           <div>
@@ -206,30 +201,26 @@ class Home extends Component{
                         <h5>DONACIONES</h5>
                       </Link>
                     </div>
-                            </td>
-
-
-                            <td>
-                                <div class="content has-text-centered">
-                                    <Link to="/tipoevento">
-                                        <img style={{ width: '150px', height: '150px', margin: '10px' }} src="public/imagenes/tipoEvento.png" />
-                                        <h5>TIPO EVENTO</h5>
-                                    </Link>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="content has-text-centered">
-                                    <Link to="/logistica">
-                                        <img style={{ width: '150px', height: '150px', margin: '10px' }} src="public/imagenes/logistica.png" />
-                                        <h5>LOGISTICA</h5>
-                                    </Link>
-                                </div>
-                            </td>
-
-                         </tr>
+                  </td>
+                  <td>
+                    <div class="content has-text-centered">
+                      <Link to="/tipoevento">
+                        <img style={{ width: '150px', height: '150px', margin: '10px' }} src="public/imagenes/tipoEvento.png" />
+                        <h5>TIPO EVENTO</h5>
+                      </Link>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="content has-text-centered">
+                      <Link to="/logistica">
+                        <img style={{ width: '150px', height: '150px', margin: '10px' }} src="public/imagenes/logistica.png" />
+                        <h5>LOGISTICA</h5>
+                      </Link>
+                    </div>
+                  </td>
+                </tr>
               </table>
             </div>
           </div>

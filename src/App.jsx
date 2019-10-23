@@ -13,6 +13,7 @@ import Assistance from './components/assistance/form/Assistance';
 import AssistanceList from './components/assistance/Assistance-List';
 import Usuarios from './components/usuarios/usuarios';
 import Ministerios from './components/ministerios/ministerios';
+import TipoEvento from './components/tipoevento/tipoevento';
 import Personas from './components/personas/personas';
 import NotFound from './components/404';
 import Login from './login';
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/assistancelist" exact component={AssistanceList} />
           <Route path="/usuarios" exact component={Usuarios} />
           <Route path="/ministerios" exact component={Ministerios} />
+          <Route path="/tipoevento" exact component={TipoEvento} />
           <Route path="/generarqr" exact component={Generar}/>
           <Route path="/personas" exact component={Personas} />
           <Route component={NotFound} />

@@ -29,12 +29,12 @@ class Login extends Component {
     }
 
     handleFormSubmit = (e) => {
-        
+
         e.preventDefault();
         const _this = this;
         /* Here is where all the login logic will go. Upon clicking the login button, we would like to utilize a login method that will send our entered credentials over to the server for verification. Once verified, it should store your token and send you to the protected route. */
         this.Auth.login(this.state.USUARIO, this.state.PASS)
-            .then(res => {                
+            .then(res => {
                 console.log(res);
                 if (res.success === false) {
                     _this.setState({
@@ -60,51 +60,41 @@ class Login extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className="main-wrapper">
+                <div className="main-wrapper" style={{margin: '10px'}}>
                     <div className="box">
                         <div className="box-header">
-                            <h1>Bienvenido</h1>
-         
+                            <h1>BIENVENIDO</h1>
                         </div>
                         <figure class="image is-128x128">
-  <img src="public/imagenes/logo.jpg" />
-</figure>
-<br></br>
+                          <img src="public/imagenes/logo.jpg" />
+                        </figure>
                         <form className="box-form">
-                        <div className="control has-icons-left">
-                        <input
-                                className="el"
-                                placeholder="usuario"
-                                name="USUARIO"
-                                type="text"
-                                onChange={this._handleChange}
-                            />
-            <span className="icon  is-left">
-              <i className="help"><FaUser/></i>
-            </span>
-            </div>
-            <div className="control has-icons-left">
-            <input
-                               className="el"
-                                placeholder="contraseña"
-                                name="PASS"
-                                type="password"
-                                onChange={this._handleChange}
-                            />
-            <span className="icon is-large  is-left">
-              <i className="icon is-large"><IoIosLock/></i>
-            </span>
-            </div>
-                            
-                            
-                            <button  onClick={this.handleFormSubmit}>INGRESAR</button>
-                        </form>                        
+                          <div className="control has-icons-left">
+                            <input className="el"
+                              placeholder="usuario"
+                              name="USUARIO"
+                              type="text"
+                              onChange={this._handleChange}/>
+                            <span className="icon  is-left">
+                              <i className="help"><FaUser/></i>
+                            </span>
+                          </div>
+                          <div className="control has-icons-left">
+                            <input className="el"
+                              placeholder="contraseña"
+                              name="PASS"
+                              type="password"
+                              onChange={this._handleChange}/>
+                            <span className="icon is-large  is-left">
+                              <i className="icon is-large"><IoIosLock/></i>
+                            </span>
+                          </div>
+
+                          <button  onClick={this.handleFormSubmit}>INGRESAR</button>
+                        </form>
                     </div>
-                    {/* <div className="signiture">
-                        <h1>Template Built & Designed by Roman Chvalbo</h1>
-                    </div> */}
                 </div>
-                
+
             </React.Fragment>
         );
     }

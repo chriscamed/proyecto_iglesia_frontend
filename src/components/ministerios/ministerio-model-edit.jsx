@@ -71,7 +71,7 @@ class OpenModaledit extends Component {
       ESTADO: this.state.ministerio.ESTADO
     };
     // console.log(obj);
-    if (obj.NOMBRE == '') {
+    if (obj.NOMBRE == '' || obj.ESTADO == '') {
       return alert("Favor diligenciar todos los campos");
     }else{
       const config = {

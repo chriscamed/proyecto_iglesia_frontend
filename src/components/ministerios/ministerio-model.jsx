@@ -46,9 +46,7 @@ class OpenModal extends Component {
   handleAgregar = event => {
     event.preventDefault();
     const obj = {
-      IDENTIFICACION: 3,
       NOMBRE: this.state.NOMBRE,
-      DESCRIPCION: this.state.NOMBRE,
       ESTADO: this.state.ESTADO
     };
     // console.log(obj);
@@ -71,7 +69,7 @@ class OpenModal extends Component {
       .then(this.close)
       .catch(err => console.log(err))
     }
-    this.setState({NOMBRE: '', DESCRIPCION: '', ESTADO: ''})
+    this.setState({NOMBRE: '', ESTADO: ''})
   }
 
   render() {

@@ -440,23 +440,23 @@ class Register extends Component {
       ],
       tipos_civil:[
         {
-          valor:"CASADO",
+          valor:"2",
           nombre:"CASADO"
         },
         {
-          valor: "DIVORCIADO",
+          valor: "4",
           nombre: "DIVORCIADO"
         },
         {
-          valor: "SOLTERO",
+          valor: "1",
           nombre:"SOLTERO"
         },
         {
-          valor: "UNION LIBRE",
+          valor: "3",
           nombre: "UNION LIBRE"
         },
         {
-          valor: "VIUDO",
+          valor: "5",
           nombre: "VIUDO"
         }
         ],

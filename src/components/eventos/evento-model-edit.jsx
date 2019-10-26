@@ -73,7 +73,7 @@ class OpenModaledit extends Component {
       ID_EVENTO: this.props.event.ID_EVENTO,
       ID_TIPO_EVENTO: this.state.evento.ID_TIPO_EVENTO,
       // FECHA: this.state.evento.FECHA,
-      FECHA: '2020-01-01',
+      FECHA: '2020-01-13',
       HORA_INICIO: this.state.evento.HORA_INICIO,
       HORA_FIN: this.state.evento.HORA_FIN
     };

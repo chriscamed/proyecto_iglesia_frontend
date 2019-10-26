@@ -463,11 +463,11 @@ class Register extends Component {
 
         tipos_genero: [
             {
-                valor: "MASCULINO",
+                valor: "M",
                 nombre: "MASCULINO"
             },
             {
-                valor: "FEMENINO",
+                valor: "F",
                 nombre: "FEMENINO"
             }
         ],

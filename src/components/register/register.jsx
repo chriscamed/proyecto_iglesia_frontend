@@ -640,44 +640,45 @@ Auth = new AuthHelperMethods();
   handleCrearPersona = event => {
 
     const obj = {
-      persona:{
-        PRIMER_NOMBRE: this.state.persona.PRIMER_NOMBRE,
-        SEGUND_NOMBRE: this.state.persona.SEGUND_NOMBRE,
-        PRIMER_APELLIDO: this.state.persona.PRIMER_APELLIDO,
-        SEGUND_APELLIDO: this.state.persona.SEGUND_APELLIDO,
-        TIPO_IDENTIFICACION: this.state.persona.TIPO_IDENTIFICACION,
-        IDENTIFICACION: this.state.persona.IDENTIFICACION,
-        FECHA_NACIMIENTO: this.state.persona.FECHA_NACIMIENTO,
-        GENERO: this.state.persona.GENERO,
-        ESTADO_CIVIL: this.state.persona.ESTADO_CIVIL,
-        DIRECCION_CASA: this.state.persona.DIRECCION_CASA,
-        ID_BARRIO: this.state.persona.BARRIO,
-        CORREO: this.state.persona.CORREO,
-        CELULAR_1: this.state.persona.CELULAR1,
-        CELULAR_2: this.state.persona.CELULAR2,
-        TELEFONO_FIJO: this.state.persona.TELEFONO_FIJO,
-        EMPRESA: this.state.persona.EMPRESA,
-        TELEFONO_EMPRESA: this.state.persona.TELEFONO_EXT,
-        ID_PROFESION: this.state.persona.PROFESION,
-        ID_OCUPACION: this.state.persona.OCUPACION,
-        FECHA_BAUTIZO: this.state.persona.FECHA_BAUTIZO,
-        ID_MINISTERIO: this.state.persona.MINISTERIO,
-        FOTO_PERSONA: this.state.persona.fotopersona,
-        ID_PERSONA_INVITA: this.state.persona.invitado_por,
-        TIPO_PERSONA: 1
-      }
+      "PRIMER_NOMBRE": this.state.persona.PRIMER_NOMBRE,
+      "SEGUND_NOMBRE": this.state.persona.SEGUND_NOMBRE,
+      "PRIMER_APELLIDO": this.state.persona.PRIMER_APELLIDO,
+      "SEGUND_APELLIDO": this.state.persona.SEGUND_APELLIDO,
+      "TIPO_IDENTIFICACION": this.state.persona.TIPO_IDENTIFICACION,
+      "IDENTIFICACION": this.state.persona.IDENTIFICACION,
+      "FECHA_NACIMIENTO": this.state.persona.FECHA_NACIMIENTO,
+      "GENERO": this.state.persona.GENERO,
+      "ESTADO_CIVIL": this.state.persona.ESTADO_CIVIL,
+      "DIRECCION_CASA": this.state.persona.DIRECCION_CASA,
+      "ID_BARRIO": this.state.persona.BARRIO,
+      "CORREO": this.state.persona.CORREO,
+      "CELULAR_1": this.state.persona.CELULAR1,
+      "CELULAR_2": this.state.persona.CELULAR2,
+      "TELEFONO_FIJO": this.state.persona.TELEFONO_FIJO,
+      "EMPRESA": this.state.persona.EMPRESA,
+      "TELEFONO_EMPRESA": this.state.persona.TELEFONO_EXT,
+      "ID_PROFESION": this.state.persona.PROFESION,
+      "ID_OCUPACION": this.state.persona.OCUPACION,
+      "FECHA_BAUTIZO": this.state.persona.FECHA_BAUTIZO,
+      "ID_MINISTERIO": this.state.persona.MINISTERIO,
+      "FOTO_PERSONA": this.state.persona.fotopersona,
+      "ID_PERSONA_INVITA": this.state.persona.invitado_por,
+      "TIPO_PERSONA": 1
     };
+<<<<<<< HEAD
     console.log(obj.persona);
+=======
+>>>>>>> 5adecdee04905b21abe50bda258ac55064bf363e
 
-    if (obj.persona.PRIMER_NOMBRE == "" || obj.persona.PRIMER_APELLIDO == "" || obj.persona.TIPO_IDENTIFICACION == "" ||
-        obj.persona.IDENTIFICACION == null || obj.persona.IDENTIFICACION == "" || obj.persona.GENERO == "" ||
-        obj.persona.FECHA_NACIMIENTO == null || obj.persona.ESTADO_CIVIL == "" || obj.persona.DIRECCION_CASA == "" ||
-        obj.persona.ID_BARRIO == null || obj.persona.CORREO == "" || obj.persona.CELULAR_1 == "" || obj.persona.ID_MINISTERIO == null) {
+    if (obj.PRIMER_NOMBRE == "" || obj.PRIMER_APELLIDO == "" || obj.TIPO_IDENTIFICACION == "" ||
+        obj.IDENTIFICACION == null || obj.IDENTIFICACION == "" || obj.GENERO == "" ||
+        obj.FECHA_NACIMIENTO == null || obj.ESTADO_CIVIL == "" || obj.DIRECCION_CASA == "" ||
+        obj.ID_BARRIO == null || obj.CORREO == "" || obj.CELULAR_1 == "" || obj.ID_MINISTERIO == null) {
           return alert("Favor diligenciar todos los campos obligatorios marcados con (*)");
     }else{
       const config = {
         headers: {
-          'content-type': 'multipart/form-data',
+          'content-type': 'application/json',
           'Authorization': localStorage.getItem('id_token')
         }
       };

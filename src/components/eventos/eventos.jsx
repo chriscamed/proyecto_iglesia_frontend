@@ -40,7 +40,7 @@ class Eventos extends Component {
         'Authorization': localStorage.getItem('id_token')
       }
     };
-    fetch(`http://localhost:5000/ministerios`,config)
+    fetch(`http://localhost:5000/eventos`,config)
       .then(response => response.json())
       .then(todos => {
         const { page, size } = this.state;
@@ -88,14 +88,14 @@ class Eventos extends Component {
       this.setState({ ...this.state, page: newPage, currPage: newCurrPage });
     }
   }
-  getMinisterios = () => {
+  getEventos = () => {
     const config = {
         headers: {
         'content-type': 'application/json',
         'Authorization': localStorage.getItem('id_token')
         }
     };
-    fetch('http://localhost:5000/ministerios',config)
+    fetch('http://localhost:5000/eventos',config)
     .then(response => response.json())
     .then(todos => {
 
@@ -124,19 +124,6 @@ class Eventos extends Component {
       page: newPage,
       currPage: newCurrPage
     });
-  }
-
-  mapEstado = (num) => {
-    switch(num){
-      case 0:
-      return(
-        <td>Inactivo</td>
-      )
-      case 1:
-      return(
-        <td>Activo</td>
-      )
-    }
   }
 
   render() {
@@ -239,7 +226,7 @@ class Eventos extends Component {
 
         <div style={{margin: '10px'}}>
           <div align="left">
-            <OpenModal titulo="CREAR EVENTO" metodo={this.getMinisterios} subtitulo="Ministerio" className="navbar-item has-text-grey-light" style={{background: '#6D214F'}}>
+            <OpenModal titulo="CREAR EVENTO" metodo={this.getEventos} subtitulo="Eventos" className="navbar-item has-text-grey-light" style={{background: '#6D214F'}}>
             </OpenModal>
           </div>
           <br/>
@@ -257,14 +244,14 @@ class Eventos extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {currPage && currPage.data.map(ministerios => (
-                    <tr key={ministerios.id}>
-                      <td>Culto</td>
-                      <td>Hoy</td>
-                      <td>9am</td>
-                      <td>10am</td>
+                  {currPage && currPage.data.map(eventos => (
+                    <tr key={eventos.id}>
+                      <td>{eventos.ID_TIPO_EVENTO}</td>
+                      <td>{eventos.FECHA}</td>
+                      <td>{eventos.HORA_INICIO}</td>
+                      <td>{eventos.HORA_FIN}</td>
                       <td>
-                        <OpenModaledit metodo={this.getMinisterios} user={ministerios} titulo="EDITAR EVENTO" subtitulo="Ministerio"/>
+                        <OpenModaledit metodo={this.getEventos} user={eventos} titulo="EDITAR EVENTO" subtitulo="Ministerio"/>
                       </td>
                     </tr>
                   ))}

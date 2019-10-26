@@ -18,20 +18,8 @@ class OpenModal extends Component {
     super(props);
 
     this.state={
-      IDENTIFICACION:'',
       NOMBRE:'',
-      DESCRIPCION:'',
-      ESTADO: null,
       show: false,
-      estados:[
-        {
-          id:1,
-          nombre:"Activo"
-        },
-        {
-          id:0,
-          nombre:"Inactivo"
-        }],
     }
   }
   Auth = new AuthHelperMethods();
@@ -46,13 +34,10 @@ class OpenModal extends Component {
   handleAgregar = event => {
     event.preventDefault();
     const obj = {
-      IDENTIFICACION: 3,
-      NOMBRE: this.state.NOMBRE,
-      DESCRIPCION: this.state.NOMBRE,
-      ESTADO: this.state.ESTADO
+      NOMBRE: this.state.NOMBRE
     };
     // console.log(obj);
-    if (obj.NOMBRE == '' || obj.ESTADO == null) {
+    if (obj.NOMBRE == '') {
       // console.log('prueba false');
       return alert("Favor diligenciar todos los campos");
     }else{
@@ -64,14 +49,14 @@ class OpenModal extends Component {
         }
       };
 
-      axios.post('http://localhost:5000/ministerio/crear', obj, config)
+      axios.post('http://localhost:5000/tipoevento/crear', obj, config)
       .then(response=>console.log(response.data,obj))
       .then(this.props.metodo)
-      .then(alert("Se ha agregado el ministerio"))
+      .then(alert("Se ha agregado el Tipo de Evento"))
       .then(this.close)
       .catch(err => console.log(err))
     }
-    this.setState({NOMBRE: '', DESCRIPCION: '', ESTADO: ''})
+    this.setState({NOMBRE: ''})
   }
 
   render() {
@@ -108,7 +93,7 @@ class OpenModal extends Component {
                 <Level.Side align="left">
                   <div className="columns">
                     <div className="column">
-                      <Button disabled onClick={this.handleAgregar} className="navbar-item has-text-grey-light" style={{ background: `#6D214F` }}>CREAR</Button>
+                      <Button onClick={this.handleAgregar} className="navbar-item has-text-grey-light" style={{ background: `#6D214F` }}>CREAR</Button>
                     </div>
                   </div>
                 </Level.Side>

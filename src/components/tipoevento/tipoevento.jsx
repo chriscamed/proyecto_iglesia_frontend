@@ -39,7 +39,7 @@ class TipoEvento extends Component {
         'Authorization': localStorage.getItem('id_token')
       }
     };
-    fetch(`http://localhost:5000/ministerios`,config)
+    fetch(`http://localhost:5000/tiposevento`,config)
       .then(response => response.json())
       .then(todos => {
         const { page, size } = this.state;
@@ -87,14 +87,14 @@ class TipoEvento extends Component {
       this.setState({ ...this.state, page: newPage, currPage: newCurrPage });
     }
   }
-  getMinisterios = () => {
+  getTiposEvento = () => {
     const config = {
         headers: {
         'content-type': 'application/json',
         'Authorization': localStorage.getItem('id_token')
         }
     };
-    fetch('http://localhost:5000/ministerios',config)
+    fetch('http://localhost:5000/tiposevento',config)
     .then(response => response.json())
     .then(todos => {
 
@@ -225,7 +225,7 @@ class TipoEvento extends Component {
 
         <div style={{margin: '10px'}}>
           <div align="left">
-            <OpenModal titulo="CREAR TIPO DE EVENTO" metodo={this.getMinisterios} subtitulo="Ministerio" className="navbar-item has-text-grey-light" style={{background: '#6D214F'}}>
+            <OpenModal titulo="CREAR TIPO DE EVENTO" metodo={this.getTiposEvento} subtitulo="TiposEvento" className="navbar-item has-text-grey-light" style={{background: '#6D214F'}}>
             </OpenModal>
           </div>
           <br/>
@@ -239,9 +239,9 @@ class TipoEvento extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {currPage && currPage.data.map(ministerios => (
-                    <tr key={ministerios.id}>
-                      <td>Prueba</td>
+                  {currPage && currPage.data.map(tiposevento => (
+                    <tr key={tiposevento.id}>
+                      <td>{tiposevento.NOMBRE}</td>
                     </tr>
                   ))}
                 </tbody>

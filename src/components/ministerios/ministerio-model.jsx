@@ -18,9 +18,7 @@ class OpenModal extends Component {
     super(props);
 
     this.state={
-      IDENTIFICACION:'',
       NOMBRE:'',
-      DESCRIPCION:'',
       ESTADO: null,
       show: false,
       estados:[

@@ -223,7 +223,7 @@ function Campo(props){
             <select onChange={props.cambiar}>
             <option value="">---Seleccione---</option>
             {props.options.map(option => (
-            <option key={option.ID_MIEMBRO} value={option.ID_MIEMBRO} title={option.IDENTIFICACION}>
+            <option key={option.ID_PERSONA} value={option.ID_PERSONA} title={option.ID_PERSONA}>
             {option.PRIMER_NOMBRE}  {option.PRIMER_APELLIDO}
           </option>
         ))}
@@ -665,15 +665,12 @@ Auth = new AuthHelperMethods();
       "ID_PERSONA_INVITA": this.state.persona.invitado_por,
       "TIPO_PERSONA": 1
     };
-<<<<<<< HEAD
-    console.log(obj.persona);
-=======
->>>>>>> 5adecdee04905b21abe50bda258ac55064bf363e
 
     if (obj.PRIMER_NOMBRE == "" || obj.PRIMER_APELLIDO == "" || obj.TIPO_IDENTIFICACION == "" ||
         obj.IDENTIFICACION == null || obj.IDENTIFICACION == "" || obj.GENERO == "" ||
         obj.FECHA_NACIMIENTO == null || obj.ESTADO_CIVIL == "" || obj.DIRECCION_CASA == "" ||
         obj.ID_BARRIO == null || obj.CORREO == "" || obj.CELULAR_1 == "" || obj.ID_MINISTERIO == null) {
+          console.log(obj)
           return alert("Favor diligenciar todos los campos obligatorios marcados con (*)");
     }else{
       const config = {

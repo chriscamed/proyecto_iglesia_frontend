@@ -610,32 +610,32 @@ Auth = new AuthHelperMethods();
   }
 
   //Render the protected component
-  handleSubmit = event => {
-    if(this.state.isChecked===true){
-
-      const formData = new FormData();
-      formData.append('persona',JSON.stringify(this.state.persona));
-      if(this.state.persona.fotopersona!=null){
-        formData.append('fotopersona',this.state.persona.fotopersona);
-      }
-      const config = {
-        headers: {
-          'content-type': 'multipart/form-data',
-          'Authorization': localStorage.getItem('id_token')
-        }
-      };
-
-      //const {persona} = this.state;
-      axios.post('http://localhost:5000/persona/crear', formData,config)
-      .then(response => console.log(response,formData))
-      .then(alert("Se ha agregado una persona"))
-      .catch(err => console.log(err))
-
-    }else{
-      alert("Debe aceptar el tratamiento de los datos personales");
-      event.preventDefault();
-    }
-  }
+  // handleSubmit = event => {
+  //   if(this.state.isChecked===true){
+  //
+  //     const formData = new FormData();
+  //     formData.append('persona',JSON.stringify(this.state.persona));
+  //     if(this.state.persona.fotopersona!=null){
+  //       formData.append('fotopersona',this.state.persona.fotopersona);
+  //     }
+  //     const config = {
+  //       headers: {
+  //         'content-type': 'multipart/form-data',
+  //         'Authorization': localStorage.getItem('id_token')
+  //       }
+  //     };
+  //
+  //     //const {persona} = this.state;
+  //     axios.post('http://localhost:5000/persona/crear', formData,config)
+  //     .then(response => console.log(response,formData))
+  //     .then(alert("Se ha agregado una persona"))
+  //     .catch(err => console.log(err))
+  //
+  //   }else{
+  //     alert("Debe aceptar el tratamiento de los datos personales");
+  //     event.preventDefault();
+  //   }
+  // }
 
   handleCrearPersona = event => {
 

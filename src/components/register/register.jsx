@@ -666,9 +666,6 @@ Auth = new AuthHelperMethods();
       "TIPO_PERSONA": 1
     };
 
-    console.log(obj);
-    console.log(JSON.stringify(obj));
-
     if (obj.PRIMER_NOMBRE == "" || obj.PRIMER_APELLIDO == "" || obj.TIPO_IDENTIFICACION == "" ||
         obj.IDENTIFICACION == null || obj.IDENTIFICACION == "" || obj.GENERO == "" ||
         obj.FECHA_NACIMIENTO == null || obj.ESTADO_CIVIL == "" || obj.DIRECCION_CASA == "" ||
@@ -677,7 +674,7 @@ Auth = new AuthHelperMethods();
     }else{
       const config = {
         headers: {
-          'content-type': 'multipart/form-data',
+          'content-type': 'application/json',
           'Authorization': localStorage.getItem('id_token')
         }
       };

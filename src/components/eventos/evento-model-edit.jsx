@@ -17,22 +17,13 @@ class OpenModaledit extends Component {
     super(props);
     this.state={
       show: false,
-      ministerio:{
-        IDENTIFICACION: this.props.user.IDENTIFICACION,
-        NOMBRE: this.props.user.NOMBRE,
-        DESCRIPCION: this.props.user.DESCRIPCION,
-        ESTADO: this.props.user.ESTADO
+      evento:{
+        ID_TIPO_EVENTO: this.props.event.ID_TIPO_EVENTO,
+        FECHA: this.props.event.FECHA,
+        HORA_INICIO: this.props.event.HORA_INICIO,
+        HORA_FIN: this.props.event.HORA_FIN
       },
-      estados:[
-        {
-          id:1,
-          nombre:"Culto"
-        },
-        {
-          id:0,
-          nombre:"Reunion de damas"
-        }
-      ]
+      tipoeventos:[]
     }
   }
   Auth = new AuthHelperMethods();
@@ -45,7 +36,7 @@ class OpenModaledit extends Component {
   close = () => this.setState({ show: false});
 
   componentDidMount(){
-    console.log(this.props);
+      this.getTiposEvento();
       this.getEvento()
   }
 
@@ -56,22 +47,38 @@ class OpenModaledit extends Component {
         'Authorization': localStorage.getItem('id_token')
       }
     };
-    fetch('http://localhost:5000/ministerio/' + this.props.user.ID_MINISTERIO,config)
+    fetch('http://localhost:5000/evento/' + this.props.event.ID_EVENTO,config)
     .then(response => response.json())
-    .then(datos => this.setState({ministerio:datos}))
+    .then(datos => this.setState({evento:datos}))
     .catch(err => console.log(err))
-    // console.log(this.props);
+    console.log(this.props);
+  }
+
+  getTiposEvento = () => {
+    const config = {
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': localStorage.getItem('id_token')
+      }
+    };
+    fetch('http://localhost:5000/tiposevento',config)
+    .then(response => response.json())
+    .then(datos => this.setState({tipoeventos:datos}))
+    .catch(err => console.log(err))
   }
 
   handleEditar = event => {
     event.preventDefault();
     const obj = {
-      ID_MINISTERIO: this.props.user.ID_MINISTERIO,
-      NOMBRE: this.state.ministerio.NOMBRE,
-      ESTADO: this.state.ministerio.ESTADO
+      ID_EVENTO: this.props.event.ID_EVENTO,
+      ID_TIPO_EVENTO: this.state.evento.ID_TIPO_EVENTO,
+      // FECHA: this.state.evento.FECHA,
+      FECHA: '2020-01-01',
+      HORA_INICIO: this.state.evento.HORA_INICIO,
+      HORA_FIN: this.state.evento.HORA_FIN
     };
-    // console.log(obj);
-    if (obj.NOMBRE == '' || obj.ESTADO == '') {
+    console.log(obj);
+    if (obj.FECHA == '' || obj.HORA_INICIO == '' || obj.HORA_INICIO == '') {
       return alert("Favor diligenciar todos los campos");
     }else{
       const config = {
@@ -80,18 +87,18 @@ class OpenModaledit extends Component {
           'Authorization': localStorage.getItem('id_token')
         }
       };
-      axios.post('http://localhost:5000/ministerio/editar', obj, config)
+      axios.post('http://localhost:5000/evento/editar', obj, config)
       // console.log(response.data);
         .then(response=>console.log(response.data,obj))
         .then(this.props.metodo)
-        .then(alert("se ha editado el ministerio"))
+        .then(alert("se ha editado el evento"))
         .then(this.close)
         .catch(err => console.log(err))
     }
   }
 
   render() {
-    const {ministerio}= this.state;
+    const {evento}= this.state;
     return (
       <div>
         <Button onClick={this.open} renderAs="a"><FaEdit/></Button>
@@ -107,12 +114,12 @@ class OpenModaledit extends Component {
                   <div className="columns">
                     <div className="column">
                       <label className="label">TIPO DE EVENTO:</label>
-                      <div className="select" style={{border:`solid 0px rgb(134, 56, 103)`}}>
-                        <select value={this.state.ESTADO} onChange={e => this.setState({ESTADO:e.target.value})} required>
+                      <div className="select" disabled style={{border:`solid 0px rgb(134, 56, 103)`}}>
+                        <select disabled value={this.state.evento.ID_TIPO_EVENTO} onChange={e => this.setState({ID_TIPO_EVENTO:e.target.value})} required>
                           <option value="">---Seleccione---</option>
-                          {this.state.estados.map(option => (
-                            <option key={option.id} value={option.id}>
-                              {option.nombre}
+                          {this.state.tipoeventos.map(option => (
+                            <option key={option.ID_TIPO_EVENTO} value={option.ID_TIPO_EVENTO}>
+                              {option.NOMBRE}
                             </option>
                           ))}
                         </select>
@@ -123,7 +130,7 @@ class OpenModaledit extends Component {
                     <div className="column">
                       <label className="label">FECHA:</label>
                       <div className="control">
-                        <input className="input" type="text" required value={this.state.NOMBRE} onChange={e => this.setState({NOMBRE:e.target.value.toUpperCase()})}/>
+                        <input className="input" type="date" required value={this.state.evento.FECHA} onChange={e => this.setState({FECHA:e.target.value.toUpperCase()})}/>
                       </div>
                     </div>
                   </div>
@@ -131,7 +138,7 @@ class OpenModaledit extends Component {
                     <div className="column">
                       <label className="label">HORA INICIO:</label>
                       <div className="control">
-                        <input className="input" type="text" required value={this.state.NOMBRE} onChange={e => this.setState({NOMBRE:e.target.value.toUpperCase()})}/>
+                        <input className="input" type="time" required value={this.state.evento.HORA_INICIO} onChange={e => this.setState({HORA_INICIO:e.target.value.toUpperCase()})}/>
                       </div>
                     </div>
                   </div>
@@ -139,7 +146,7 @@ class OpenModaledit extends Component {
                     <div className="column">
                       <label className="label">HORA FIN:</label>
                       <div className="control">
-                        <input className="input" type="text" required value={this.state.NOMBRE} onChange={e => this.setState({NOMBRE:e.target.value.toUpperCase()})}/>
+                        <input className="input" type="time" required value={this.state.evento.HORA_FIN} onChange={e => this.setState({HORA_FIN:e.target.value.toUpperCase()})}/>
                       </div>
                     </div>
                   </div>
@@ -153,7 +160,7 @@ class OpenModaledit extends Component {
                 <Level.Side align="left">
                   <div className="columns">
                     <div className="column">
-                      <Button disabled onClick={this.handleEditar} className="navbar-item has-text-grey-light" style={{ background: `#6D214F` }}>EDITAR</Button>
+                      <Button onClick={this.handleEditar} className="navbar-item has-text-grey-light" style={{ background: `#6D214F` }}>EDITAR</Button>
                     </div>
                   </div>
                 </Level.Side>

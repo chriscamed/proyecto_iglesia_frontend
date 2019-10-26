@@ -7,7 +7,6 @@ import OpenModaledit from './evento-model-edit';
 /* Once the 'Authservice' and 'withAuth' componenets are created, import them into App.js */
 import AuthHelperMethods from '../AuthHelperMethods';
 
-
 //Our higher order component
 import withAuth from '../withAuth';
 
@@ -108,6 +107,10 @@ class Eventos extends Component {
         });
       })
     .catch(err => console.log(err))
+  }
+
+  mapFecha = (fecha) => {
+      return(<td>{fecha}</td>)
   }
 
   handleChange(e) {
@@ -246,12 +249,12 @@ class Eventos extends Component {
                 <tbody>
                   {currPage && currPage.data.map(eventos => (
                     <tr key={eventos.id}>
-                      <td>{eventos.ID_TIPO_EVENTO}</td>
-                      <td>{eventos.FECHA}</td>
+                      <td>{eventos.NOMBRE}</td>
+                      {this.mapFecha(eventos.FECHA)}
                       <td>{eventos.HORA_INICIO}</td>
                       <td>{eventos.HORA_FIN}</td>
                       <td>
-                        <OpenModaledit metodo={this.getEventos} user={eventos} titulo="EDITAR EVENTO" subtitulo="Ministerio"/>
+                        <OpenModaledit metodo={this.getEventos} event={eventos} titulo="EDITAR EVENTO" subtitulo="Eventos"/>
                       </td>
                     </tr>
                   ))}

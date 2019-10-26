@@ -18,20 +18,12 @@ class OpenModal extends Component {
     super(props);
 
     this.state={
-      IDENTIFICACION:'',
-      NOMBRE:'',
-      DESCRIPCION:'',
-      ESTADO: null,
+      ID_TIPO_EVENTO:'',
+      FECHA:'',
+      HORA_INICIO:'',
+      HORA_FIN: '',
       show: false,
-      estados:[
-        {
-          id:1,
-          nombre:"Culto"
-        },
-        {
-          id:0,
-          nombre:"Reunion de damas"
-        }],
+      tipoeventos:[],
     }
   }
   Auth = new AuthHelperMethods();
@@ -43,20 +35,37 @@ class OpenModal extends Component {
   open = () => this.setState({ show: true });
   close = () => this.setState({ show: false });
 
+  componentDidMount(){
+    this.getTiposEvento();
+  }
+
+  getTiposEvento = () => {
+    const config = {
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': localStorage.getItem('id_token')
+      }
+    };
+    fetch('http://localhost:5000/tiposevento',config)
+    .then(response => response.json())
+    .then(datos => this.setState({tipoeventos:datos}))
+    .catch(err => console.log(err))
+  }
+
   handleAgregar = event => {
     event.preventDefault();
     const obj = {
-      IDENTIFICACION: 3,
-      NOMBRE: this.state.NOMBRE,
-      DESCRIPCION: this.state.NOMBRE,
-      ESTADO: this.state.ESTADO
+      ID_TIPO_EVENTO: this.state.ID_TIPO_EVENTO,
+      FECHA: this.state.FECHA,
+      HORA_INICIO: this.state.HORA_INICIO,
+      HORA_FIN: this.state.HORA_FIN
     };
     // console.log(obj);
-    if (obj.NOMBRE == '' || obj.ESTADO == null) {
-      // console.log('prueba false');
+    if (obj.ID_TIPO_EVENTO == '' || obj.FECHA == '' ||
+        obj.HORA_INICIO == '' || obj.HORA_FIN == '') {
       return alert("Favor diligenciar todos los campos");
     }else{
-      console.log(obj);
+      // console.log(obj);
       const config = {
         headers: {
           'content-type': 'application/json',
@@ -64,14 +73,14 @@ class OpenModal extends Component {
         }
       };
 
-      axios.post('http://localhost:5000/ministerio/crear', obj, config)
+      axios.post('http://localhost:5000/evento/crear', obj, config)
       .then(response=>console.log(response.data,obj))
       .then(this.props.metodo)
-      .then(alert("Se ha agregado el ministerio"))
+      .then(alert("Se ha agregado el evento"))
       .then(this.close)
       .catch(err => console.log(err))
     }
-    this.setState({NOMBRE: '', DESCRIPCION: '', ESTADO: ''})
+    this.setState({ID_TIPO_EVENTO: '', FECHA: '', HORA_INICIO: '', HORA_FIN: ''})
   }
 
   render() {
@@ -95,11 +104,11 @@ class OpenModal extends Component {
                       <div className="column">
                         <label className="label">TIPO DE EVENTO:</label>
                         <div className="select" style={{border:`solid 0px rgb(134, 56, 103)`}}>
-                          <select value={this.state.ESTADO} onChange={e => this.setState({ESTADO:e.target.value})} required>
+                          <select value={this.state.ID_TIPO_EVENTO} onChange={e => this.setState({ID_TIPO_EVENTO:e.target.value})} required>
                             <option value="">---Seleccione---</option>
-                            {this.state.estados.map(option => (
-                              <option key={option.id} value={option.id}>
-                                {option.nombre}
+                            {this.state.tipoeventos.map(option => (
+                              <option key={option.ID_TIPO_EVENTO} value={option.ID_TIPO_EVENTO}>
+                                {option.NOMBRE}
                               </option>
                             ))}
                           </select>
@@ -110,7 +119,7 @@ class OpenModal extends Component {
                       <div className="column">
                         <label className="label">FECHA:</label>
                         <div className="control">
-                          <input className="input" type="text" required value={this.state.NOMBRE} onChange={e => this.setState({NOMBRE:e.target.value.toUpperCase()})}/>
+                          <input className="input" type="date" required value={this.state.FECHA} onChange={e => this.setState({FECHA:e.target.value.toUpperCase()})}/>
                         </div>
                       </div>
                     </div>
@@ -118,7 +127,7 @@ class OpenModal extends Component {
                       <div className="column">
                         <label className="label">HORA INICIO:</label>
                         <div className="control">
-                          <input className="input" type="text" required value={this.state.NOMBRE} onChange={e => this.setState({NOMBRE:e.target.value.toUpperCase()})}/>
+                          <input className="input" type="time" required value={this.state.HORA_INICIO} onChange={e => this.setState({HORA_INICIO:e.target.value.toUpperCase()})}/>
                         </div>
                       </div>
                     </div>
@@ -126,7 +135,7 @@ class OpenModal extends Component {
                       <div className="column">
                         <label className="label">HORA FIN:</label>
                         <div className="control">
-                          <input className="input" type="text" required value={this.state.NOMBRE} onChange={e => this.setState({NOMBRE:e.target.value.toUpperCase()})}/>
+                          <input className="input" type="time" required value={this.state.HORA_FIN} onChange={e => this.setState({HORA_FIN:e.target.value.toUpperCase()})}/>
                         </div>
                       </div>
                     </div>
@@ -139,7 +148,7 @@ class OpenModal extends Component {
                 <Level.Side align="left">
                   <div className="columns">
                     <div className="column">
-                      <Button disabled onClick={this.handleAgregar} className="navbar-item has-text-grey-light" style={{ background: `#6D214F` }}>CREAR</Button>
+                      <Button onClick={this.handleAgregar} className="navbar-item has-text-grey-light" style={{ background: `#6D214F` }}>CREAR</Button>
                     </div>
                   </div>
                 </Level.Side>

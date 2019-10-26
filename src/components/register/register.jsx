@@ -112,7 +112,7 @@ function Campo(props){
       </select>
            </div>
       </div>
-       
+
       </div>
   </div>
   );
@@ -667,7 +667,7 @@ Auth = new AuthHelperMethods();
         TIPO_PERSONA: 1
       }
     };
-    console.log(obj);
+    console.log(obj.persona);
 
     if (obj.persona.PRIMER_NOMBRE == "" || obj.persona.PRIMER_APELLIDO == "" || obj.persona.TIPO_IDENTIFICACION == "" ||
         obj.persona.IDENTIFICACION == null || obj.persona.IDENTIFICACION == "" || obj.persona.GENERO == "" ||

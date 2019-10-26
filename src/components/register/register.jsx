@@ -640,31 +640,31 @@ Auth = new AuthHelperMethods();
   handleCrearPersona = event => {
 
     const obj = {
-      persona:{
-        PRIMER_NOMBRE: this.state.persona.PRIMER_NOMBRE,
-        SEGUND_NOMBRE: this.state.persona.SEGUND_NOMBRE,
-        PRIMER_APELLIDO: this.state.persona.PRIMER_APELLIDO,
-        SEGUND_APELLIDO: this.state.persona.SEGUND_APELLIDO,
-        TIPO_IDENTIFICACION: this.state.persona.TIPO_IDENTIFICACION,
-        IDENTIFICACION: this.state.persona.IDENTIFICACION,
-        FECHA_NACIMIENTO: this.state.persona.FECHA_NACIMIENTO,
-        GENERO: this.state.persona.GENERO,
-        ESTADO_CIVIL: this.state.persona.ESTADO_CIVIL,
-        DIRECCION_CASA: this.state.persona.DIRECCION_CASA,
-        ID_BARRIO: this.state.persona.BARRIO,
-        CORREO: this.state.persona.CORREO,
-        CELULAR_1: this.state.persona.CELULAR1,
-        CELULAR_2: this.state.persona.CELULAR2,
-        TELEFONO_FIJO: this.state.persona.TELEFONO_FIJO,
-        EMPRESA: this.state.persona.EMPRESA,
-        TELEFONO_EMPRESA: this.state.persona.TELEFONO_EXT,
-        ID_PROFESION: this.state.persona.PROFESION,
-        ID_OCUPACION: this.state.persona.OCUPACION,
-        FECHA_BAUTIZO: this.state.persona.FECHA_BAUTIZO,
-        ID_MINISTERIO: this.state.persona.MINISTERIO,
-        FOTO_PERSONA: this.state.persona.fotopersona,
-        ID_PERSONA_INVITA: this.state.persona.invitado_por,
-        TIPO_PERSONA: 1
+      "persona": {
+        "PRIMER_NOMBRE": this.state.persona.PRIMER_NOMBRE,
+        "SEGUND_NOMBRE": this.state.persona.SEGUND_NOMBRE,
+        "PRIMER_APELLIDO": this.state.persona.PRIMER_APELLIDO,
+        "SEGUND_APELLIDO": this.state.persona.SEGUND_APELLIDO,
+        "TIPO_IDENTIFICACION": this.state.persona.TIPO_IDENTIFICACION,
+        "IDENTIFICACION": this.state.persona.IDENTIFICACION,
+        "FECHA_NACIMIENTO": this.state.persona.FECHA_NACIMIENTO,
+        "GENERO": this.state.persona.GENERO,
+        "ESTADO_CIVIL": this.state.persona.ESTADO_CIVIL,
+        "DIRECCION_CASA": this.state.persona.DIRECCION_CASA,
+        "ID_BARRIO": this.state.persona.BARRIO,
+        "CORREO": this.state.persona.CORREO,
+        "CELULAR_1": this.state.persona.CELULAR1,
+        "CELULAR_2": this.state.persona.CELULAR2,
+        "TELEFONO_FIJO": this.state.persona.TELEFONO_FIJO,
+        "EMPRESA": this.state.persona.EMPRESA,
+        "TELEFONO_EMPRESA": this.state.persona.TELEFONO_EXT,
+        "ID_PROFESION": this.state.persona.PROFESION,
+        "ID_OCUPACION": this.state.persona.OCUPACION,
+        "FECHA_BAUTIZO": this.state.persona.FECHA_BAUTIZO,
+        "ID_MINISTERIO": this.state.persona.MINISTERIO,
+        "FOTO_PERSONA": this.state.persona.fotopersona,
+        "ID_PERSONA_INVITA": this.state.persona.invitado_por,
+        "TIPO_PERSONA": 1
       }
     };
     console.log(obj);

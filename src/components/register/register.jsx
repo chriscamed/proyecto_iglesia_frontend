@@ -27,337 +27,323 @@ function Nombre(props){
 //recibe varios parametros segun sea el campo requerido
 // por ejemplo si quiero un campo radio debo enviar parametros de cada radio (femenino- masculino)
 function Campo(props){
-  if(props.campo==="text"){
-  return(
-  <div className="field">
-    <Nombre title={props.title} obligatorio={props.obligatorio}/>
-    {(props.obligatorio===true)?(
-      <div className="control">
-        <input className="input" type="text" required value={props.valor} onChange={props.cambiar} maxLength={props.maximo} />
-      </div>
-    ):(
-      <div className="control">
-        <input className="input" type="text" value={props.valor} onChange={props.cambiar} maxLength={props.maximo} />
-      </div>
-    )}
-  </div>);
-  }
-  if(props.campo==="number"){
-  return(
-  <div className="field">
-      <Nombre title={props.title} obligatorio={props.obligatorio}/>
-      {
-        (props.obligatorio===true)?(
-           <div className="control">
-           <input className="input" type="number" required pattern="\d*" value={props.valor} onChange={props.cambiar} />
-          </div>
-          ):(
-
-            <div className="control">
-           <input className="input" type="number" pattern="\d*" value={props.valor} onChange={props.cambiar} />
-          </div>
-          )
-      }
-
-  </div>);
-  }
-  if(props.campo==="email"){
-    return(
-    <div className="field">
-      <Nombre title={props.title} obligatorio={props.obligatorio}/>
-      {
-        (props.valor==='')?(
-          <div className="control">
-           <input className="input" type="email"   value={props.valor} onChange={props.cambiar} onKeyUp={props.validar}/>
-            <p className="help is-grey-light">Ej: nombre@correo.com</p>
-          </div>
-        ):(
-          (props.validar===true)?(
-            <div className="control has-icons-right">
-            <input className="input is-success" type="email"   value={props.valor} onChange={props.cambiar} onKeyUp={props.validar}/>
-            <span className="icon is-small is-right">
-              <i className="help is-success"><FaCheck/></i>
-            </span>
-            <p className="help is-success">Correo valido</p>
-            </div>
-          ):(
-            <div className="control has-icons-right">
-            <input className="input is-danger" type="email"   value={props.valor} onChange={props.cambiar} onKeyUp={props.validar}/>
-            <span className="icon is-small is-right">
-              <i className="help is-danger"><IoIosCloseCircleOutline/></i>
-            </span>
-            <p className="help is-danger">Correo invalido</p>
-            </div>
-
-          )
-        )
-      }
-
-    </div>);
-  }
-  if(props.campo==="select"){
-  return(
-  <div className="field">
-      <Nombre title={props.title} obligatorio={props.obligatorio}/>
-      <div className="field has-addons">
-      <div className="control">
-           <div className="select" style={{border:`solid 0px rgb(143,136, 144)`}}>
-            <select onChange={props.cambiar}>
-            <option value="">---Seleccione---</option>
-            {props.options.map(option => (
-            <option key={option.ID_MINISTERIO} value={option.ID_MINISTERIO}>
-            {option.NOMBRE}
-          </option>
-        ))}
-      </select>
-           </div>
-      </div>
-
-      </div>
-  </div>
-  );
-  }
-  if(props.campo==="select3"){
-  return(
-
-  <div className="field">
-      <Nombre title={props.title} obligatorio={props.obligatorio}/>
-      <div className="field has-addons">
-      <div className="control">
-                  <div className="select" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
-            <select onChange={props.cambiar}>
-            <option value="">---Seleccione---</option>
-            {props.options.map(option => (
-            <option key={option.ID_OCUPACION} value={option.ID_OCUPACION}>
-            {option.OCUPACION}
-          </option>
-        ))}
-      </select>
-           </div>
-      </div>
-      <div className="control">
-      <OpenModal Actualizar={props.metodo} titulo="AGREGAR/EDITAR OCUPACIÓN" subtitulo="Ocupacion" options={props.options}
-       ></OpenModal>
-      </div>
-      </div>
-  </div>);
-  }
-  if(props.campo==="select6"){
-  return(
-
-  <div className="field">
-      <Nombre title={props.title} obligatorio={props.obligatorio}/>
-      <div className="control">
-              <div className="select" style={{ border: `solid 0px rgb(143,136, 144)` }}>
-            <select onChange={props.cambiar}>
-            <option value="">---Seleccione---</option>
-            {props.options.map(option => (
-            <option key={option.ID_ESTADO} value={option.ID_ESTADO}>
-            {option.ESTADO}
-          </option>
-        ))}
-      </select>
-           </div>
-      </div>
-  </div>);
-  }
-  if(props.campo==="select5"){
-  return(
-
-  <div className="field">
-      <Nombre title={props.title} obligatorio={props.obligatorio}/>
-      <div className="field has-addons">
-      <div className="control">
-                  <div className="select" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
-            <select onChange={props.cambiar}>
-            <option value="">---Seleccione---</option>
-            {props.options.map(option => (
-            <option key={option.ID_PROFESION} value={option.ID_PROFESION}>
-            {option.PROFESION}
-          </option>
-        ))}
-      </select>
-           </div>
-      </div>
-       <div className="control">
-      <OpenModal Actualizar={props.metodo} titulo="AGREGAR/EDITAR PROFESIÓN" subtitulo="Profesion" options={props.options}
-       ></OpenModal>
-      </div>
-      </div>
-  </div>);
-  }
-  if(props.campo==="select4"){
-  return(
-
-  <div className="field">
-      <Nombre title={props.title} obligatorio={props.obligatorio}/>
-      <div className="field has-addons">
-      <div className="control">
-                  <div className="select"style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
-            <select onChange={props.cambiar}>
-            <option selected value="">---Seleccione---</option>
-            {props.options.map(option => (
-            <option key={option.ID_BARRIO} value={option.ID_BARRIO}>
-            {option.BARRIO}
-          </option>
-        ))}
-      </select>
-
-           </div>
-
-      </div>
-      <div className="control">
-      <OpenModal Actualizar={props.metodo} titulo="AGREGAR/EDITAR BARRIO" subtitulo="Barrio" options={props.options}
-       ></OpenModal>
-      </div>
-      </div>
-    </div>);
-  }
-  if(props.campo==="select8"){
-  return(
-
-  <div className="field">
-      <Nombre title={props.title} obligatorio={props.obligatorio}/>
-      <div className="control">
-              <div className="select" style={{ border: `solid 0px rgb(143,136, 144)` }}>
-            <select onChange={props.cambiar}>
-            <option value="">---Seleccione---</option>
-            {props.options.map(option => (
-            <option key={option.ID_PERSONA} value={option.ID_PERSONA} title={option.ID_PERSONA}>
-            {option.PRIMER_NOMBRE}  {option.PRIMER_APELLIDO}
-          </option>
-        ))}
-      </select>
-           </div>
-      </div>
-    </div>);
-  }
-  if(props.campo==="select2"){
+  if(props.campo === "text"){
     return(
       <div className="field">
-      <Nombre title={props.title} obligatorio={props.obligatorio}/>
-        {
-          (props.obligatorio===true)?(
-           <div className="control">
-                        <div className="select" style={{ border: `solid 0px rgb(143,136, 144)` }}>
-            <select onChange={props.cambiar} required>
-            <option value="">---Seleccione---</option>
-            {props.options.map(option => (
-            <option key={option.valor} value={option.valor}>
-            {option.nombre}
-          </option>
-        ))}
-      </select>
+        <Nombre title={props.title} obligatorio={props.obligatorio}/>
+        {(props.obligatorio===true)?(
+          <div className="control">
+            <input className="input" type="text" required value={props.valor} onChange={props.cambiar} maxLength={props.maximo}/>
           </div>
-        </div>
-          ):(
-            <div className="control">
-                            <div className="select" style={{ border: `solid 0px rgb(143,136, 144)` }}>
-            <select onChange={props.cambiar}>
-            <option value="">---Seleccione---</option>
-            {props.options.map(option => (
-            <option key={option.valor} value={option.valor}>
-            {option.nombre}
-          </option>
-        ))}
-      </select>
+        ):(
+          <div className="control">
+            <input className="input" type="text" value={props.valor} onChange={props.cambiar} maxLength={props.maximo}/>
           </div>
-        </div>)
-        }
-
+        )}
       </div>
     );
   }
-  if (props.campo === "select52") {
-        return (
-            <div className="field">
-                <Nombre title={props.title} obligatorio={props.obligatorio} />
-                {
-                    (props.obligatorio === true) ? (
-                        <div className="control">
-                            <div className="select" style={{ border: `solid 0px rgb(143,136, 144)` }}>
-                                <select onChange={props.cambiar} required>
-                                    <option value="">---Seleccione---</option>
-                                    {props.options.map(option => (
-                                        <option key={option.valor} value={option.valor}>
-                                            {option.nombre}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-                        </div>
-                    ) : (
-                            <div className="control">
-                                <div className="select" style={{ border: `solid 0px rgb(143,136, 144)` }}>
-                                    <select onChange={props.cambiar}>
-                                        <option value="">---Seleccione---</option>
-                                        {props.options.map(option => (
-                                            <option key={option.valor} value={option.valor}>
-                                                {option.nombre}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
-                            </div>)
-                }
-
+  if(props.campo === "number"){
+    return(
+      <div className="field">
+        <Nombre title={props.title} obligatorio={props.obligatorio}/>
+        {(props.obligatorio===true)?(
+          <div className="control">
+            <input className="input" type="number" required pattern="\d*" value={props.valor} onChange={props.cambiar} />
+          </div>
+        ):(
+          <div className="control">
+            <input className="input" type="number" pattern="\d*" value={props.valor} onChange={props.cambiar} />
+          </div>
+        )}
+      </div>
+    );
+  }
+  if(props.campo === "email"){
+    return(
+      <div className="field">
+        <Nombre title={props.title} obligatorio={props.obligatorio}/>
+          {(props.valor==='')?(
+            <div className="control">
+              <input className="input" type="email" required value={props.valor} onChange={props.cambiar} onKeyUp={props.validar}/>
+              <p className="help is-grey-light">Ej: nombre@correo.com</p>
             </div>
-        );
-    }
-  if(props.campo==="date"){
-  return(
+          ):(
+            (props.validar===true)?(
+              <div className="control has-icons-right">
+                <input className="input is-success" type="email" value={props.valor} onChange={props.cambiar} onKeyUp={props.validar}/>
+                <span className="icon is-small is-right">
+                  <i className="help is-success"><FaCheck/></i>
+                </span>
+                <p className="help is-success">Correo valido</p>
+              </div>
+            ):(
+              <div className="control has-icons-right">
+                <input className="input is-danger" type="email" value={props.valor} onChange={props.cambiar} onKeyUp={props.validar}/>
+                <span className="icon is-small is-right">
+                  <i className="help is-danger"><IoIosCloseCircleOutline/></i>
+                </span>
+                <p className="help is-danger">Correo invalido</p>
+              </div>
+            )
+          )}
+      </div>
+    );
+  }
+  if(props.campo === "select"){
+    return(
+      <div className="field">
+        <Nombre title={props.title} obligatorio={props.obligatorio}/>
+        <div className="field has-addons">
+          <div className="control">
+            <div className="select" style={{border:`solid 0px rgb(143,136, 144)`}}>
+              <select onChange={props.cambiar}>
+                <option value="">---Seleccione---</option>
+                {props.options.map(option => (
+                  <option key={option.ID_MINISTERIO} value={option.ID_MINISTERIO}>
+                    {option.NOMBRE}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  if(props.campo === "select3"){
+    return(
+      <div className="field">
+        <Nombre title={props.title} obligatorio={props.obligatorio}/>
+        <div className="field has-addons">
+          <div className="control">
+            <div className="select" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
+              <select onChange={props.cambiar}>
+                <option value="">---Seleccione---</option>
+                {props.options.map(option => (
+                  <option key={option.ID_OCUPACION} value={option.ID_OCUPACION}>
+                    {option.OCUPACION}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <div className="control">
+            <OpenModal Actualizar={props.metodo} titulo="AGREGAR/EDITAR OCUPACIÓN" subtitulo="Ocupacion" options={props.options}></OpenModal>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  if(props.campo === "select6"){
+    return(
+      <div className="field">
+        <Nombre title={props.title} obligatorio={props.obligatorio}/>
+        <div className="control">
+          <div className="select" style={{ border: `solid 0px rgb(143,136, 144)` }}>
+            <select onChange={props.cambiar}>
+              <option value="">---Seleccione---</option>
+              {props.options.map(option => (
+                <option key={option.ID_ESTADO} value={option.ID_ESTADO}>
+                  {option.ESTADO}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  if(props.campo === "select5"){
+    return(
+      <div className="field">
+        <Nombre title={props.title} obligatorio={props.obligatorio}/>
+        <div className="field has-addons">
+          <div className="control">
+            <div className="select" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
+              <select onChange={props.cambiar}>
+                <option value="">---Seleccione---</option>
+                {props.options.map(option => (
+                  <option key={option.ID_PROFESION} value={option.ID_PROFESION}>
+                    {option.PROFESION}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <div className="control">
+            <OpenModal Actualizar={props.metodo} titulo="AGREGAR/EDITAR PROFESIÓN" subtitulo="Profesion" options={props.options}></OpenModal>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  if(props.campo === "select4"){
+    return(
+      <div className="field">
+        <Nombre title={props.title} obligatorio={props.obligatorio}/>
+        <div className="field has-addons">
+          <div className="control">
+            <div className="select"style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
+              <select onChange={props.cambiar}>
+                <option selected value="">---Seleccione---</option>
+                {props.options.map(option => (
+                  <option key={option.ID_BARRIO} value={option.ID_BARRIO}>
+                    {option.BARRIO}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <div className="control">
+            <OpenModal Actualizar={props.metodo} titulo="AGREGAR/EDITAR BARRIO" subtitulo="Barrio" options={props.options}></OpenModal>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  if(props.campo === "select8"){
+    return(
+      <div className="field">
+        <Nombre title={props.title} obligatorio={props.obligatorio}/>
+        <div className="control">
+          <div className="select" style={{ border: `solid 0px rgb(143,136, 144)` }}>
+            <select onChange={props.cambiar}>
+              <option value="">---Seleccione---</option>
+              {props.options.map(option => (
+                <option key={option.ID_PERSONA} value={option.ID_PERSONA} title={option.ID_PERSONA}>
+                  {option.PRIMER_NOMBRE}  {option.PRIMER_APELLIDO}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  if(props.campo === "select2"){
+    return(
+      <div className="field">
+      <Nombre title={props.title} obligatorio={props.obligatorio}/>
+        {(props.obligatorio===true)?(
+          <div className="control">
+            <div className="select" style={{ border: `solid 0px rgb(143,136, 144)` }}>
+              <select onChange={props.cambiar} required>
+                <option value="">---Seleccione---</option>
+                {props.options.map(option => (
+                  <option key={option.valor} value={option.valor}>
+                    {option.nombre}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        ):(
+          <div className="control">
+            <div className="select" style={{ border: `solid 0px rgb(143,136, 144)` }}>
+              <select onChange={props.cambiar}>
+                <option value="">---Seleccione---</option>
+                {props.options.map(option => (
+                  <option key={option.valor} value={option.valor}>
+                    {option.nombre}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>)
+        }
+      </div>
+    );
+  }
+  if(props.campo === "select52"){
+    return(
+      <div className="field">
+        <Nombre title={props.title} obligatorio={props.obligatorio}/>
+        {(props.obligatorio===true)?(
+          <div className="control">
+            <div className="select" style={{ border: `solid 0px rgb(143,136, 144)` }}>
+              <select onChange={props.cambiar} required>
+                <option value="">---Seleccione---</option>
+                {props.options.map(option => (
+                  <option key={option.valor} value={option.valor}>
+                    {option.nombre}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        ):(
+          <div className="control">
+            <div className="select" style={{ border: `solid 0px rgb(143,136, 144)` }}>
+              <select onChange={props.cambiar}>
+                <option value="">---Seleccione---</option>
+                {props.options.map(option => (
+                  <option key={option.valor} value={option.valor}>
+                    {option.nombre}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
+  if(props.campo === "date"){
+    return(
       <div className="field"  >
-      <Nombre title={props.title} obligatorio={props.obligatorio}/>
-          <div className="control" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
-           <input className="input" type="date"  value={props.valor} onChange={props.cambiar} max={props.maximo}/>
+        <Nombre title={props.title} obligatorio={props.obligatorio}/>
+        <div className="control" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
+          <input className="input" type="date"  value={props.valor} onChange={props.cambiar} max={props.maximo}/>
+        </div>
       </div>
-  </div>);
+    );
   }
-  if(props.campo==="date2"){
-  return(
-  <div className="field">
-      <Nombre title={props.title} obligatorio={props.obligatorio}/>
+  if(props.campo === "date2"){
+    return(
+      <div className="field">
+        <Nombre title={props.title} obligatorio={props.obligatorio}/>
+        <div className="control" style={{ border: `solid 0px rgb(143,136, 144)` }}>
+          <input className="input" type="date" disabled  value={props.valor} onChange={props.cambiar} max={props.maximo}/>
+        </div>
+      </div>
+    );
+  }
+  if(props.campo === "radio"){
+    return(
+      <div className="field">
+        <Nombre title={props.title} obligatorio={props.obligatorio}/>
+        {(props.obligatorio===true)?(
           <div className="control" style={{ border: `solid 0px rgb(143,136, 144)` }}>
-           <input className="input" type="date" disabled  value={props.valor} onChange={props.cambiar} max={props.maximo}/>
-      </div>
-  </div>);
-  }
-  if(props.campo==="radio"){
-  return(
-  <div className="field">
-      <Nombre title={props.title} obligatorio={props.obligatorio}/>
-      {
-        (props.obligatorio===true)?(
-                  <div className="control" style={{ border: `solid 0px rgb(143,136, 144)` }}>
-          <label className="radio">
-          {props.radio1}&nbsp; &nbsp; &nbsp;
-            <input type="radio" name={props.rad} value={props.radio3} onChange={props.cambiar} required/>
-          </label>
-          <label className="radio">
-          {props.radio2} &nbsp; &nbsp; &nbsp;
-            <input type="radio" name={props.rad} value={props.radio4} onChange={props.cambiar}/>
-          </label>
-      </div>):
-      (
-                      <div className="control" style={{ border: `solid 0px rgb(143,136, 144)` }}>
-          <label className="radio">
-          {props.radio1}&nbsp; &nbsp; &nbsp;
-            <input type="radio" name={props.rad} value={props.radio3} onChange={props.cambiar}/>
-          </label>
-          <label className="radio">
-          {props.radio2} &nbsp; &nbsp; &nbsp;
-            <input type="radio" name={props.rad} value={props.radio4} onChange={props.cambiar}/>
-          </label>
-      </div>
-      )
-      }
-  </div>);
-  }
-  if(props.campo==="file"){
-  return(
-  <div className="field">
-      <Nombre title={props.title} obligatorio={props.obligatorio}/>
+            <label className="radio">
+              {props.radio1}&nbsp; &nbsp; &nbsp;
+              <input type="radio" name={props.rad} value={props.radio3} onChange={props.cambiar} required/>
+            </label>
+            <label className="radio">
+              {props.radio2} &nbsp; &nbsp; &nbsp;
+              <input type="radio" name={props.rad} value={props.radio4} onChange={props.cambiar}/>
+            </label>
+          </div>
+        ):(
           <div className="control" style={{ border: `solid 0px rgb(143,136, 144)` }}>
+            <label className="radio">
+              {props.radio1}&nbsp; &nbsp; &nbsp;
+              <input type="radio" name={props.rad} value={props.radio3} onChange={props.cambiar}/>
+            </label>
+            <label className="radio">
+              {props.radio2} &nbsp; &nbsp; &nbsp;
+              <input type="radio" name={props.rad} value={props.radio4} onChange={props.cambiar}/>
+            </label>
+          </div>
+        )}
+      </div>
+    );
+  }
+  if(props.campo === "file"){
+    return(
+      <div className="field">
+      <Nombre title={props.title} obligatorio={props.obligatorio}/>
+        <div className="control" style={{ border: `solid 0px rgb(143,136, 144)` }}>
           <div className="file has-name ">
             <label className="file-label">
               <input className="file-input" type="file" name="personaImage" onChange={props.cambiar}/>
@@ -370,16 +356,17 @@ function Campo(props){
                 </span>
               </span>
               <span className="file-name">
-                 {(() => {
-                if (props.valor!=null) {
-                  return props.valor.name
-                }
+                {(() => {
+                  if (props.valor!=null) {
+                    return props.valor.name
+                  }
                 })()}
               </span>
             </label>
           </div>
+        </div>
       </div>
-  </div>);
+    );
   }
 }
 
@@ -390,35 +377,30 @@ class Register extends Component {
     super(props);
     //this.fechaActual=this.fechaActual.bind(this);
     this.state = {
-     persona:{
-      PRIMER_NOMBRE:'',
-      SEGUND_NOMBRE:'',
-      PRIMER_APELLIDO:'',
-      SEGUND_APELLIDO:'',
-      IDENTIFICACION:null,
-      TIPO_IDENTIFICACION:'',
-      FECHA_NACIMIENTO:null,
-      GENERO:'',
-      ESTADO_CIVIL:'',
-      CORREO:'',
-      CELULAR1:'',
-      CELULAR2:'',
-      TELEFONO_FIJO:'',
-      DIRECCION_CASA:'',
-      EMPRESA:'',
-      TELEFONO_EXT:'',
-      FECHA_BAUTIZO:null,
-      OCUPACION:null,
-      BARRIO:null,
-      PROFESION:null,
-      //ESTADO:null,
-      MINISTERIO:null,
-      fotopersona:null,
-      invitado_por:null,
-      },
-      temporal:{
-         BAUTIZADO:'',
-         validar_correo:null,
+      persona:{
+        PRIMER_NOMBRE:'',
+        SEGUND_NOMBRE:'',
+        PRIMER_APELLIDO:'',
+        SEGUND_APELLIDO:'',
+        IDENTIFICACION:null,
+        TIPO_IDENTIFICACION:'',
+        FECHA_NACIMIENTO:null,
+        GENERO:'',
+        ESTADO_CIVIL:'',
+        CORREO:'',
+        CELULAR1:'',
+        CELULAR2:'',
+        TELEFONO_FIJO:'',
+        DIRECCION_CASA:'',
+        EMPRESA:'',
+        TELEFONO_EXT:'',
+        FECHA_BAUTIZO:null,
+        OCUPACION:null,
+        BARRIO:null,
+        PROFESION:null,
+        MINISTERIO:null,
+        fotopersona:null,
+        invitado_por:null,
       },
       tipos:[
         {
@@ -460,117 +442,95 @@ class Register extends Component {
           nombre: "VIUDO"
         }
         ],
-
-        tipos_genero: [
-            {
-                valor: "M",
-                nombre: "MASCULINO"
-            },
-            {
-                valor: "F",
-                nombre: "FEMENINO"
-            }
-        ],
-      ocupaciones: [],
-      barrios: [],
-      profesiones: [],
-      //estados: [],
+      tipos_genero:[
+        {
+          valor: "M",
+          nombre: "MASCULINO"
+        },
+        {
+          valor: "F",
+          nombre: "FEMENINO"
+        }
+      ],
+      ocupaciones:[],
+      barrios:[],
+      profesiones:[],
       miembros:[],
       ministerios:[],
-      isChecked: true,
     }
-
   }
 
   componentDidMount(){
     this.getOcupaciones();
     this.getBarrios();
     this.getProfesiones();
-    //this.getEstados();
     this.getMiembros();
     this.getMinisterios();
     (function() {
-        var burger = document.querySelector('.burger');
-        var nav = document.querySelector('#'+burger.dataset.target);
-        burger.addEventListener('click', function(){
-          burger.classList.toggle('is-active');
-          nav.classList.toggle('is-active');
-        });
-      })();
+      var burger = document.querySelector('.burger');
+      var nav = document.querySelector('#'+burger.dataset.target);
+      burger.addEventListener('click', function(){
+        burger.classList.toggle('is-active');
+        nav.classList.toggle('is-active');
+      });
+    })();
   }
 
   getMinisterios= () => {
     const config = {
-        headers: {
+      headers: {
         'content-type': 'application/json',
         'Authorization': localStorage.getItem('id_token')
-        }
-        };
+      }
+    };
     fetch('http://localhost:5000/ministerios',config)
     .then(response => response.json())
     .then(datos => this.setState({ministerios: datos}))
     .catch(err => console.log(err))
   }
-
   getOcupaciones= () => {
     const config = {
-        headers: {
+      headers: {
         'content-type': 'application/json',
         'Authorization': localStorage.getItem('id_token')
-        }
-        };
+      }
+    };
     fetch('http://localhost:5000/ocupaciones',config)
     .then(response => response.json())
     .then(datos => this.setState({ocupaciones: datos}))
     .catch(err => console.log(err))
   }
-
   getBarrios= () => {
     const config = {
-        headers: {
+      headers: {
         'content-type': 'application/json',
         'Authorization': localStorage.getItem('id_token')
-        }
-        };
+      }
+    };
     fetch('http://localhost:5000/barrios',config)
     .then(response => response.json())
     .then(datos => this.setState({barrios: datos}))
     .catch(err => console.log(err))
   }
-
   getProfesiones= () => {
     const config = {
-        headers: {
+      headers: {
         'content-type': 'application/json',
         'Authorization': localStorage.getItem('id_token')
-        }
-        };
+      }
+    };
     fetch('http://localhost:5000/profesiones',config)
     .then(response => response.json())
     .then(datos => this.setState({profesiones: datos}))
     .catch(err => console.log(err))
   }
-
-  getEstados= () => {
-    const config = {
-        headers: {
-        'content-type': 'application/json',
-        'Authorization': localStorage.getItem('id_token')
-        }
-        };
-    fetch('http://localhost:5000/estados',config)
-    .then(response => response.json())
-    .then(datos => this.setState({estados: datos}))
-    .catch(err => console.log(err))
-  }
-
   getMiembros= () => {
     const config = {
-        headers: {
+      headers: {
         'content-type': 'application/json',
         'Authorization': localStorage.getItem('id_token')
-        }
-        };
+      }
+    };
     fetch('http://localhost:5000/personas',config)
     .then(response => response.json())
     .then(datos => this.setState({miembros: datos}))
@@ -579,66 +539,33 @@ class Register extends Component {
 
   fechaActual(){
     var d = new Date();
-     var   month = '' + (d.getMonth() + 1);
-      var  day = '' + d.getDate();
-        var year = d.getFullYear();
+    var month = '' + (d.getMonth() + 1);
+    var day = '' + d.getDate();
+    var year = d.getFullYear();
 
     if (month.length < 2) month = '0' + month;
     if (day.length < 2) day = '0' + day;
 
     return [year, month, day].join('-');
-
   }
-
   validarEmail(){
-
-  var texto = this.state.persona.CORREO;
-  var regex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
-   if (regex.test(texto)) {
-    return true
-  } else {
-    return false
+    var texto = this.state.persona.CORREO;
+    var regex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+    if (regex.test(texto)){
+      return true
+    }else{
+      return false
+    }
   }
 
-}
-
-Auth = new AuthHelperMethods();
+  Auth = new AuthHelperMethods();
 
   _handleLogout = () => {
     this.Auth.logout()
     this.props.history.replace('/login');
   }
 
-  //Render the protected component
-  // handleSubmit = event => {
-  //   if(this.state.isChecked===true){
-  //
-  //     const formData = new FormData();
-  //     formData.append('persona',JSON.stringify(this.state.persona));
-  //     if(this.state.persona.fotopersona!=null){
-  //       formData.append('fotopersona',this.state.persona.fotopersona);
-  //     }
-  //     const config = {
-  //       headers: {
-  //         'content-type': 'multipart/form-data',
-  //         'Authorization': localStorage.getItem('id_token')
-  //       }
-  //     };
-  //
-  //     //const {persona} = this.state;
-  //     axios.post('http://localhost:5000/persona/crear', formData,config)
-  //     .then(response => console.log(response,formData))
-  //     .then(alert("Se ha agregado una persona"))
-  //     .catch(err => console.log(err))
-  //
-  //   }else{
-  //     alert("Debe aceptar el tratamiento de los datos personales");
-  //     event.preventDefault();
-  //   }
-  // }
-
   handleCrearPersona = event => {
-
     const obj = {
       "PRIMER_NOMBRE": this.state.persona.PRIMER_NOMBRE,
       "SEGUND_NOMBRE": this.state.persona.SEGUND_NOMBRE,
@@ -669,7 +596,8 @@ Auth = new AuthHelperMethods();
     if (obj.PRIMER_NOMBRE == "" || obj.PRIMER_APELLIDO == "" || obj.TIPO_IDENTIFICACION == "" ||
         obj.IDENTIFICACION == null || obj.IDENTIFICACION == "" || obj.GENERO == "" ||
         obj.FECHA_NACIMIENTO == null || obj.ESTADO_CIVIL == "" || obj.DIRECCION_CASA == "" ||
-        obj.ID_BARRIO == null || obj.CORREO == "" || obj.CELULAR_1 == "" || obj.ID_MINISTERIO == null) {
+        obj.ID_BARRIO == null || obj.CORREO == "" || obj.CELULAR_1 == "" || obj.ID_MINISTERIO == null ||
+        obj.ID_PERSONA_INVITA == "" || obj.ID_PERSONA_INVITA == null) {
           console.log(obj)
           return alert("Favor diligenciar todos los campos obligatorios marcados con (*)");
     }else{
@@ -910,21 +838,22 @@ Auth = new AuthHelperMethods();
           </div>
         </div>
         <br/>
-            <div>
-              <div align="center">
-                <div className="columns">
-                  <div className="column">
-                    <Button onClick={this.handleCrearPersona} className="navbar-item has-text-grey-light" style={{ background: `#6D214F` }}>CREAR</Button>
-                  </div>
-                  <div className="column">
-                    <Link to="/personas">
-                      <Button className="navbar-item has-text-grey-light" style={{ background: `#6D214F` }}>CANCELAR</Button>
-                    </Link>
-                  </div>
-                </div>
+
+        <div>
+          <div align="center">
+            <div className="columns">
+              <div className="column">
+                <Button onClick={this.handleCrearPersona} className="navbar-item has-text-grey-light" style={{ background: `#6D214F` }}>CREAR</Button>
+              </div>
+              <div className="column">
+                <Link to="/personas">
+                  <Button className="navbar-item has-text-grey-light" style={{ background: `#6D214F` }}>CANCELAR</Button>
+                </Link>
               </div>
             </div>
           </div>
+        </div>
+      </div>
     );
   }
 }

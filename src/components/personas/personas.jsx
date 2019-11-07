@@ -296,7 +296,7 @@ class Personas extends Component {
                             </OpenModal>
                           </div>
                           <div className="column ">
-                            <Link className="button is-medium" to={{ pathname: '/editpersona', state: { cedula: personas.IDENTIFICACION, genero: personas.GENERO } }}><FaEdit />
+                            <Link className="button is-medium" to={{ pathname: '/editpersona', state: { id: personas.ID_PERSONA, genero: personas.GENERO } }}><FaEdit />
                             </Link>
                           </div>
                         </div>

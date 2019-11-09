@@ -109,10 +109,6 @@ class Eventos extends Component {
     .catch(err => console.log(err))
   }
 
-  mapFecha = (fecha) => {
-      return(<td>{fecha}</td>)
-  }
-
   handleChange(e) {
     const { value } = e.target;
     const { todos, page } = this.state;
@@ -250,7 +246,7 @@ class Eventos extends Component {
                   {currPage && currPage.data.map(eventos => (
                     <tr key={eventos.id}>
                       <td>{eventos.NOMBRE}</td>
-                      {this.mapFecha(eventos.FECHA)}
+                      <td>{eventos.FECHA}</td>
                       <td>{eventos.HORA_INICIO}</td>
                       <td>{eventos.HORA_FIN}</td>
                       <td>

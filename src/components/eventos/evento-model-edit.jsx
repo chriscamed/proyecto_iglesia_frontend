@@ -17,12 +17,10 @@ class OpenModaledit extends Component {
     super(props);
     this.state={
       show: false,
-      evento:{
         ID_TIPO_EVENTO: this.props.event.ID_TIPO_EVENTO,
         FECHA: this.props.event.FECHA,
         HORA_INICIO: this.props.event.HORA_INICIO,
-        HORA_FIN: this.props.event.HORA_FIN
-      },
+        HORA_FIN: this.props.event.HORA_FIN,
       tipoeventos:[]
     }
   }
@@ -36,8 +34,8 @@ class OpenModaledit extends Component {
   close = () => this.setState({ show: false});
 
   componentDidMount(){
-      this.getTiposEvento();
-      this.getEvento()
+    this.getTiposEvento();
+    this.getEvento()
   }
 
   getEvento = () => {
@@ -71,11 +69,11 @@ class OpenModaledit extends Component {
     event.preventDefault();
     const obj = {
       ID_EVENTO: this.props.event.ID_EVENTO,
-      ID_TIPO_EVENTO: this.state.evento.ID_TIPO_EVENTO,
+      ID_TIPO_EVENTO: this.state.ID_TIPO_EVENTO,
       // FECHA: this.state.evento.FECHA,
-      FECHA: '2020-01-13',
-      HORA_INICIO: this.state.evento.HORA_INICIO,
-      HORA_FIN: this.state.evento.HORA_FIN
+      FECHA: this.state.FECHA,
+      HORA_INICIO: this.state.HORA_INICIO,
+      HORA_FIN: this.state.HORA_FIN
     };
     console.log(obj);
     if (obj.FECHA == '' || obj.HORA_INICIO == '' || obj.HORA_INICIO == '') {
@@ -110,47 +108,45 @@ class OpenModaledit extends Component {
             <Modal.Card.Body>
               <Media>
                 <Media.Item>
-                <Content>
-                  <div className="columns">
-                    <div className="column">
-                      <label className="label">TIPO DE EVENTO:</label>
-                      <div className="select" disabled style={{border:`solid 0px rgb(134, 56, 103)`}}>
-                        <select disabled value={this.state.evento.ID_TIPO_EVENTO} onChange={e => this.setState({ID_TIPO_EVENTO:e.target.value})} required>
-                          <option value="">---Seleccione---</option>
-                          {this.state.tipoeventos.map(option => (
-                            <option key={option.ID_TIPO_EVENTO} value={option.ID_TIPO_EVENTO}>
-                              {option.NOMBRE}
-                            </option>
-                          ))}
-                        </select>
+                  <Content>
+                    <div className="columns">
+                      <div className="column">
+                        <label className="label">TIPO DE EVENTO:</label>
+                        <div className="select"  style={{border:`solid 0px rgb(134, 56, 103)`}}>
+                          <select disabled value={this.state.ID_TIPO_EVENTO} onChange={e => this.setState({ID_TIPO_EVENTO:e.target.value})} required>
+                            <option value="">---Seleccione---</option>
+                            {this.state.tipoeventos.map(option => (
+                              <option key={option.ID_TIPO_EVENTO} value={option.ID_TIPO_EVENTO}>
+                                {option.NOMBRE}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="columns">
-                    <div className="column">
-                      <label className="label">FECHA:</label>
-                      <div className="control">
-                        <input className="input" type="date" required value={this.state.evento.FECHA} onChange={e => this.setState({FECHA:e.target.value.toUpperCase()})}/>
+                    <div className="columns">
+                      <div className="column">
+                        <label className="label">FECHA:</label>
+                          <input className="input" type="date" required value={this.state.FECHA} onChange={e => this.setState({FECHA:e.target.value})} required/>
                       </div>
                     </div>
-                  </div>
-                  <div className="columns">
-                    <div className="column">
-                      <label className="label">HORA INICIO:</label>
-                      <div className="control">
-                        <input className="input" type="time" required value={this.state.evento.HORA_INICIO} onChange={e => this.setState({HORA_INICIO:e.target.value.toUpperCase()})}/>
+                    <div className="columns">
+                      <div className="column">
+                        <label className="label">HORA INICIO:</label>
+                        <div className="control">
+                          <input className="input" type="time" required value={this.state.HORA_INICIO} onChange={e => this.setState({HORA_INICIO:e.target.value})} required/>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="columns">
-                    <div className="column">
-                      <label className="label">HORA FIN:</label>
-                      <div className="control">
-                        <input className="input" type="time" required value={this.state.evento.HORA_FIN} onChange={e => this.setState({HORA_FIN:e.target.value.toUpperCase()})}/>
+                    <div className="columns">
+                      <div className="column">
+                        <label className="label">HORA FIN:</label>
+                        <div className="control">
+                          <input className="input" type="time" required value={this.state.HORA_FIN} onChange={e => this.setState({HORA_FIN:e.target.value})} required/>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Content>
+                  </Content>
 
                 </Media.Item>
               </Media>

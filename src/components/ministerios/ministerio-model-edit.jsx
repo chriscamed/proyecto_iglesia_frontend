@@ -45,8 +45,7 @@ class OpenModaledit extends Component {
   close = () => this.setState({ show: false});
 
   componentDidMount(){
-    console.log(this.props);
-      this.getEvento()
+    this.getEvento()
   }
 
   getEvento = () => {

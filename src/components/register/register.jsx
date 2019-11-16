@@ -757,7 +757,7 @@ class Register extends Component {
                       cambiar={e => this.setState({persona: {...persona, GENERO: e.target.value}})}/>
                   </td>
                   <td>
-                    <Campo title="FECHA NACIMIENTO" obligatorio={true} campo="date" valor={persona.FECHA_NACIMIENTO}
+                    <Campo title="Fecha de nacimiento" obligatorio={true} campo="date" valor={persona.FECHA_NACIMIENTO}
                       cambiar={e => this.setState({persona: {...persona, FECHA_NACIMIENTO: e.target.value }})} maximo={this.fechaActual()}/>
                   </td>
                 </tr>

@@ -212,7 +212,7 @@ function Campo(props){
               <option value="">---Seleccione---</option>
               {props.options.map(option => (
                 <option key={option.ID_PERSONA} value={option.ID_PERSONA} title={option.ID_PERSONA}>
-                  {option.PRIMER_NOMBRE} {option.PRIMER_APELLIDO}
+                  {option.PRIMER_NOMBRE}  {option.PRIMER_APELLIDO}
                 </option>
               ))}
             </select>
@@ -376,7 +376,7 @@ class Edit extends Component {
   constructor(props){
     super(props);
     this.state = {
-      persona:{
+      persona: {
         PRIMER_NOMBRE:'',
         SEGUND_NOMBRE:'',
         PRIMER_APELLIDO:'',
@@ -475,6 +475,7 @@ class Edit extends Component {
         });
       })();
   }
+
   Consultar(id){
     const config = {
         headers: {
@@ -487,6 +488,7 @@ class Edit extends Component {
     .then(data => this.setState({persona:data}))
     .catch(err => console.log(err))
   }
+
   getMinisterios = () => {
     const config = {
         headers: {
@@ -499,6 +501,7 @@ class Edit extends Component {
     .then(datos => this.setState({ministerios: datos}))
     .catch(err => console.log(err))
   }
+
   getOcupaciones = () => {
     const config = {
         headers: {
@@ -511,6 +514,7 @@ class Edit extends Component {
     .then(datos => this.setState({ocupaciones: datos}))
     .catch(err => console.log(err))
   }
+
   getBarrios = () => {
     const config = {
         headers: {
@@ -523,6 +527,7 @@ class Edit extends Component {
     .then(datos => this.setState({barrios: datos}))
     .catch(err => console.log(err))
   }
+
   getProfesiones = () => {
     const config = {
         headers: {
@@ -535,6 +540,7 @@ class Edit extends Component {
     .then(datos => this.setState({profesiones: datos}))
     .catch(err => console.log(err))
   }
+
   getMiembros = () => {
     const config = {
         headers: {
@@ -562,16 +568,16 @@ class Edit extends Component {
   }
   validarEmail(){
 
-  var texto = this.state.persona.CORREO;
-  var regex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
-   if (regex.test(texto)) {
-    return true
-  } else {
-    return false
+    var texto = this.state.persona.CORREO;
+    var regex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+    if (regex.test(texto)) {
+      return true
+    }else{
+      return false
+    }
   }
 
-}
-Auth = new AuthHelperMethods();
+  Auth = new AuthHelperMethods();
 
   _handleLogout = () => {
     this.Auth.logout()
@@ -650,17 +656,62 @@ Auth = new AuthHelperMethods();
       }
     }
 
-    handleEditarPersona = event => {
-      console.log(this.state.persona)
+  handleEditarPersona = event => {
+    console.log(this.state.persona)
+
+    const obj = {
+      "PRIMER_NOMBRE": this.state.persona.PRIMER_NOMBRE,
+      "SEGUND_NOMBRE": this.state.persona.SEGUND_NOMBRE,
+      "PRIMER_APELLIDO": this.state.persona.PRIMER_APELLIDO,
+      "SEGUND_APELLIDO": this.state.persona.SEGUND_APELLIDO,
+      "TIPO_IDENTIFICACION": this.state.persona.TIPO_IDENTIFICACION,
+      "IDENTIFICACION": this.state.persona.IDENTIFICACION,
+      "FECHA_NACIMIENTO": this.state.persona.FECHA_NACIMIENTO,
+      "GENERO": this.state.persona.GENERO,
+      "ESTADO_CIVIL": this.state.persona.ESTADO_CIVIL,
+      "DIRECCION_CASA": this.state.persona.DIRECCION_CASA,
+      "ID_BARRIO": this.state.persona.ID_BARRIO,
+      "CORREO": this.state.persona.CORREO,
+      "CELULAR_1": this.state.persona.CELULAR_1,
+      "CELULAR_2": this.state.persona.CELULAR_2,
+      "TELEFONO_FIJO": this.state.persona.TELEFONO_FIJO,
+      "EMPRESA": this.state.persona.EMPRESA,
+      "TELEFONO_EMPRESA": this.state.persona.TELEFONO_EXT,
+      "ID_PROFESION": this.state.persona.ID_PROFESION,
+      "ID_OCUPACION": this.state.persona.ID_OCUPACION,
+      "FECHA_BAUTIZO": this.state.persona.FECHA_BAUTIZO,
+      "ID_MINISTERIO": this.state.persona.ID_MINISTERIO,
+      "FOTO_PERSONA": this.state.persona.FOTO_PERSONA,
+      "ID_PERSONA_INVITA": this.state.persona.ID_PERSONA_INVITA,
+      "TIPO_PERSONA": 1
+    };
+    if (obj.PRIMER_NOMBRE == "" || obj.PRIMER_APELLIDO == "" || obj.TIPO_IDENTIFICACION == "" ||
+        obj.IDENTIFICACION == null || obj.IDENTIFICACION == "" || obj.GENERO == "" ||
+        obj.FECHA_NACIMIENTO == null || obj.ESTADO_CIVIL == "" || obj.DIRECCION_CASA == "" ||
+        obj.ID_BARRIO == null || obj.CORREO == "" || obj.CELULAR_1 == "" || obj.ID_MINISTERIO == null ||
+        obj.ID_PERSONA_INVITA == "" || obj.ID_PERSONA_INVITA == null) {
+          console.log(obj)
+          return alert("Favor diligenciar todos los campos obligatorios marcados con (*)");
+    }else{
+      const config = {
+        headers: {
+          'content-type': 'application/json',
+          'Authorization': localStorage.getItem('id_token')
+        }
+      };
+
+      //const {persona} = this.state;
+      axios.post('http://localhost:5000/persona/editar', obj,config)
+      .then(response => console.log(response))
+      .then(alert("Se ha actualizado la persona"))
+      .then(this.props.history.replace('/personas'))
+      .catch(err => console.log(err))
     }
+  }
 
   render() {
-    if (this.props.confirm) {
-      name = this.props.confirm.user;
-    }
-    const {persona,tipos,tipos_civil,tipos_genero,ocupaciones,barrios,profesiones,miembros,ministerios}= this.state;
+    const {persona}= this.state;
     return (
-
       <div class="row" style={{margin: '10px'}}>
         {this.props.confirm.roll === 1 &&
           <nav className="navbar" style={{background: `#6D214F`}} role="navigation" aria-label="main navigation">
@@ -763,34 +814,39 @@ Auth = new AuthHelperMethods();
                 <tr>
                   <td>
                     <label className="label">Primer nombre: <font color="red">*</font></label>
-                    <div className="control">
-                      <input className="input" type="text" required value={this.state.persona.PRIMER_NOMBRE} onChange={e => this.setState({PRIMER_NOMBRE:e.target.value.toUpperCase()})}/>
+                    <div className="control" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
+                      <input className="input" type="text" required value={this.state.persona.PRIMER_NOMBRE}
+                        onChange={e => this.setState({persona: {...persona, PRIMER_NOMBRE: e.target.value}})}/>
                     </div>
                   </td>
                   <td>
                     <label className="label">Segundo nombre:</label>
-                    <div className="control">
-                      <input className="input" type="text" required value={this.state.persona.SEGUND_NOMBRE} onChange={e => this.setState({SEGUND_NOMBRE:e.target.value.toUpperCase()})}/>
+                    <div className="control" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
+                      <input className="input" type="text" required value={this.state.persona.SEGUND_NOMBRE}
+                        onChange={e => this.setState({persona: {...persona, SEGUND_NOMBRE: e.target.value}})}/>
                     </div>
                   </td>
                   <td>
                     <label className="label">Primer apellido: <font color="red">*</font></label>
-                    <div className="control">
-                      <input className="input" type="text" required value={this.state.persona.PRIMER_APELLIDO} onChange={e => this.setState({PRIMER_APELLIDO:e.target.value.toUpperCase()})}/>
+                    <div className="control" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
+                      <input className="input" type="text" required value={this.state.persona.PRIMER_APELLIDO}
+                        onChange={e => this.setState({persona: {...persona, PRIMER_APELLIDO: e.target.value}})}/>
                     </div>
                   </td>
                   <td>
                     <label className="label">Segundo apellido:</label>
-                    <div className="control">
-                      <input className="input" type="text" required value={this.state.persona.SEGUND_APELLIDO} onChange={e => this.setState({SEGUND_APELLIDO:e.target.value.toUpperCase()})}/>
+                    <div className="control" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
+                      <input className="input" type="text" required value={this.state.persona.SEGUND_APELLIDO}
+                        onChange={e => this.setState({persona: {...persona, SEGUND_APELLIDO: e.target.value}})}/>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td>
                     <label className="label">Tipo identificacion: <font color="red">*</font></label>
-                    <div className="select" disabled style={{border:`solid 0px rgb(134, 56, 103)`}}>
-                      <select value={this.state.persona.TIPO_IDENTIFICACION} onChange={e => this.setState({TIPO_IDENTIFICACION:e.target.value})} required>
+                    <div className="select" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
+                      <select value={this.state.persona.TIPO_IDENTIFICACION}
+                        onChange={e => this.setState({persona: {...persona, TIPO_IDENTIFICACION: e.target.value}})}>
                         <option value="">---Seleccione---</option>
                         {this.state.tipos.map(option => (
                           <option key={option.valor} value={option.valor}>
@@ -801,13 +857,17 @@ Auth = new AuthHelperMethods();
                     </div>
                   </td>
                   <td>
-                    <Campo title="Identificacion" obligatorio={true} campo="number" valor={persona.IDENTIFICACION}
-                      cambiar={e => this.setState({persona: {...persona, IDENTIFICACION: e.target.value}})} maximo="11"/>
+                    <label className="label">Identificacion: <font color="red">*</font></label>
+                    <div className="control" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
+                      <input className="input" type="text" required value={this.state.persona.IDENTIFICACION}
+                        onChange={e => this.setState({persona: {...persona, IDENTIFICACION: e.target.value}})}/>
+                    </div>
                   </td>
                   <td>
                     <label className="label">Genero: <font color="red">*</font></label>
-                    <div className="select" disabled style={{border:`solid 0px rgb(134, 56, 103)`}}>
-                      <select value={this.state.persona.GENERO} onChange={e => this.setState({GENERO:e.target.value})} required>
+                    <div className="select" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
+                      <select value={this.state.persona.GENERO}
+                        onChange={e => this.setState({persona: {...persona, GENERO: e.target.value}})}>
                         <option value="">---Seleccione---</option>
                         {this.state.tipos_genero.map(option => (
                           <option key={option.valor} value={option.valor}>
@@ -818,82 +878,157 @@ Auth = new AuthHelperMethods();
                     </div>
                   </td>
                   <td>
-                    <Campo title="Fecha Nacimiento" obligatorio={true} campo="date" valor={persona.FECHA_NACIMIENTO}
-                      cambiar={e => this.setState({persona: {...persona, FECHA_NACIMIENTO: e.target.value }})} maximo={this.fechaActual()}/>
+                    <label className="label">Fecha Nacimiento: <font color="red">*</font></label>
+                    <div className="control" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
+                        <input className="input" type="date" required value={this.state.persona.FECHA_NACIMIENTO}
+                          onChange={e => this.setState({persona: {...persona, FECHA_NACIMIENTO: e.target.value}})}/>
+                    </div>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <Campo title="Estado Civil" obligatorio={true} campo="select2" options={tipos_civil}
-                      cambiar={e => this.setState({persona: {...persona, ESTADO_CIVIL: e.target.value}})}/>
+                    <label className="label">Estado Civil: <font color="red">*</font></label>
+                    <div className="select" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
+                      <select value={this.state.persona.ESTADO_CIVIL}
+                        onChange={e => this.setState({persona: {...persona, ESTADO_CIVIL: e.target.value}})}>
+                        <option value="">---Seleccione---</option>
+                        {this.state.tipos_civil.map(option => (
+                          <option key={option.valor} value={option.valor}>
+                            {option.nombre}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
                   </td>
                   <td>
                     <Campo title="Direccion" obligatorio={true} campo="text" valor={persona.DIRECCION_CASA}
                       cambiar={e => this.setState({persona: {...persona, DIRECCION_CASA: e.target.value}})}/>
                   </td>
                   <td>
-                    <Campo title="Barrio" obligatorio={true} campo="select4" options={barrios}
-                      cambiar={e => this.setState({persona: {...persona, ID_BARRIO: e.target.value}})}
-                      metodo={this.getBarrios}/>
+                    <label className="label">Barrio: <font color="red">*</font></label>
+                    <div className="select" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
+                      <select value={this.state.persona.ID_BARRIO}
+                        onChange={e => this.setState({persona: {...persona, ID_BARRIO: e.target.value}})}>
+                        <option value="">---Seleccione---</option>
+                        {this.state.barrios.map(option => (
+                          <option key={option.ID_BARRIO} value={option.ID_BARRIO}>
+                            {option.BARRIO}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
                   </td>
                   <td></td>
                 </tr>
                 <tr>
                   <td>
-                    <Campo title="Correo electronico:" obligatorio={false} campo="email" valor={persona.CORREO} validar={this.validarEmail()}
+                    <Campo title="Correo electronico:" campo="email" valor={persona.CORREO} validar={this.validarEmail()}
                       cambiar={e => this.setState({persona: {...persona, CORREO: e.target.value}})}/>
                   </td>
                   <td>
-                    <Campo title="Telefono Celular:" obligatorio={true} campo="number" valor={persona.CELULAR1}
-                      cambiar={e => this.setState({persona: {...persona, CELULAR_1: e.target.value}})}/>
+                    <label className="label">Telefono Celular: <font color="red">*</font></label>
+                    <div className="control" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
+                      <input className="input" type="number" required value={this.state.persona.CELULAR_1}
+                        onChange={e => this.setState({persona: {...persona, CELULAR_1: e.target.value}})}/>
+                    </div>
                   </td>
                   <td>
-                    <Campo title="Telefono celular 2:" obligatorio={false} campo="number" valor={persona.CELULAR2}
-                      cambiar={e => this.setState({persona: {...persona, CELULAR_2: e.target.value}})}/>
+                    <label className="label">Telefono Celular 2: </label>
+                    <div className="control" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
+                      <input className="input" type="number" required value={this.state.persona.CELULAR_2}
+                        onChange={e => this.setState({persona: {...persona, CELULAR_2: e.target.value}})}/>
+                    </div>
                   </td>
                   <td>
-                    <Campo title="Telefono fijo: " obligatorio={false} campo="number" valor={persona.TELEFONO_FIJO}
-                      cambiar={e => this.setState({persona: {...persona, TELEFONO_FIJO:e.target.value}})}/>
+                    <label className="label">Telefono Fijo: </label>
+                    <div className="control" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
+                      <input className="input" type="number" required value={this.state.persona.TELEFONO_FIJO}
+                        onChange={e => this.setState({persona: {...persona, TELEFONO_FIJO: e.target.value}})}/>
+                    </div>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <Campo title="Profesion" obligatorio={false} campo="select5" options={profesiones}
-                      cambiar={e => this.setState({persona: {...persona, ID_PROFESION:e.target.value}})}/>
+                    <label className="label">Profesion: </label>
+                    <div className="select" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
+                      <select value={this.state.persona.ID_PROFESION}
+                        onChange={e => this.setState({persona: {...persona, ID_PROFESION: e.target.value}})}>
+                        <option value="">---Seleccione---</option>
+                        {this.state.profesiones.map(option => (
+                          <option key={option.ID_PROFESION} value={option.ID_PROFESION}>
+                            {option.PROFESION}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
                   </td>
                   <td>
-                    <Campo title="Ocupacion" obligatorio={false} campo="select3" options={ocupaciones}
-                      cambiar={e => this.setState({persona: {...persona, ID_OCUPACION:e.target.value}})}/>
+                    <label className="label">Ocupacion: </label>
+                    <div className="select" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
+                      <select value={this.state.persona.ID_OCUPACION}
+                        onChange={e => this.setState({persona: {...persona, ID_OCUPACION: e.target.value}})}>
+                        <option value="">---Seleccione---</option>
+                        {this.state.ocupaciones.map(option => (
+                          <option key={option.ID_OCUPACION} value={option.ID_OCUPACION}>
+                            {option.OCUPACION}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
                   </td>
                   <td>
-                    <Campo title="Empresa donde labora" obligatorio={false} campo="text" valor={persona.EMPRESA}
-                      cambiar={e => this.setState({persona: {...persona, EMPRESA: e.target.value.toUpperCase()}})}/>
+                    <label className="label">Empresa donde labora: </label>
+                    <div className="control" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
+                      <input className="input" type="number" required value={this.state.persona.EMPRESA}
+                        onChange={e => this.setState({persona: {...persona, EMPRESA: e.target.value}})}/>
+                    </div>
                   </td>
                   <td>
-                    <Campo title="Telefono" obligatorio={false} campo="number" valor={persona.TELEFONO_EXT}
-                      cambiar={e => this.setState({persona: {...persona, TELEFONO_EMPRESA: e.target.value}})}/>
+                    <label className="label">Telefono: </label>
+                    <div className="control" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
+                      <input className="input" type="number" required value={this.state.persona.TELEFONO_EXT}
+                        onChange={e => this.setState({persona: {...persona, TELEFONO_EXT: e.target.value}})}/>
+                    </div>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <Campo title="Fecha bautismo" obligatorio={false} campo="date" valor={persona.FECHA_BAUTIZO}
-                      cambiar={e => this.setState({persona: {...persona, FECHA_BAUTIZO: e.target.value}})} maximo={this.fechaActual()}/>
-                  </td>
-                  <td width='50px'>
-                    <Campo title="Ministerio" obligatorio={true} campo="select" options={ministerios}
-                      cambiar={e => this.setState({persona: {...persona, ID_MINISTERIO:e.target.value}})}
-                      style={{ border: 'solid 0px rgb(143,136, 144)'}}/>
+                    <label className="label">Fecha Bautizo: </label>
+                    <div className="control" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
+                        <input className="input" type="date" required value={this.state.persona.FECHA_BAUTIZO}
+                          onChange={e => this.setState({persona: {...persona, FECHA_BAUTIZO: e.target.value}})}/>
+                    </div>
                   </td>
                   <td>
-                    <Campo title="Invitado por:" obligatorio={false} campo="select8" options={miembros}
-                      cambiar={e => this.setState({persona: {...persona, ID_PERSONA_INVITA: e.target.value}})}
-                      style={{ border: 'solid 0px rgb(143,136, 144)'}}/>
+                    <label className="label">Ministerio: <font color="red">*</font></label>
+                    <div className="select" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
+                      <select value={this.state.persona.ID_MINISTERIO}
+                        onChange={e => this.setState({persona: {...persona, ID_MINISTERIO: e.target.value}})}>
+                        <option value="">---Seleccione---</option>
+                        {this.state.ministerios.map(option => (
+                          <option key={option.ID_MINISTERIO} value={option.ID_MINISTERIO}>
+                            {option.NOMBRE}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
                   </td>
-                  <td width= '50px'>
-                    <Campo title="Foto" obligatorio={false} campo="file" valor={persona.fotopersona}
-                      cambiar={e => this.setState({persona: {...persona, FOTO_PERSONA:e.target.files[0]}})}/>
+                  <td>
+                    <label className="label">Invitado por: </label>
+                    <div className="select" style={{ border: `solid 0px rgb(143,136, 144)`, width: '290px'}}>
+                      <select value={this.state.persona.ID_PERSONA_INVITA}
+                        onChange={e => this.setState({persona: {...persona, ID_PERSONA_INVITA: e.target.value}})}>
+                        <option value="">---Seleccione---</option>
+                        {this.state.miembros.map(option => (
+                          <option key={option.ID_PERSONA} value={option.ID_PERSONA}>
+                            {option.PRIMER_NOMBRE} {option.PRIMER_APELLIDO}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
                   </td>
                 </tr>
+
             </tbody>
           </table>
           </div>

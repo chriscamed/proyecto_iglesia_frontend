@@ -27,7 +27,7 @@
     "jwt-decode": "^2.2.0",
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.12.0",
-    "npm": "^6.9.0",
+    "npm": "^6.14.6",
     "paginate-array": "^2.1.0",
     "path": "^0.12.7",
     "qrcode.react": "^0.9.3",
